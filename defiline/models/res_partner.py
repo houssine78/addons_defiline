@@ -113,6 +113,7 @@ class res_partner(orm.Model):
         } 
 
     _columns = {
+        'data_usage_approval': fields.boolean(string='Data usage approval'),
         'status': fields.selection([('sab','SAB'),
                                      ('bad','BAD'),
                                      ('zz','ZZ'),],string='Status'),

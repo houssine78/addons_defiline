@@ -244,7 +244,7 @@ class register(http.Controller):
                 children += ','
             i+=1
         return children
-    
+
     @http.route(['/page/delete_profile'], methods=['POST'], type='http', auth="user", website=True)
     def delete_profile(self):
         cr, uid, env = request.cr, request.uid, request.env
@@ -256,13 +256,26 @@ class register(http.Controller):
         # redirect to Homepage
         return werkzeug.utils.redirect('/', 303)
     
+    @http.route(['/page/data_usage_approval'], methods=['POST'], type='http', auth="user", website=True)
+    def data_usage_approval(self):
+        cr, uid, env = request.cr, request.uid, request.env
+        values = {}
+        
+        user = env['res.users'].sudo().browse(uid)
+        user.partner_id.sudo().write({'data_usage_approval':True})
+        
+        values = self.get_profile_display_info(request)
+        values['success'] = True
+        
+        return request.website.render("defiline.profile_respondent", values)
+    
     @http.route(['/page/save_profile'], methods=['POST'], type='http', auth="user", website=True)
     def save_profile(self, **post):
         cr, uid, context, env = request.cr, request.uid, request.context, request.env  
         values = {}
         result = {}
         user = env['res.users'].sudo().browse(uid)
-        "children"
+        #"children"
         res_partner_fields = env['res.partner'].fields_get()
         for field in PROFILE_FIELDS:
             if field == 'children':
