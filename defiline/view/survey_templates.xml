@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="survey_google_form" inherit_id="survey.survey_init">
+			<xpath expr="//div[@class='wrap']" position="replace">
+				<div class="wrap">
+					<div class="oe_structure" />
+					<div class="container mt16 col-md-8 mb64">
+						<div groups="base.group_website_publisher" t-ignore="true"
+							class="text-right">
+							<a href="/web#action=survey.action_survey_form" class="btn btn-default">Go back	to surveys</a>
+						</div>
+						<div class="jumbotron mt32" style="background-color:white">
+							<t t-if="survey.google_forms_survey">
+								<iframe
+									t-att-src="'%s?&amp;entry_1649719970=%s&amp;entry_2040431440=%s&amp;entry_1890289020=%s' % (survey.google_forms_url,request.params.get('r1',''),request.params.get('r2',''),request.params.get('r3',''))"
+									width="740" height="1240" frameborder="0" />
+							</t>
+							<t t-if="survey.google_forms_survey == False">
+								<h1 t-field="survey.title" />
+								<div t-field="survey.description" class="oe_no_empty" />
+								<a class="btn btn-primary btn-lg" t-att-href="'/survey/fill/%s/%s' % (slug(survey), token)">
+									Start Survey
+								</a>
+							</t>
+						</div>
+					</div>
+					<div id="postit-div">
+						<t t-call="defiline.postit" />
+					</div>
+					<div class="oe_structure" />
+				</div>
+			</xpath>
+		</template>
+
+	</data>
+</openerp>

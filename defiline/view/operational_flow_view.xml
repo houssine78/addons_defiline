@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<record model="ir.ui.view" id="view_defiline_operational_flow_tree">
+            <field name="name">operational.flow.tree</field>
+            <field name="model">operational.flow</field>
+            <field name="arch" type="xml">
+                <tree string="Operational flow" delete="false" editable="bottom">
+                    <field name="focus_group_start_date" readonly="False"/>
+                    <field name="focus_group_end_date" readonly="False"/>
+                    <field name="focus_group_manager" readonly="False"/>
+                    <field name="quotation_request_date"/>
+                    <field name="customer" readonly="True"/>
+                    <field name="customer_ref" readonly="True"/>
+                    <field name="mission_id" readonly="True"/>
+                    <field name="focus_group_name" readonly="False"/>
+                    <field name="order_date_sent"/>
+                    <field name="order_id" readonly="False"/>
+                    <field name="recruitment_price" readonly="True"/>
+                    <field name="recruitment_qty_order" readonly="True"/>
+                    <field name="recruitment_qty_invoice" readonly="True"/>
+                    <field name="listing_price" readonly="True"/>
+                    <field name="listing_qty_order" readonly="True"/>
+                    <field name="listing_qty_invoice" readonly="True"/>
+                    <field name="incitive_price" readonly="True"/>
+                    <field name="incitive_qty_order" readonly="True"/>
+                    <field name="incitive_qty_invoice" readonly="True"/>
+                    <field name="incitive_bkp_price" readonly="True"/>
+                    <field name="incitive_bkp_qty_order" readonly="True"/>
+                    <field name="incitive_bkp_qty_invoice" readonly="True"/>
+                    <field name="managing_fee_price" readonly="True"/>
+                    <field name="managing_fee_qty_order" readonly="True"/>
+                    <field name="managing_fee_qty_invoice" readonly="True"/>
+                    <field name="cat_san_price" readonly="True"/>
+                    <field name="cat_san_qty_order" readonly="True"/>
+                    <field name="cat_san_qty_invoice" readonly="True"/>
+                    <field name="cat_trait_price" readonly="True"/>
+                    <field name="cat_trait_qty_order" readonly="True"/>
+                    <field name="cat_trait_qty_invoice" readonly="True"/>
+                    <field name="cat_fruit_price" readonly="True"/>
+                    <field name="cat_fruit_qty_order" readonly="True"/>
+                    <field name="cat_fruit_qty_invoice" readonly="True"/>
+                    <field name="cat_excep_price" readonly="True"/>
+                    <field name="cat_excep_qty_order" readonly="True"/>
+                    <field name="cat_excep_qty_invoice" readonly="True"/>
+                    <field name="cat_drink_price" readonly="True"/>
+                    <field name="cat_drink_qty_order" readonly="True"/>
+                    <field name="cat_drink_qty_invoice" readonly="True"/>
+                    <field name="note_taking_price" readonly="True"/>
+                    <field name="note_taking_qty_order" readonly="True"/>
+                    <field name="note_taking_qty_invoice" readonly="True"/>
+                    <field name="facility_price" readonly="True"/>
+                    <field name="facility_qty_order" readonly="True"/>
+                    <field name="facility_qty_invoice" readonly="True"/>
+					<field name="streaming_price" readonly="True"/>
+                    <field name="streaming_qty_order" readonly="True"/>
+                    <field name="streaming_qty_invoice" readonly="True"/>
+    				<field name="overdue_price" readonly="True"/>
+                    <field name="overdue_qty_order" readonly="True"/>
+                    <field name="overdue_qty_invoice" readonly="True"/>
+					<field name="copy_price" readonly="True"/>
+                    <field name="copy_qty_order" readonly="True"/>
+                    <field name="copy_qty_invoice" readonly="True"/>
+                    <field name="po_number" readonly="False"/>
+                    <field name="material_received_date" readonly="False"/>
+                    <field name="mission_description_date"/>
+                    <field name="google_form_date"/>
+                    <field name="postit_online"/>
+                    <field name="emailing_date"/>
+                    <field name="recruitment_date"/>
+                    <field name="group_sent_date"/>
+                    <field name="group_confirmation_date"/>
+                    <field name="invoice"/>
+                    <field name="invoice_date"/>
+                    <field name="invoice_state"/>
+                </tree>
+            </field>
+        </record>
+        
+         <!-- Focus group Calendar  View -->
+        <record id="view_operational_flow_calendar" model="ir.ui.view">
+            <field name="name">operational.flow.calendar</field>
+            <field name="model">operational.flow</field>
+            <field eval="2" name="priority"/>
+            <field name="arch" type="xml">
+                <calendar color="focus_group_address_id" date_start="focus_group_start_date" date_stop="focus_group_end_date" string="Operational flow">
+                    <field name="focus_group_name"/>
+                    <field name="focus_group_address_id"/>
+                </calendar>
+            </field>
+        </record>
+        
+        <record id="action_operational_flow_view" model="ir.actions.act_window">
+            <field name="name">Operational Flow</field>
+            <field name="res_model">operational.flow</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar</field>
+        </record>
+		
+		<menuitem name="Operational Flow" action="action_operational_flow_view" id="menu_operational_flow" parent="menu_main_mission" sequence="10" groups="group_opinions_assistant"/>
+    </data>
+</openerp>

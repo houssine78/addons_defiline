@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="edulevel_master" model="res.partner.education.level">
+        	<field name="name">Master's degree or Phd</field>
+        	<field name="code">6</field>
+        </record>
+        
+        <record id="edulevel_bachelor" model="res.partner.education.level">
+        	<field name="name">Bachelor</field>
+        	<field name="code">5</field>
+        </record>
+        <record id="edulevel_prof_bachelor" model="res.partner.education.level">
+        	<field name="name">Professional Bachelor</field>
+        	<field name="code">4</field>
+        </record>
+        <record id="edulevel_secondary_sup" model="res.partner.education.level">
+        	<field name="name">Secondary school (15-18)</field>
+        	<field name="code">3</field>
+        </record>
+        <record id="edulevel_secondary_inf" model="res.partner.education.level">
+        	<field name="name">Secondary school (11-15)</field>
+        	<field name="code">2</field>
+        </record>
+        <record id="edulevel_primary" model="res.partner.education.level">
+        	<field name="name">Primary school</field>
+        	<field name="code">1</field>
+        </record>
+	</data>
+   
+   	<data noupdate="1">
+   		<record id="menu_myprofile" model="website.menu">
+            <field name="name">My Profile</field>
+            <field name="url">/page/myprofile</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">66</field>
+        </record>
+        
+        <record id="menu_sign_in" model="website.menu">
+            <field name="name">Sign in</field>
+            <field name="url">/web/login</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">200</field>
+        </record>
+        
+        <!-- Default template user for new respondent signing in -->
+        <record id="default_template_respondent" model="res.users">
+            <field name="name">Template Respondent</field>
+            <field name="login">respondenttemplate</field>
+            <field name="active" eval="True"/>
+            <field name="share"  eval="False"/>
+            <field name="action_id" ref="website.action_website" />
+            <!-- Avoid auto-including this user in any default group, just like a typical portal member -->
+            <field name="groups_id" eval="[(6, 0,  [ref('defiline.group_respondent')])]"/>
+            <!-- allow signuped users to have a alias -->
+            <field name="alias_name">_respondenttemplate</field>
+        </record>
+   		
+        <record id="default_template_respondent_config" model="ir.config_parameter">
+            <field name="key">defiline.template_respondent_id</field>
+            <field name="value" ref="defiline.default_template_respondent"/>
+        </record>
+                
+        <record id="email_template_confirmation" model="email.template">
+            <field name="name">Confirmation Email</field>
+            <field name="email_from">${(object.company_id.email or 'noreply@localhost')|safe}</field>
+            <field name="subject">Registration confirmation</field>
+            <field name="email_to">${object.email}</field>
+            <field name="model_id" ref="base.model_res_users"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+    <p>Hello ${object.name},</p>
+
+	<p>You registration has been successfully recorded. </p>
+	
+	<p>Please confirm your subscription by clicking on this link <a href="${object.partner_id.registration_validation_url}">this link</a>.</p>
+
+    <p>If you have any question, do not hesitate to contact us.</p>
+    
+	<p>Kind regards,</p>
+	<p>${object.company_id.name}.</p>
+
+ % if object.company_id.street:
+      ${object.company_id.street}<br/>
+  % endif
+  % if object.company_id.street2:
+      ${object.company_id.street2}<br/>
+  % endif
+  % if object.company_id.city or object.company_id.zip:
+      ${object.company_id.zip} ${object.company_id.city}<br/>
+  % endif
+  % if object.company_id.country_id:
+      ${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>
+  % endif
+  % if object.company_id.phone:
+          Phone:&nbsp; ${object.company_id.phone}
+  % endif
+
+% if object.company_id.website:
+      <div>
+          Web :&nbsp;<a href="${object.company_id.website}">${object.company_id.website}</a>
+      </div>
+ %endif
+
+       <div>
+          <img src="https://secure.erp-space.com/logo.png">
+       </div>
+</div>
+            ]]></field>
+        </record>
+   
+   	    <record id="sequence_respondent_ref_type" model="ir.sequence.type">
+            <field name="name">Respondent Reference</field>
+            <field name="code">respondent.reference</field>
+        </record>
+        
+        <record id="sequence_respondent_ref" model="ir.sequence">
+            <field name="name">Respondent Reference</field>
+            <field name="code">respondent.reference</field>
+            <field eval="100000" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+        
+        <record id="sequence_group_ref_type" model="ir.sequence.type">
+            <field name="name">Group Reference</field>
+            <field name="code">group.reference</field>
+        </record>
+        
+        <record id="sequence_group_ref" model="ir.sequence">
+            <field name="name">Group Reference</field>
+            <field name="code">group.reference</field>
+            <field eval="10000" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+        
+         <record id="sequence_customer_ref_type" model="ir.sequence.type">
+            <field name="name">Customer Reference</field>
+            <field name="code">customer.reference</field>
+        </record>
+        
+        <record id="sequence_customer_ref" model="ir.sequence">
+            <field name="name">Customer Reference</field>
+            <field name="code">customer.reference</field>
+            <field eval="500" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+   	
+   </data>
+</openerp>

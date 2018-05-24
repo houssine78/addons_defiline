@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="report_invoice_defiline" inherit_id="account.report_invoice_document">
+			<xpath expr="//div[@t-if='o.reference']" position="after">
+				<div class="col-xs-2" t-if="o.po_number">
+                    <strong>PO Number:</strong>
+                    <p t-field="o.po_number"/>
+                </div>
+			</xpath>
+		</template>
+		
+		<template id="report_saleorder_defiline" inherit_id="sale.report_saleorder_document">
+			<xpath expr="//span[@t-field='o.name']/.." position="replace">
+			    <h3>
+	                <span t-if="o.state not in ['draft','sent']">Order N° </span>
+	                <span t-if="o.state in ['draft','sent']">Quotation N° </span>
+	                <span t-field="o.name"/>
+           		</h3>
+			    <h5>
+			    	<span t-field="o.subject"/>
+			    </h5>
+		    </xpath>
+		    
+			<xpath expr="//div[@id='informations']" position="replace">
+				<div class="row mt32 mb32" id="informations">
+	                <div t-if="o.client_order_ref" class="col-xs-3">
+	                    <strong>Your Reference:</strong>
+	                    <p t-field="o.client_order_ref"/>
+	                </div>
+	                
+	                <div t-if="o.po_number" class="col-xs-3">
+	                    <strong>PO Number:</strong>
+	                    <p t-field="o.po_number"/>
+	                </div>
+	                
+	                <div t-if="o.date_order" class="col-xs-3">
+	                    <strong t-if="o.state not in ['draft','sent']">Date Ordered:</strong>
+	                    <strong t-if="o.state in ['draft','sent']">Quotation Date:</strong>
+	                    <p t-field="o.date_order"/>
+	                </div>
+	                
+	                <!-- <div t-if="o.user_id.name" class="col-xs-3">
+	                    <strong>Salesperson:</strong>
+	                    <p t-field="o.user_id.name"/>
+	                </div>
+	                <div t-if="o.payment_term" class="col-xs-3">
+	                    <strong>Payment Term:</strong>
+	                    <p t-field="o.payment_term"/>
+	                </div> -->
+	                
+	                <div t-if="o.state in ['draft','sent'] and o.quotation_validity" class="col-xs-3">
+	                    <strong>Validity:</strong>
+	                    <p t-field="o.quotation_validity"/>
+	                </div>
+	            </div>
+            </xpath>
+		</template>
+	</data>
+</openerp>

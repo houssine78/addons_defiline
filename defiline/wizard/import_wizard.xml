@@ -1,0 +1,66 @@
+<openerp>
+	<data>
+	
+		<record id="view_import_wizard" model="ir.ui.view">
+            <field name="name">Import respondents</field>
+            <field name="model">import.respondent.wizard</field>
+            <field name="arch" type="xml">
+	            <form string="Import Respondent">
+					<group>
+						<field name="type"/>
+						<field name="file" widget="binary" default_focus="1" />
+					</group>
+		            <footer>
+	                    <button name="import_csv" string="Import file" type="object" class="oe_highlight"/>
+	                   or
+	                    <button string="Cancel" class="oe_link" special="cancel" />
+	                </footer>
+	            </form>
+            </field>
+        </record>
+        
+        <record id="action_import_wizard" model="ir.actions.act_window">
+            <field name="name">Import</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">import.respondent.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_import_wizard"/>
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+        
+        <menuitem id="menu_import_wizard" name="Import element" 
+	        parent="menu_respondent_root" action="action_import_wizard" 
+	        sequence="6" groups="base.group_system"/>    
+	        
+	    <!-- <record id="view_delete_all_wizard" model="ir.ui.view">
+            <field name="name">Delete all</field>
+            <field name="model">delete.respondent.wizard</field>
+            <field name="arch" type="xml">
+	            <form string="Delete all">
+		            <footer>
+	                    <button name="delete_all" string="Delete all" type="object" class="oe_highlight"/>
+	                   or
+	                    <button string="Cancel" class="oe_link" special="cancel" />
+	                </footer>
+	            </form>
+            </field>
+        </record>
+        
+        <record id="action_delete_all_wizard" model="ir.actions.act_window">
+            <field name="name">Import</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">delete.respondent.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_delete_all_wizard"/>
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+        
+        <menuitem id="menu_delete_all_wizard" name="Delete all" 
+	        parent="menu_respondent_root" action="action_delete_all_wizard" 
+	        sequence="6" groups="base.group_system"/>   -->
+	</data>
+</openerp>

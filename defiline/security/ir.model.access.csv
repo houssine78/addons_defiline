@@ -1,0 +1,45 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ir_ui_menu,ir_ui_menu respondent,base.model_ir_ui_menu,group_respondent,1,0,0,0
+access_res_partner_gender,res_partner_gender opinions assistant,defiline.model_res_partner_gender,group_opinions_assistant,1,1,1,0
+access_res_partner_education_level,res_partner_education_level opinions assistant,defiline.model_res_partner_education_level,group_opinions_assistant,1,1,1,0
+access_res_partner_assistant,res_partner opinions assistant,base.model_res_partner,group_opinions_assistant,1,1,1,0
+access_res_partner_manager,res_partner opinions manager,base.model_res_partner,group_opinions_manager,1,1,1,1
+access_mission_mission_assistant,res_mission_mission opinions assistant,defiline.model_mission_mission,group_opinions_assistant,1,1,1,0
+access_survey_assistant,survey.survey assistant,survey.model_survey_survey,group_opinions_assistant,1,1,1,1
+access_survey_page_assistant,survey.page assistant,survey.model_survey_page,group_opinions_assistant,1,1,1,1
+access_survey_question_assistant,survey.question assistant,survey.model_survey_question,group_opinions_assistant,1,1,1,1
+access_survey_label_assistant,survey.label assistant,survey.model_survey_label,group_opinions_assistant,1,1,1,1
+access_survey_user_input_assistant,survey.user_input assistant,survey.model_survey_user_input,group_opinions_assistant,1,1,1,1
+access_survey_user_input_line_assistant,survey.user_input_line assistant,survey.model_survey_user_input_line,group_opinions_assistant,1,1,1,1
+access_survey_stage_assistant,survey.stage assistant,survey.model_survey_stage,group_opinions_assistant,1,1,1,1
+access_event_type_assistant,event.type assistant,event.model_event_type,group_opinions_assistant,1,1,1,1
+access_event_event_assistant,event.event assistant,event.model_event_event,group_opinions_assistant,1,1,1,1
+access_event_registration_assistant,event.registration assistant,event.model_event_registration,group_opinions_assistant,1,1,1,1
+access_event_event_ticket_assistant,event.event.ticket assistant,event_sale.model_event_event_ticket,group_opinions_assistant,1,1,1,1
+access_event_event_order_line_assistant,event.order.line assistant,defiline.model_event_order_line,group_opinions_assistant,1,1,1,0
+access_event_event_order_line_manager,event.order.line manager,defiline.model_event_order_line,group_opinions_manager,1,1,1,0
+access_sale_order_assistant,sale.order assistant,sale.model_sale_order,group_opinions_assistant,1,1,1,0
+access_sale_order_line_assistant,sale.order.line assistant,sale.model_sale_order_line,group_opinions_assistant,1,1,1,0
+access_sale_order_manager,sale.order manager,sale.model_sale_order,group_opinions_manager,1,1,1,1
+access_sale_order_line_manager,sale.order.line manager,sale.model_sale_order_line,group_opinions_manager,1,1,1,1
+access_account_invoice_assistant,account.invoice assistant,account.model_account_invoice,group_opinions_assistant,1,1,1,0
+access_account_invoice_line_assistant,account.invoice.line assistant,account.model_account_invoice_line,group_opinions_assistant,1,1,1,0
+access_account_invoice_manager,account.invoice manager,account.model_account_invoice,group_opinions_manager,1,1,1,1
+access_account_move_line_assistant,account.move.line assistant,account.model_account_move_line,group_opinions_assistant,1,1,1,0
+access_account_move_assistant,account.move assistant,account.model_account_move,group_opinions_assistant,1,1,1,0
+access_account_analytic_line_assistant,account.analytic.line assistant,account.model_account_analytic_line,group_opinions_assistant,1,1,1,0
+access_account_period_assistant,account.period assistant,account.model_account_period,group_opinions_assistant,1,1,1,0
+access_account_voucher_line_assistant,account.voucher.line assistant,account_voucher.model_account_voucher_line,group_opinions_assistant,1,1,1,0
+access_account_voucher_assistant,account.voucher assistant,account_voucher.model_account_voucher,group_opinions_assistant,1,1,1,0
+access_account_move_reconcile_assistant,account.move.reconcile assistant,account.model_account_move_reconcile,group_opinions_assistant,1,1,1,0
+access_account_invoice_line_manager,account.invoice.line manager,account.model_account_invoice_line,group_opinions_manager,1,1,1,1
+access_account_journal_assistant,account.journal assistant,account.model_account_journal,group_opinions_assistant,1,1,1,0
+access_account_journal_assistant,account.journal assistant,account.model_account_journal,group_opinions_assistant,1,1,1,0
+access_account_invoice_tax_assistant,account.invoice.tax assistant,account.model_account_invoice_tax,group_opinions_assistant,1,1,1,0
+access_focus_group_product_manager,focus.group.product manager,defiline.model_focus_group_product,group_opinions_manager,1,1,1,0
+access_informal_sale_order_line_manager,sale.informal.order.line manager,defiline.model_informal_sale_order_line,group_opinions_manager,1,1,1,1
+access_informal_sale_order_line_assistant,sale.informal.order.line assistant,defiline.model_informal_sale_order_line,group_opinions_assistant,1,1,1,0
+access_operational_flow_manager,operational.flow manager,defiline.model_operational_flow,group_opinions_manager,1,1,1,1
+access_operational_flow_assistant,operational.flow assistant,defiline.model_operational_flow,group_opinions_assistant,1,1,1,0
+access_sale_layout_category_assistant,layout.category assistant,sale_layout.model_sale_layout_category,group_opinions_assistant,1,1,1,0
+access_account_journal_period_manager,account.journal.period manager,account.model_account_journal_period,group_opinions_manager,1,1,1,0

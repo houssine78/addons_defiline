@@ -1,0 +1,3412 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* defiline
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0-20160822\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-24 09:55+0000\n"
+"PO-Revision-Date: 2016-08-25 15:11+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr_BE\n"
+"X-Generator: Poedit 1.6.5\n"
+
+#. module: defiline
+#: model:email.template,body_html:defiline.email_template_confirmation
+msgid ""
+"\n"
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-"
+"serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"    <p>Hello ${object.name},</p>\n"
+"\n"
+"\t<p>You registration has been successfully recorded. </p>\n"
+"\t\n"
+"\t<p>Please confirm your subscription by clicking on this link <a href="
+"\"${object.partner_id.registration_validation_url}\">this link</a>.</p>\n"
+"\n"
+"    <p>If you have any question, do not hesitate to contact us.</p>\n"
+"    \n"
+"\t<p>Kind regards,</p>\n"
+"\t<p>${object.company_id.name}.</p>\n"
+"\n"
+" % if object.company_id.street:\n"
+"      ${object.company_id.street}<br/>\n"
+"  % endif\n"
+"  % if object.company_id.street2:\n"
+"      ${object.company_id.street2}<br/>\n"
+"  % endif\n"
+"  % if object.company_id.city or object.company_id.zip:\n"
+"      ${object.company_id.zip} ${object.company_id.city}<br/>\n"
+"  % endif\n"
+"  % if object.company_id.country_id:\n"
+"      ${object.company_id.state_id and ('%s, ' % object.company_id.state_id."
+"name) or ''} ${object.company_id.country_id.name or ''}<br/>\n"
+"  % endif\n"
+"  % if object.company_id.phone:\n"
+"          Phone:&nbsp; ${object.company_id.phone}\n"
+"  % endif\n"
+"\n"
+"% if object.company_id.website:\n"
+"      <div>\n"
+"          Web :&nbsp;<a href=\"${object.company_id.website}\">${object."
+"company_id.website}</a>\n"
+"      </div>\n"
+" %endif\n"
+"\n"
+"       <div>\n"
+"          <img src=\"https://secure.erp-space.com/logo.png\">\n"
+"       </div>\n"
+"</div>\n"
+"            "
+msgstr ""
+"\n"
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-"
+"serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"    <p>Bonjour ${object.name},</p>\n"
+"\n"
+"\t<p>Votre enregistrement sur le site OPINIONS.be s’est effectué avec succès."
+"</p>\n"
+"\t\n"
+"\t<p>Afin de valider votre inscription et de compléter votre profil, nous "
+"vous invitons à cliquer sur le lien suivant : <a href=\"${object.partner_id."
+"registration_validation_url}\">this link</a>.</p>\n"
+"\n"
+"    <p>Nous vous remercions pour l’intérêt que vous portez à la "
+"participation à nos études de marché.Nous espérons très rapidement pouvoir "
+"vous contacter pour vous proposer une réunion.</p>\n"
+"    \n"
+"\t<p>Cordialement,</p>\n"
+"\t<p>L’équipe de OPINIONS.BE</p>\n"
+"<p>Auriane, Axelle, Chantal, Marylène et Nathalie.</p>\n"
+" % if object.company_id.street:\n"
+"      ${object.company_id.street}<br/>\n"
+"  % endif\n"
+"  % if object.company_id.street2:\n"
+"      ${object.company_id.street2}<br/>\n"
+"  % endif\n"
+"  % if object.company_id.city or object.company_id.zip:\n"
+"      ${object.company_id.zip} ${object.company_id.city}<br/>\n"
+"  % endif\n"
+"  % if object.company_id.country_id:\n"
+"      ${object.company_id.state_id and ('%s, ' % object.company_id.state_id."
+"name) or ''} ${object.company_id.country_id.name or ''}<br/>\n"
+"  % endif\n"
+"  % if object.company_id.phone:\n"
+"          Phone:&nbsp; ${object.company_id.phone}\n"
+"  % endif\n"
+"\n"
+"% if object.company_id.website:\n"
+"      <div>\n"
+"          Web :&nbsp;<a href=\"${object.company_id.website}\">${object."
+"company_id.website}</a>\n"
+"      </div>\n"
+" %endif\n"
+"\n"
+"       <div>\n"
+"          <img src=\"https://secure.erp-space.com/logo.png\">\n"
+"       </div>\n"
+"</div>\n"
+"            "
+
+#. module: defiline
+#: help:operational.flow,invoice_state:0
+msgid ""
+" * The 'Draft' status is used when a user is encoding a new and unconfirmed "
+"Invoice.\n"
+" * The 'Pro-forma' when invoice is in Pro-forma status,invoice does not have "
+"an invoice number.\n"
+" * The 'Open' status is used when user create invoice,a invoice number is "
+"generated.Its in open status till user does not pay invoice.\n"
+" * The 'Paid' status is set automatically when the invoice is paid. Its "
+"related journal entries may or may not be reconciled.\n"
+" * The 'Cancelled' status is used when user cancel invoice."
+msgstr ""
+" * The 'Draft' status is used when a user is encoding a new and unconfirmed "
+"Invoice.\n"
+" * The 'Pro-forma' when invoice is in Pro-forma status,invoice does not have "
+"an invoice number.\n"
+" * The 'Open' status is used when user create invoice,a invoice number is "
+"generated.Its in open status till user does not pay invoice.\n"
+" * The 'Paid' status is set automatically when the invoice is paid. Its "
+"related journal entries may or may not be reconciled.\n"
+" * The 'Cancelled' status is used when user cancel invoice."
+
+#. module: defiline
+#: field:res.users,issue_count:0
+msgid "# Issues"
+msgstr "# Issues"
+
+#. module: defiline
+#: field:res.users,meeting_count:0
+msgid "# Meetings"
+msgstr "# Meetings"
+
+#. module: defiline
+#: field:res.users,task_count:0
+msgid "# Tasks"
+msgstr "# Tasks"
+
+#. module: defiline
+#: field:res.users,sale_order_count:0
+msgid "# of Sales Order"
+msgstr "# of Sales Order"
+
+#. module: defiline
+#: view:website:sale.report_saleorder_document
+msgid ""
+"&bull; \n"
+"\t\t\t                The following lines are not included in the total."
+msgstr ""
+"&bull; \n"
+"\t\t\t                Les lignes suivantes ne sont pas incluses dans le "
+"total."
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+#: view:website:defiline.registration_confirmation_already_done
+#: view:website:defiline.registration_confirmation_error
+#: view:website:defiline.registration_confirmation_ok
+#: view:website:defiline.registration_thanks
+msgid "&times;"
+msgstr "&times;"
+
+#. module: defiline
+#: help:informal.sale.order.line,state:0
+msgid ""
+"* The 'Draft' status is set when the related sales order in draft "
+"status.                     \n"
+"* The 'Confirmed' status is set when the related sales order is "
+"confirmed.                     \n"
+"* The 'Exception' status is set when the related sales order is set as "
+"exception.                     \n"
+"* The 'Done' status is set when the sales order line has been "
+"picked.                     \n"
+"* The 'Cancelled' status is set when a user cancel the sales order related."
+msgstr ""
+"* The 'Draft' status is set when the related sales order in draft "
+"status.                     \n"
+"* The 'Confirmed' status is set when the related sales order is "
+"confirmed.                     \n"
+"* The 'Exception' status is set when the related sales order is set as "
+"exception.                     \n"
+"* The 'Done' status is set when the sales order line has been "
+"picked.                     \n"
+"* The 'Cancelled' status is set when a user cancel the sales order related."
+
+#. module: defiline
+#: view:website:sale.report_saleorder_document
+msgid ""
+"</tbody>\n"
+"                            </table>\n"
+"                            <p style=\"page-break-before:always;\"> </p>\n"
+"                            <table class=\"table table-condensed\">"
+msgstr ""
+"</tbody>\n"
+"                            </table>\n"
+"                            <p style=\"page-break-before:always;\"> </p>\n"
+"                            <table class=\"table table-condensed\">"
+
+#. module: defiline
+#: model:ir.actions.act_window,help:defiline.respondent_calls_log
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"\t            Click to log the summary of a phone call. \n"
+"\t          </p><p>\n"
+"\t            Odoo allows you to log inbound calls on the fly to track the\n"
+"\t            history of the communication with a customer or to inform "
+"another\n"
+"\t            team member.\n"
+"\t          </p><p>\n"
+"\t            In order to follow up on the call, you can trigger a request "
+"for\n"
+"\t            another call, a meeting or an opportunity.\n"
+"\t          </p>\n"
+"\t        "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"\t            Click to log the summary of a phone call. \n"
+"\t          </p><p>\n"
+"\t            Odoo allows you to log inbound calls on the fly to track the\n"
+"\t            history of the communication with a customer or to inform "
+"another\n"
+"\t            team member.\n"
+"\t          </p><p>\n"
+"\t            In order to follow up on the call, you can trigger a request "
+"for\n"
+"\t            another call, a meeting or an opportunity.\n"
+"\t          </p>\n"
+"\t        "
+
+#. module: defiline
+#: model:ir.actions.act_window,help:defiline.action_education_level_form
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a educationlevel in your list.\n"
+"              </p>\n"
+"            "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a educationlevel in your list.\n"
+"              </p>\n"
+"            "
+
+#. module: defiline
+#: model:ir.actions.act_window,help:defiline.action_focus_group_product
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a mapping product focus group in your list.\n"
+"              </p>\n"
+"            "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a mapping product focus group in your list.\n"
+"              </p>\n"
+"            "
+
+#. module: defiline
+#: model:ir.actions.act_window,help:defiline.action_moderator_form
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a moderator in your address book.\n"
+"              </p><p>\n"
+"                Odoo helps you easily track all activities related to\n"
+"                a moderator; discussions, history of participation,\n"
+"                documents, etc.\n"
+"              </p>\n"
+"            "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a moderator in your address book.\n"
+"              </p><p>\n"
+"                Odoo helps you easily track all activities related to\n"
+"                a moderator; discussions, history of participation,\n"
+"                documents, etc.\n"
+"              </p>\n"
+"            "
+
+#. module: defiline
+#: model:ir.actions.act_window,help:defiline.action_respondent_tree
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a respondent in your address book.\n"
+"              </p><p>\n"
+"                Odoo helps you easily track all activities related to\n"
+"                a respondent; discussions, history of participation,\n"
+"                documents, etc.\n"
+"              </p>\n"
+"            "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a respondent in your address book.\n"
+"              </p><p>\n"
+"                Odoo helps you easily track all activities related to\n"
+"                a respondent; discussions, history of participation,\n"
+"                documents, etc.\n"
+"              </p>\n"
+"            "
+
+#. module: defiline
+#: model:ir.actions.act_window,help:defiline.action_group_view
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"               Click to add a new group.\n"
+"             </p><p>\n"
+"               Odoo helps you schedule and efficiently organize your "
+"groups:\n"
+"               track subscriptions and participations, automate the "
+"confirmation emails, etc.\n"
+"             </p>\n"
+"           "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"               Click to add a new group.\n"
+"             </p><p>\n"
+"               Odoo helps you schedule and efficiently organize your "
+"groups:\n"
+"               track subscriptions and participations, automate the "
+"confirmation emails, etc.\n"
+"             </p>\n"
+"           "
+
+#. module: defiline
+#: view:website:sale.report_saleorder_document
+msgid "<tbody>"
+msgstr "<tbody>"
+
+#. module: defiline
+#: view:website:defiline.registration_thanks
+msgid "A confirmation email has been sent to you."
+msgstr "Un email de confirmation vous a été envoyé."
+
+#. module: defiline
+#: help:informal.sale.order.line,address_allotment_id:0
+msgid "A partner to whom the particular product needs to be allotted."
+msgstr "A partner to whom the particular product needs to be allotted."
+
+#. module: defiline
+#: view:add.calls.wizard:defiline.view_add_calls_wizard
+msgid "Add calls"
+msgstr "Ajouter des notes"
+
+#. module: defiline
+#: view:add.calls.wizard:defiline.view_add_calls_wizard
+#: model:ir.actions.act_window,name:defiline.action_add_calls_wizard
+msgid "Add calls to respondents"
+msgstr "Ajouter des notes aux repondants"
+
+#. module: defiline
+#: view:add.calls.wizard:defiline.view_add_calls_wizard
+msgid "Add message"
+msgstr "Ajouter un message"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Add phone call"
+msgstr "Ajouter un appel"
+
+#. module: defiline
+#: view:add.respondents.wizard:defiline.view_add_respondents_wizard
+msgid "Add respondent to focus group"
+msgstr "Ajouter un repondant au groupe"
+
+#. module: defiline
+#: view:add.respondents.wizard:defiline.view_add_respondents_wizard
+msgid "Add respondents"
+msgstr "Ajouter des répondants"
+
+#. module: defiline
+#: model:ir.actions.act_window,name:defiline.action_add_respondents_wizard
+msgid "Add respondents to focus group"
+msgstr "Ajouter un repondant au groupe"
+
+#. module: defiline
+#: view:add.calls.wizard:defiline.view_add_calls_wizard
+msgid "Add the message you want to log"
+msgstr "Add the message you want to log"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Address"
+msgstr "Adresse"
+
+#. module: defiline
+#: view:event.event:defiline.view_group_search
+#: view:event.registration:defiline.view_participation_search
+msgid "After start date"
+msgstr "After la date de début"
+
+#. module: defiline
+#: field:res.partner,age:0 field:res.users,age:0
+msgid "Age"
+msgstr "Age"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Age greater than"
+msgstr "Age plus grand que"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Age lower than"
+msgstr "Age plus petit que"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Aldi"
+msgstr "Aldi"
+
+#. module: defiline
+#: field:informal.sale.order.line,address_allotment_id:0
+msgid "Allotment Partner"
+msgstr "Allotment Partner"
+
+#. module: defiline
+#: field:res.partner,allow_antwerpen:0
+#: view:website:defiline.profile_respondent
+msgid "Allow Antwerpen"
+msgstr "Anvers"
+
+#. module: defiline
+#: field:res.partner,allow_brugge:0 view:website:defiline.profile_respondent
+msgid "Allow Brugge"
+msgstr "Bruges"
+
+#. module: defiline
+#: field:res.partner,allow_brussels:0 view:website:defiline.profile_respondent
+msgid "Allow Brussels"
+msgstr "Bruxelles"
+
+#. module: defiline
+#: field:res.partner,allow_charleroi:0
+#: view:website:defiline.profile_respondent
+msgid "Allow Charleroi"
+msgstr "Charleroi"
+
+#. module: defiline
+#: field:res.partner,allow_gent:0 view:website:defiline.profile_respondent
+msgid "Allow Gent"
+msgstr "Gand"
+
+#. module: defiline
+#: field:res.partner,allow_liege:0 view:website:defiline.profile_respondent
+msgid "Allow Liege"
+msgstr "Liège"
+
+#. module: defiline
+#: field:res.partner,allow_mons:0 view:website:defiline.profile_respondent
+msgid "Allow Mons"
+msgstr "Mons"
+
+#. module: defiline
+#: field:res.partner,allow_namur:0 view:website:defiline.profile_respondent
+msgid "Allow Namur"
+msgstr "Namur"
+
+#. module: defiline
+#: field:sale.order,allow_invoice_creation:0
+msgid "Allow invoice creation"
+msgstr "Allow invoice creation"
+
+#. module: defiline
+#: field:sale.order,allow_survey_creation:0
+msgid "Allow survey creation"
+msgstr "Allow survey creation"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Antwerpen"
+msgstr "Anvers"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Arabic"
+msgstr "Arabe"
+
+#. module: defiline
+#: model:res.groups,name:defiline.group_opinions_assistant
+msgid "Assistant"
+msgstr "Assistant"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+msgid "Attended the Event"
+msgstr "Présent à l'évènement"
+
+#. module: defiline
+#: field:res.partner,availability:0 field:res.users,availability:0
+msgid "Availability"
+msgstr "Disponibilité"
+
+#. module: defiline
+#: selection:res.partner,status:0
+msgid "BAD"
+msgstr "BAD"
+
+#. module: defiline
+#: model:event.event,title:0
+msgid "BXL : Etude bancaire"
+msgstr "BXL : Etude bancaire"
+
+#. module: defiline
+#: model:event.event,title:0
+msgid "BXL : Etude sur l'aménagement intérieur et le mobilier"
+msgstr "BXL : Etude sur l'aménagement intérieur et le mobilier"
+
+#. module: defiline
+#: model:event.event,title:0
+msgid "BXL : Etude sur le tourisme (avec des professionnels du voyage)"
+msgstr "BXL : Etude sur le tourisme (avec des professionnels du voyage)"
+
+#. module: defiline
+#: model:event.event,title:0
+msgid "BXL : Etude sur les biscuits"
+msgstr "BXL : Etude sur les biscuits"
+
+#. module: defiline
+#: model:event.event,title:0
+msgid "BXL : Etude sur les difficultés scolaires"
+msgstr "BXL : Etude sur les difficultés scolaires"
+
+#. module: defiline
+#: field:event.registration,backup:0
+msgid "Backup"
+msgstr "Backup"
+
+#. module: defiline
+#: code:addons/defiline/models/informal_sale_order_line.py:170
+#, python-format
+msgid ""
+"Before choosing a product,\n"
+" select a customer in the sales form."
+msgstr ""
+"Before choosing a product,\n"
+" select a customer in the sales form."
+
+#. module: defiline
+#: view:event.event:defiline.view_group_search
+#: view:event.registration:defiline.view_participation_search
+msgid "Before start date"
+msgstr "Avant la date de début"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+#: view:website:defiline.profile_respondent
+msgid "Big brand"
+msgstr "Grande marque"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent view:website:defiline.registration
+msgid "Birthdate"
+msgstr "Date de naissance"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Birthdate greater than"
+msgstr "Birthdate greater than"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Birthdate lower than"
+msgstr "Birthdate lower than"
+
+#. module: defiline
+#: field:event.event,booking:0
+msgid "Booking type"
+msgstr "Type de réservation"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Both on day and evening"
+msgstr "Journée et soirée"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Brugge"
+msgstr "Bruges"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Brussels"
+msgstr "Bruxelles"
+
+#. module: defiline
+#: field:res.partner,buys_big_brand:0
+msgid "Buy big brand"
+msgstr "Buy big brand"
+
+#. module: defiline
+#: field:res.partner,buys_sign_brand:0
+msgid "Buy sign brand"
+msgstr "Buy sign brand"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "By email"
+msgstr "Par email"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "By sms"
+msgstr "Par sms"
+
+#. module: defiline
+#: view:crm.phonecall:defiline.respondent_calls_log_filter
+msgid "Calls Date by Month"
+msgstr "Dates des appels par mois"
+
+#. module: defiline
+#: view:add.calls.wizard:defiline.view_add_calls_wizard
+#: view:add.respondents.wizard:defiline.view_add_respondents_wizard
+#: view:import.respondent.wizard:defiline.view_delete_all_wizard
+#: view:import.respondent.wizard:defiline.view_import_respondents_wizard
+#: view:import.respondent.wizard:defiline.view_import_wizard
+#: view:search.respondent.wizard:defiline.view_search_respondent_wizard
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+msgid "Cancel Group"
+msgstr "Annuler le groupe"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+msgid "Cancel Registration"
+msgstr "Annuler l'inscription"
+
+#. module: defiline
+#: selection:informal.sale.order.line,state:0
+msgid "Cancelled"
+msgstr "Annulé"
+
+#. module: defiline
+#: code:addons/defiline/models/informal_sale_order_line.py:305
+#, python-format
+msgid "Cannot delete a sales order line which is in state '%s'."
+msgstr "Cannot delete a sales order line which is in state '%s'."
+
+#. module: defiline
+#: code:addons/defiline/models/informal_sale_order_line.py:268
+#, python-format
+msgid ""
+"Cannot find a pricelist line matching this product and quantity.\n"
+"You have to change either the product, the quantity or the pricelist."
+msgstr ""
+"Cannot find a pricelist line matching this product and quantity.\n"
+"You have to change either the product, the quantity or the pricelist."
+
+#. module: defiline
+#: field:res.partner,car_brand:0
+msgid "Car brand"
+msgstr "Car brand"
+
+#. module: defiline
+#: field:res.partner,car_model:0
+msgid "Car model"
+msgstr "Car model"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Carrefour"
+msgstr "Carrefour"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+#: selection:focus.group.product,type:0
+msgid "Catering"
+msgstr "Catering"
+
+#. module: defiline
+#: field:operational.flow,cat_trait_price:0
+msgid "Catering Caterer price"
+msgstr "Catering Caterer price"
+
+#. module: defiline
+#: field:operational.flow,cat_drink_price:0
+#: field:operational.flow,cat_excep_price:0
+msgid "Catering Exceptional price"
+msgstr "Catering Exceptional price"
+
+#. module: defiline
+#: field:operational.flow,cat_san_price:0
+msgid "Catering Sandwiches price"
+msgstr "Catering Sandwiches price"
+
+#. module: defiline
+#: field:operational.flow,cat_fruit_price:0
+msgid "Catering desserts price"
+msgstr "Catering desserts price"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+#: field:event.event,event_order_lines:0
+msgid "Catering order lines"
+msgstr "Catering order lines"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Charleroi"
+msgstr "Charleroi"
+
+#. module: defiline
+#: help:res.users,speaker:0
+msgid "Check this box if this contact is a speaker."
+msgstr "Check this box if this contact is a speaker."
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Child 1"
+msgstr "Child 1"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Child 10"
+msgstr "Child 10"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Child 2"
+msgstr "Child 2"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Child 3"
+msgstr "Child 3"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Child 4"
+msgstr "Child 4"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Child 5"
+msgstr "Child 5"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Child 6"
+msgstr "Child 6"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Child 7"
+msgstr "Child 7"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Child 8"
+msgstr "Child 8"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Child 9"
+msgstr "Child 9"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Children info"
+msgstr "Children info"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "City completion"
+msgstr "Complétion par ville"
+
+#. module: defiline
+#: view:mission.mission:defiline.view_mission_form
+msgid "Close"
+msgstr "Close"
+
+#. module: defiline
+#: selection:mission.mission,state:0
+msgid "Closed"
+msgstr "Closed"
+
+#. module: defiline
+#: selection:res.partner,marital_status:0
+msgid "Cohabiting"
+msgstr "Cohabitant"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Colruyt"
+msgstr "Colruyt"
+
+#. module: defiline
+#: field:informal.sale.order.line,company_id:0
+msgid "Company"
+msgstr "Company"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Complementary independant"
+msgstr "Independant complémentaire"
+
+#. module: defiline
+#: model:ir.ui.menu,name:defiline.opinions_configuration_menu
+msgid "Configuration"
+msgstr "Configuration"
+
+#. module: defiline
+#: code:addons/defiline/models/informal_sale_order_line.py:282
+#, python-format
+msgid "Configuration Error!"
+msgstr "Configuration Error!"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+msgid "Confirm Group"
+msgstr "Confirmer le groupe"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+msgid "Confirm Registration"
+msgstr "Confirmer l'inscription"
+
+#. module: defiline
+#: view:website:defiline.registration
+msgid "Confirm password"
+msgstr "Confirmez votre mot de passe"
+
+#. module: defiline
+#: view:website:defiline.registration
+msgid "Confirm your email"
+msgstr "Confirmez votre email"
+
+#. module: defiline
+#: field:operational.flow,order_date_confirm:0
+msgid "Confirmation Date"
+msgstr "Confirmation Date"
+
+#. module: defiline
+#: field:event.event,confirmation_date:0
+#: field:operational.flow,group_confirmation_date:0
+msgid "Confirmation date to participants"
+msgstr "Confirmation date to participants"
+
+#. module: defiline
+#: view:event.event:defiline.view_group_search
+#: view:event.registration:defiline.view_participation_search
+#: selection:informal.sale.order.line,state:0
+msgid "Confirmed"
+msgstr "Confirmé"
+
+#. module: defiline
+#: view:event.event:defiline.view_group_search
+msgid "Confirmed groups"
+msgstr "Confirmed groups"
+
+#. module: defiline
+#: view:event.registration:defiline.view_participation_search
+msgid "Confirmed participations"
+msgstr "Confirmed participations"
+
+#. module: defiline
+#: view:website:defiline.registration
+msgid "Consultez les conditions générales"
+msgstr "Consultez les conditions générales"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Contacts history"
+msgstr "Historique des contacts"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Cora"
+msgstr "Cora"
+
+#. module: defiline
+#: selection:import.respondent.wizard,type:0
+msgid "Count lines"
+msgstr "Count lines"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Country"
+msgstr "Pays"
+
+#. module: defiline
+#: view:sale.order:defiline.view_order_form_defiline
+msgid "Create Invoice"
+msgstr "Créer la facture"
+
+#. module: defiline
+#: view:sale.order:defiline.view_order_form_defiline
+msgid "Create Survey"
+msgstr "Create le projet"
+
+#. module: defiline
+#: field:add.calls.wizard,create_uid:0
+#: field:add.respondents.wizard,create_uid:0
+#: field:event.order.line,create_uid:0 field:focus.group.product,create_uid:0
+#: field:import.respondent.wizard,create_uid:0
+#: field:informal.sale.order.line,create_uid:0
+#: field:mission.mission,create_uid:0 field:operational.flow,create_uid:0
+#: field:res.partner.education.level,create_uid:0
+#: field:res.partner.gender,create_uid:0
+#: field:search.respondent.wizard,create_uid:0
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: defiline
+#: field:add.calls.wizard,create_date:0
+#: field:add.respondents.wizard,create_date:0
+#: field:event.order.line,create_date:0
+#: field:focus.group.product,create_date:0
+#: field:import.respondent.wizard,create_date:0
+#: field:informal.sale.order.line,create_date:0
+#: field:mission.mission,create_date:0 field:operational.flow,create_date:0
+#: field:res.partner.education.level,create_date:0
+#: field:res.partner.gender,create_date:0
+#: field:search.respondent.wizard,create_date:0
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: defiline
+#: view:crm.phonecall:defiline.respondent_calls_log_filter
+msgid "Creation"
+msgstr "Création"
+
+#. module: defiline
+#: view:crm.phonecall:defiline.respondent_calls_log_filter
+msgid "Creation Date"
+msgstr "Date de création"
+
+#. module: defiline
+#: field:event.event,customer:0 selection:import.respondent.wizard,type:0
+#: field:informal.sale.order.line,order_partner_id:0
+#: view:mission.mission:defiline.view_mission_search
+#: field:mission.mission,partner_id:0 field:operational.flow,customer:0
+msgid "Customer"
+msgstr "Client"
+
+#. module: defiline
+#: field:operational.flow,customer_ref:0 field:sale.order,customer_ref:0
+msgid "Customer Reference"
+msgstr "Référence client"
+
+#. module: defiline
+#: model:ir.ui.menu,name:defiline.menu_customer
+msgid "Customers"
+msgstr "Clients"
+
+#. module: defiline
+#: selection:res.partner,status:0
+msgid "DEL"
+msgstr "DEL"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Date"
+msgstr "Date"
+
+#. module: defiline
+#: view:website:sale.report_saleorder_document
+msgid "Date Ordered:"
+msgstr "Date de commande :"
+
+#. module: defiline
+#: help:operational.flow,order_date_sent:0 help:sale.order,date_sent:0
+msgid "Date on which quotation is sent."
+msgstr "Date on which quotation is sent."
+
+#. module: defiline
+#: help:operational.flow,quotation_request_date:0
+#: help:sale.order,request_date:0
+msgid "Date on which quotation request has been received."
+msgstr "Date on which quotation request has been received."
+
+#. module: defiline
+#: help:operational.flow,order_date_confirm:0
+msgid "Date on which sales order is confirmed."
+msgstr "Date on which sales order is confirmed."
+
+#. module: defiline
+#: selection:res.partner,availability:0
+msgid "Day"
+msgstr "Journée"
+
+#. module: defiline
+#: selection:res.partner,availability:0
+msgid "Day and evening"
+msgstr "Journée et soirée"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Delete"
+msgstr "Delete"
+
+#. module: defiline
+#: view:import.respondent.wizard:defiline.view_delete_all_wizard
+#: model:ir.ui.menu,name:defiline.menu_delete_all_wizard
+msgid "Delete all"
+msgstr "Delete all"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Delhaize"
+msgstr "Delhaize"
+
+#. module: defiline
+#: field:informal.sale.order.line,delay:0
+msgid "Delivery Lead Time"
+msgstr "Delivery Lead Time"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+#: field:informal.sale.order.line,name:0
+#: view:website:sale.report_saleorder_document
+msgid "Description"
+msgstr "Description"
+
+#. module: defiline
+#: view:crm.phonecall:defiline.respondent_calls_log_form_view
+msgid "Description..."
+msgstr "Description..."
+
+#. module: defiline
+#: view:website:sale.report_saleorder_document
+msgid "Disc.(%)"
+msgstr "Rem.(%)"
+
+#. module: defiline
+#: field:informal.sale.order.line,discount:0
+msgid "Discount (%)"
+msgstr "Discount (%)"
+
+#. module: defiline
+#: field:add.calls.wizard,display_name:0
+#: field:add.respondents.wizard,display_name:0
+#: field:event.order.line,display_name:0
+#: field:focus.group.product,display_name:0
+#: field:import.respondent.wizard,display_name:0
+#: field:informal.sale.order.line,display_name:0
+#: field:mission.mission,display_name:0 field:operational.flow,display_name:0
+#: field:res.partner.education.level,display_name:0
+#: field:res.partner.gender,display_name:0
+#: field:search.respondent.wizard,display_name:0
+msgid "Display Name"
+msgstr "Nom"
+
+#. module: defiline
+#: field:event.event,display_nl:0
+msgid "Display on ducth website"
+msgstr "Afficher sur le site en néerlandais"
+
+#. module: defiline
+#: field:event.event,display_en:0
+msgid "Display on english website"
+msgstr "Afficher sur le site en anglais"
+
+#. module: defiline
+#: field:event.event,display_fr:0
+msgid "Display on french website"
+msgstr "Afficher sur le site en français"
+
+#. module: defiline
+#: selection:res.partner,marital_status:0
+msgid "Divorced"
+msgstr "Divorcé"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Do you have a car?"
+msgstr "Avez-vous une voiture?"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Do you have pets ?"
+msgstr "Avez-vous des animaux?"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Do you smoke ?"
+msgstr "Fumez-vous ?"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Doens't smoke"
+msgstr "Ne fume pas"
+
+#. module: defiline
+#: selection:informal.sale.order.line,state:0
+msgid "Done"
+msgstr "Done"
+
+#. module: defiline
+#: selection:informal.sale.order.line,state:0
+#: selection:mission.mission,state:0
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: defiline
+#: field:event.event,facility:0
+msgid "Duration"
+msgstr "Durée"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "During the day"
+msgstr "Pendant la journée"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Dutch"
+msgstr "Néerlandais"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Eastern language"
+msgstr "Langue de l'Est"
+
+#. module: defiline
+#: model:ir.actions.act_window,name:defiline.action_education_level_form
+#: model:ir.ui.menu,name:defiline.menu_respondent_education_level
+#: field:res.partner.education.level,name:0
+#: view:website:defiline.profile_respondent
+msgid "Education level"
+msgstr "Niveau d'étude"
+
+#. module: defiline
+#: field:res.partner,edu_level_id:0
+msgid "Educational level"
+msgstr "Niveau d'étude"
+
+#. module: defiline
+#: view:event.registration:defiline.view_participation_search
+msgid "Effective participations"
+msgstr "Participations effectives"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+#: view:website:defiline.profile_respondent
+msgid "Email"
+msgstr "Courriel"
+
+#. module: defiline
+#: field:event.event,emailing_date:0 field:operational.flow,emailing_date:0
+msgid "Emailing date"
+msgstr "Emailing date"
+
+#. module: defiline
+#: selection:res.partner,professional_status:0
+msgid "Employee"
+msgstr "Employee"
+
+#. module: defiline
+#: field:event.event,end_date:0 field:operational.flow,focus_group_end_date:0
+msgid "End"
+msgstr "Fin"
+
+#. module: defiline
+#: code:addons/defiline/models/event.py:129
+#, python-format
+msgid "End Date cannot be set before Start Date."
+msgstr "End Date cannot be set before Start Date."
+
+#. module: defiline
+#: field:mission.mission,end_date:0
+msgid "End date"
+msgstr "End date"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "English"
+msgstr "English"
+
+#. module: defiline
+#: help:add.respondents.wizard,respondent_refs:0
+#: help:search.respondent.wizard,name:0
+msgid "Enter your emails or references separeted by a semicolon"
+msgstr "Enter your emails or references separeted by a semicolon"
+
+#. module: defiline
+#: code:addons/defiline/models/event.py:123
+#: code:addons/defiline/models/event.py:129
+#, python-format
+msgid "Error"
+msgstr "Error"
+
+#. module: defiline
+#: view:website:defiline.registration_confirmation_error
+msgid "Error!"
+msgstr "Error!"
+
+#. module: defiline
+#: selection:res.partner,availability:0
+msgid "Evening"
+msgstr "Soirée"
+
+#. module: defiline
+#: model:ir.model,name:defiline.model_event_event
+msgid "Event"
+msgstr "Évènement"
+
+#. module: defiline
+#: model:ir.model,name:defiline.model_event_registration
+msgid "Event Registration"
+msgstr "Inscription à l'évènement"
+
+#. module: defiline
+#: field:event.order.line,event_id:0
+msgid "Event id"
+msgstr "Event id"
+
+#. module: defiline
+#: selection:informal.sale.order.line,state:0
+msgid "Exception"
+msgstr "Exception"
+
+#. module: defiline
+#: field:event.event,extra_time:0
+msgid "Extra half-hour"
+msgstr "Extra half-hour"
+
+#. module: defiline
+#: field:mission.mission,last_minute_extra:0
+msgid "Extra percentage"
+msgstr "Extra percentage"
+
+#. module: defiline
+#: selection:focus.group.product,type:0
+msgid "Facility"
+msgstr "Facility"
+
+#. module: defiline
+#: field:operational.flow,overdue_price:0
+msgid "Facility overdue price"
+msgstr "Facility overdue price"
+
+#. module: defiline
+#: field:operational.flow,facility_price:0
+msgid "Facility price"
+msgstr "Facility price"
+
+#. module: defiline
+#: selection:focus.group.product,type:0
+msgid "Facility supplement"
+msgstr "Facility supplement"
+
+#. module: defiline
+#: selection:res.partner,child10_gender:0
+#: selection:res.partner,child1_gender:0 selection:res.partner,child2_gender:0
+#: selection:res.partner,child3_gender:0 selection:res.partner,child4_gender:0
+#: selection:res.partner,child5_gender:0 selection:res.partner,child6_gender:0
+#: selection:res.partner,child7_gender:0 selection:res.partner,child8_gender:0
+#: selection:res.partner,child9_gender:0 selection:res.partner,gender:0
+msgid "Female"
+msgstr "Féminin"
+
+#. module: defiline
+#: field:import.respondent.wizard,filename:0
+msgid "Filename"
+msgstr "Filename"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+msgid "Finish Group"
+msgstr "Finish Group"
+
+#. module: defiline
+#: field:res.users,firstname:0
+msgid "First name"
+msgstr "Prénom"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent view:website:defiline.registration
+msgid "Firstname"
+msgstr "Prénom"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Fixed Phone"
+msgstr "Téléphone fixe"
+
+#. module: defiline
+#: field:informal.sale.order.line,event_id:0
+#: field:operational.flow,focus_group_id:0
+msgid "Focus group"
+msgstr "Groupe"
+
+#. module: defiline
+#: field:operational.flow,focus_group_name:0
+msgid "Focus-group"
+msgstr "Groupe"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "For each of your children, please encode the birth year and the gender"
+msgstr ""
+"Pour chacun de vos enfants, encodez la date de naissance ainsi que le sexe"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "For which city do you wish to receive proposals for market research ?"
+msgstr ""
+"Pour quelles villes souhaitez-vous recevoir des propositions pour nos études?"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "French"
+msgstr "Français"
+
+#. module: defiline
+#: field:res.partner,child10_gender:0 field:res.partner,child1_gender:0
+#: field:res.partner,child2_gender:0 field:res.partner,child3_gender:0
+#: field:res.partner,child4_gender:0 field:res.partner,child5_gender:0
+#: field:res.partner,child6_gender:0 field:res.partner,child7_gender:0
+#: field:res.partner,child8_gender:0 field:res.partner,child9_gender:0
+#: field:res.partner,gender:0 field:res.partner.gender,name:0
+#: field:res.users,child10_gender:0 field:res.users,child1_gender:0
+#: field:res.users,child2_gender:0 field:res.users,child3_gender:0
+#: field:res.users,child4_gender:0 field:res.users,child5_gender:0
+#: field:res.users,child6_gender:0 field:res.users,child7_gender:0
+#: field:res.users,child8_gender:0 field:res.users,child9_gender:0
+#: field:res.users,gender:0 view:website:defiline.profile_respondent
+msgid "Gender"
+msgstr "Sexe"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+msgid "General info"
+msgstr "Info générale"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Generally, you are available :"
+msgstr "En général, vous êtes disponible :"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Gent"
+msgstr "Gand"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "German"
+msgstr "Allemand"
+
+#. module: defiline
+#: help:informal.sale.order.line,sequence:0
+msgid "Gives the sequence order when displaying a list of sales order lines."
+msgstr "Gives the sequence order when displaying a list of sales order lines."
+
+#. module: defiline
+#: view:website:survey.survey_init
+msgid "Go back\tto surveys"
+msgstr "Go back\tto surveys"
+
+#. module: defiline
+#: field:survey.survey,google_forms_survey:0
+msgid "Google Forms Survey"
+msgstr "Google Forms Survey"
+
+#. module: defiline
+#: field:survey.survey,google_forms_url:0
+msgid "Google Forms Url"
+msgstr "Google Forms Url"
+
+#. module: defiline
+#: field:account.invoice.line,event_id:0
+#: view:event.event:defiline.view_defiline_group_form
+#: selection:import.respondent.wizard,type:0
+#: view:res.partner:defiline.view_partner_form
+#: view:res.partner:defiline.view_respondent_form
+msgid "Group"
+msgstr "Groupe"
+
+#. module: defiline
+#: view:crm.phonecall:defiline.respondent_calls_log_filter
+#: view:event.event:defiline.view_group_search
+#: view:event.registration:defiline.view_participation_search
+msgid "Group By"
+msgstr "Regrouper par"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_tree
+#: view:mission.mission:defiline.view_mission_form
+msgid "Group Name"
+msgstr "Group Name"
+
+#. module: defiline
+#: view:event.event:defiline.view_group_calendar
+msgid "Group Organization"
+msgstr "Organisation groupe"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Group history"
+msgstr "Group history"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+msgid "Group name"
+msgstr "Nom du groupe"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_tree
+#: view:event.event:defiline.view_group_search
+#: model:ir.actions.act_window,name:defiline.action_group_view
+#: model:ir.ui.menu,name:defiline.menu_defiline_group
+#: view:mission.mission:defiline.view_mission_form
+#: field:mission.mission,event_ids:0
+msgid "Groups"
+msgstr "Groupes"
+
+#. module: defiline
+#: field:res.partner,projects:0 field:res.users,projects:0
+msgid "Groups history"
+msgstr "Historique de participation"
+
+#. module: defiline
+#: view:event.event:defiline.view_group_search
+msgid "Groups in New state"
+msgstr "Groups in New state"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Has Car"
+msgstr "Possède une voiture"
+
+#. module: defiline
+#: field:res.partner,has_car:0
+msgid "Has car"
+msgstr "Possède une voiture"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Has children"
+msgstr "A des enfants"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+#: field:res.partner,has_pet_cat:0 view:website:defiline.profile_respondent
+msgid "Has pet cat"
+msgstr "Possède un chat"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+#: field:res.partner,has_pet_dog:0 view:website:defiline.profile_respondent
+msgid "Has pet dog"
+msgstr "Possède un chien"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+#: field:res.partner,has_pet_other:0 view:website:defiline.profile_respondent
+msgid "Has pet other"
+msgstr "Possède un autre animal"
+
+#. module: defiline
+#: view:res.partner:defiline.view_partner_form
+msgid "History"
+msgstr "Historique"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Home brand"
+msgstr "Marque du magasin"
+
+#. module: defiline
+#: selection:res.partner,professional_status:0
+msgid "Housewife/Houseman"
+msgstr "Epouse/Epoux"
+
+#. module: defiline
+#: field:res.partner,hypermarket:0 field:res.partner,hypermarket_other:0
+#: field:res.users,hypermarket_other:0
+msgid "Hypermarket"
+msgstr "Hypermarché"
+
+#. module: defiline
+#: view:website:defiline.registration
+msgid "I agree with the terms and conditions"
+msgstr "Je suis d'accord avec les conditions générales"
+
+#. module: defiline
+#: field:add.calls.wizard,id:0 field:add.respondents.wizard,id:0
+#: field:event.order.line,id:0 field:focus.group.product,id:0
+#: field:import.respondent.wizard,id:0 field:informal.sale.order.line,id:0
+#: field:mission.mission,id:0 field:operational.flow,id:0
+#: field:res.partner.education.level,id:0 field:res.partner.gender,id:0
+#: field:search.respondent.wizard,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: defiline
+#: selection:res.partner,status:0
+msgid "INFO"
+msgstr "INFO"
+
+#. module: defiline
+#: model:ir.actions.act_window,name:defiline.action_delete_all_wizard
+#: model:ir.actions.act_window,name:defiline.action_import_wizard
+msgid "Import"
+msgstr "Import"
+
+#. module: defiline
+#: view:import.respondent.wizard:defiline.view_import_respondents_wizard
+#: view:import.respondent.wizard:defiline.view_import_wizard
+msgid "Import Respondent"
+msgstr "Import Respondent"
+
+#. module: defiline
+#: field:import.respondent.wizard,file:0
+msgid "Import csv file"
+msgstr "Import csv file"
+
+#. module: defiline
+#: model:ir.ui.menu,name:defiline.menu_import_wizard
+msgid "Import element"
+msgstr "Import element"
+
+#. module: defiline
+#: view:import.respondent.wizard:defiline.view_import_respondents_wizard
+#: view:import.respondent.wizard:defiline.view_import_wizard
+msgid "Import file"
+msgstr "Import file"
+
+#. module: defiline
+#: model:ir.ui.menu,name:defiline.menu_import_respondent_wizard
+msgid "Import respondent"
+msgstr "Import respondent"
+
+#. module: defiline
+#: model:ir.actions.act_window,name:defiline.action_import_respondent_wizard
+msgid "Import respondents"
+msgstr "Import respondents"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "In which country are you born ?"
+msgstr "Dans quel pays êtes-vous née?"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "In which country are you living ?"
+msgstr "Dans quel pays vivez-vous?"
+
+#. module: defiline
+#: field:event.event,incentive:0
+msgid "Incentive"
+msgstr "Incentive"
+
+#. module: defiline
+#: field:event.event,incentive_backup:0 selection:focus.group.product,type:0
+msgid "Incentive Backup"
+msgstr "Incentive Backup"
+
+#. module: defiline
+#: selection:focus.group.product,type:0
+msgid "Incentive Effective"
+msgstr "Incentive Effective"
+
+#. module: defiline
+#: field:operational.flow,incitive_bkp_price:0
+msgid "Incitive Backup price"
+msgstr "Incitive Backup price"
+
+#. module: defiline
+#: field:operational.flow,incitive_price:0
+msgid "Incitive price"
+msgstr "Incitive price"
+
+#. module: defiline
+#: selection:res.partner,professional_status:0
+msgid "Independant"
+msgstr "Indépendant"
+
+#. module: defiline
+#: field:res.partner,profession_indie_comp:0
+#: field:res.users,profession_indie_comp:0
+msgid "Independant complementary"
+msgstr "Indépendant complémentaire"
+
+#. module: defiline
+#: view:sale.order:defiline.view_order_form_defiline
+msgid "Informal Order Lines"
+msgstr "Lignes informelles"
+
+#. module: defiline
+#: model:ir.model,name:defiline.model_informal_sale_order_line
+msgid "Informal Sales Order Line"
+msgstr "Lignes informelles"
+
+#. module: defiline
+#: field:sale.order,informal_order_lines:0
+msgid "Informal order lines"
+msgstr "Lignes informelles"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Informed by email"
+msgstr "Informé par email"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Informed by sms"
+msgstr "Informé par sms"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Internal Notes"
+msgstr "Notes internes"
+
+#. module: defiline
+#: code:addons/defiline/models/informal_sale_order_line.py:305
+#, python-format
+msgid "Invalid Action!"
+msgstr "Action invalide!"
+
+#. module: defiline
+#: field:operational.flow,invoice:0
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: defiline
+#: field:operational.flow,invoice_date:0
+msgid "Invoice Date"
+msgstr "Date de facturation"
+
+#. module: defiline
+#: model:ir.model,name:defiline.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Ligne de facture"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+#: field:event.event,invoice_lines:0
+msgid "Invoice lines"
+msgstr "Lignes de facture"
+
+#. module: defiline
+#: field:operational.flow,cat_drink_qty_invoice:0
+#: field:operational.flow,cat_excep_qty_invoice:0
+#: field:operational.flow,cat_fruit_qty_invoice:0
+#: field:operational.flow,cat_san_qty_invoice:0
+#: field:operational.flow,cat_trait_qty_invoice:0
+#: field:operational.flow,copy_qty_invoice:0
+#: field:operational.flow,facility_qty_invoice:0
+#: field:operational.flow,incitive_bkp_qty_invoice:0
+#: field:operational.flow,incitive_qty_invoice:0
+#: field:operational.flow,listing_qty_invoice:0
+#: field:operational.flow,managing_fee_qty_invoice:0
+#: field:operational.flow,note_taking_qty_invoice:0
+#: field:operational.flow,overdue_qty_invoice:0
+#: field:operational.flow,recruitment_qty_invoice:0
+#: field:operational.flow,streaming_qty_invoice:0
+msgid "Invoice quantity"
+msgstr "Quantité facture"
+
+#. module: defiline
+#: view:mission.mission:defiline.view_mission_search
+#: selection:mission.mission,state:0
+msgid "Invoiced"
+msgstr "Facturé"
+
+#. module: defiline
+#: model:ir.ui.menu,name:defiline.menu_invoice
+msgid "Invoices"
+msgstr "Factures"
+
+#. module: defiline
+#: field:res.users,is_manager:0
+msgid "Is Manager"
+msgstr "Est manager"
+
+#. module: defiline
+#: view:res.partner:defiline.view_partner_form
+msgid "Is a Company?"
+msgstr "Est une société ?"
+
+#. module: defiline
+#: field:sale_layout.category,is_focus_group:0
+msgid "Is group"
+msgstr "Est un groupe"
+
+#. module: defiline
+#: field:res.partner,is_smoker:0
+msgid "Is smoker"
+msgstr "Est fumeur"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Italian"
+msgstr "Italien"
+
+#. module: defiline
+#: help:operational.flow,invoice_date:0
+msgid "Keep empty to use the current date"
+msgstr "Keep empty to use the current date"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Keep me informed :"
+msgstr "Tenez moi informé :"
+
+#. module: defiline
+#: field:res.partner,informed_by_mail:0 field:res.users,informed_by_mail:0
+msgid "Keep me informed by email"
+msgstr "Tenez moi informé par email"
+
+#. module: defiline
+#: field:res.partner,informed_by_sms:0 field:res.users,informed_by_sms:0
+msgid "Keep me informed by sms"
+msgstr "Tenez moi informé par sms"
+
+#. module: defiline
+#: field:res.partner,knows_arabic:0
+msgid "Knows arabic"
+msgstr "Connait l'arabe"
+
+#. module: defiline
+#: field:res.partner,knows_dutch:0
+msgid "Knows dutch"
+msgstr "Connait le néerlandais"
+
+#. module: defiline
+#: field:res.partner,knows_eastern:0
+msgid "Knows eastern language"
+msgstr "Connait les langues de l'Est"
+
+#. module: defiline
+#: field:res.partner,knows_english:0
+msgid "Knows english"
+msgstr "Connait l'anglais"
+
+#. module: defiline
+#: field:res.partner,knows_french:0
+msgid "Knows french"
+msgstr "Connait le français"
+
+#. module: defiline
+#: field:res.partner,knows_german:0
+msgid "Knows german"
+msgstr "Connait l'allemand"
+
+#. module: defiline
+#: field:res.partner,knows_italian:0
+msgid "Knows italian"
+msgstr "Connait l'italien"
+
+#. module: defiline
+#: field:res.partner,knows_nordic:0
+msgid "Knows nordic language"
+msgstr "Connait les langues nordiques"
+
+#. module: defiline
+#: field:res.partner,knows_spanish:0
+msgid "Knows spanish"
+msgstr "Connait l'espagnol"
+
+#. module: defiline
+#: model:event.event,title:0
+msgid "LIEGE - Etude aménagement"
+msgstr "LIEGE - Etude aménagement"
+
+#. module: defiline
+#: model:event.event,title:0
+msgid "LIEGE : Etude sur le tourisme (avec des professionnels du voyage)"
+msgstr "LIEGE : Etude sur le tourisme (avec des professionnels du voyage)"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Languages knowledge"
+msgstr "Connaissance des langues"
+
+#. module: defiline
+#: field:add.calls.wizard,__last_update:0
+#: field:add.respondents.wizard,__last_update:0
+#: field:event.order.line,__last_update:0
+#: field:focus.group.product,__last_update:0
+#: field:import.respondent.wizard,__last_update:0
+#: field:informal.sale.order.line,__last_update:0
+#: field:mission.mission,__last_update:0
+#: field:operational.flow,__last_update:0
+#: field:res.partner.education.level,__last_update:0
+#: field:res.partner.gender,__last_update:0
+#: field:search.respondent.wizard,__last_update:0
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: defiline
+#: field:add.calls.wizard,write_uid:0 field:add.respondents.wizard,write_uid:0
+#: field:event.order.line,write_uid:0 field:focus.group.product,write_uid:0
+#: field:import.respondent.wizard,write_uid:0
+#: field:informal.sale.order.line,write_uid:0
+#: field:mission.mission,write_uid:0 field:operational.flow,write_uid:0
+#: field:res.partner.education.level,write_uid:0
+#: field:res.partner.gender,write_uid:0
+#: field:search.respondent.wizard,write_uid:0
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: defiline
+#: field:add.calls.wizard,write_date:0
+#: field:add.respondents.wizard,write_date:0
+#: field:event.order.line,write_date:0 field:focus.group.product,write_date:0
+#: field:import.respondent.wizard,write_date:0
+#: field:informal.sale.order.line,write_date:0
+#: field:mission.mission,write_date:0 field:operational.flow,write_date:0
+#: field:res.partner.education.level,write_date:0
+#: field:res.partner.gender,write_date:0
+#: field:search.respondent.wizard,write_date:0
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: defiline
+#: field:mission.mission,last_minute:0
+msgid "Last minute request?"
+msgstr "Last minute request?"
+
+#. module: defiline
+#: field:res.users,lastname:0
+msgid "Last name"
+msgstr "Nom"
+
+#. module: defiline
+#: field:res.users,calendar_last_notif_ack:0
+msgid "Last notification marked as read from base Calendar"
+msgstr "Last notification marked as read from base Calendar"
+
+#. module: defiline
+#: field:res.partner,last_participation_date:0
+#: field:res.users,last_participation_date:0
+msgid "Last participation date"
+msgstr "Dernière participation"
+
+#. module: defiline
+#: field:res.partner,profile_last_update:0
+#: field:res.users,profile_last_update:0
+msgid "Last profile update"
+msgstr "Dernière mise à jour du profile"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Lastame"
+msgstr "Nom"
+
+#. module: defiline
+#: view:website:defiline.registration
+msgid "Lastname"
+msgstr "Nom"
+
+#. module: defiline
+#: field:informal.sale.order.line,categ_sequence:0
+msgid "Layout Sequence"
+msgstr "Layout Sequence"
+
+#. module: defiline
+#: field:res.users,opportunity_ids:0
+msgid "Leads and Opportunities"
+msgstr "Leads and Opportunities"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Lidl"
+msgstr "Lidl"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Liege"
+msgstr "Liège"
+
+#. module: defiline
+#: selection:focus.group.product,type:0
+msgid "Listing initial fee"
+msgstr "Listing initial fee"
+
+#. module: defiline
+#: field:operational.flow,listing_price:0
+msgid "Listing price"
+msgstr "Listing price"
+
+#. module: defiline
+#: selection:res.partner,marital_status:0
+msgid "Living with parents"
+msgstr "Habite avec ses parents"
+
+#. module: defiline
+#: help:import.respondent.wizard,file:0
+msgid ""
+"Load the csv file containing the respondent you want to load in the system"
+msgstr ""
+"Load the csv file containing the respondent you want to load in the system"
+
+#. module: defiline
+#: field:operational.flow,focus_group_address_id:0
+msgid "Location"
+msgstr "Location"
+
+#. module: defiline
+#: model:ir.actions.act_window,name:defiline.respondent_calls_log
+#: model:ir.ui.menu,name:defiline.menu_respondent_calls
+msgid "Logged Calls"
+msgstr "Notes"
+
+#. module: defiline
+#: selection:res.partner,professional_status:0
+msgid "Looking for"
+msgstr "A la recherche de"
+
+#. module: defiline
+#: model:event.event,postit_description:0
+msgid ""
+"Madame, vous avez au moins un enfant entre 3 et 10 ans? Vous consommez "
+"personnellement des biscuits? Votre / vos enfant(s) aussi? Réunion à "
+"Vilvoorde le jeudi 8/09 (3 heures 70€)"
+msgstr ""
+"Madame, vous avez au moins un enfant entre 3 et 10 ans? Vous consommez "
+"personnellement des biscuits? Votre / vos enfant(s) aussi? Réunion à "
+"Vilvoorde le jeudi 8/09 (3 heures 70€)"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Makro"
+msgstr "Makro"
+
+#. module: defiline
+#: selection:res.partner,child10_gender:0
+#: selection:res.partner,child1_gender:0 selection:res.partner,child2_gender:0
+#: selection:res.partner,child3_gender:0 selection:res.partner,child4_gender:0
+#: selection:res.partner,child5_gender:0 selection:res.partner,child6_gender:0
+#: selection:res.partner,child7_gender:0 selection:res.partner,child8_gender:0
+#: selection:res.partner,child9_gender:0 selection:res.partner,gender:0
+msgid "Male"
+msgstr "Masculin"
+
+#. module: defiline
+#: view:mission.mission:defiline.view_mission_search
+#: model:res.groups,name:defiline.group_opinions_manager
+msgid "Manager"
+msgstr "Responsable"
+
+#. module: defiline
+#: selection:focus.group.product,type:0
+msgid "Managing fee"
+msgstr "Managing fee"
+
+#. module: defiline
+#: field:operational.flow,managing_fee_price:0
+msgid "Managing fee price"
+msgstr "Managing fee price"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Marital Status"
+msgstr "Etat civil"
+
+#. module: defiline
+#: field:res.partner,marital_status:0
+msgid "Marital status"
+msgstr "Etat civil"
+
+#. module: defiline
+#: selection:res.partner,marital_status:0
+msgid "Married"
+msgstr "Marrié"
+
+#. module: defiline
+#: field:mission.mission,material_received:0
+#: field:operational.flow,material_received_date:0
+msgid "Material received date"
+msgstr "Date de réception du matériel"
+
+#. module: defiline
+#: field:res.users,meeting_ids:0
+msgid "Meetings"
+msgstr "Meetings"
+
+#. module: defiline
+#: field:add.calls.wizard,message:0
+msgid "Message"
+msgstr "Message"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+msgid "Missed"
+msgstr "Manqué"
+
+#. module: defiline
+#: view:event.registration:defiline.view_participation_search
+msgid "Missed participations"
+msgstr "Participations manquées"
+
+#. module: defiline
+#: selection:import.respondent.wizard,type:0
+msgid "Missing rows"
+msgstr "Missing rows"
+
+#. module: defiline
+#: field:survey.survey,event_id:0
+msgid "Mission"
+msgstr "Projet"
+
+#. module: defiline
+#: field:event.registration,mobile:0 view:website:defiline.profile_respondent
+msgid "Mobile"
+msgstr "Mobile"
+
+#. module: defiline
+#: field:res.partner,mobile_operator:0 field:res.users,mobile_operator:0
+#: view:website:defiline.profile_respondent
+msgid "Mobile operator"
+msgstr "Operateur mobile"
+
+#. module: defiline
+#: field:event.event,moderator:0 field:res.partner,is_moderator:0
+#: field:res.users,is_moderator:0
+msgid "Moderator"
+msgstr "Moderateur"
+
+#. module: defiline
+#: model:ir.actions.act_window,name:defiline.action_moderator_form
+#: model:ir.ui.menu,name:defiline.menu_moderator
+msgid "Moderators"
+msgstr "Moderateurs"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Mons"
+msgstr "Mons"
+
+#. module: defiline
+#: view:crm.phonecall:defiline.respondent_calls_log_filter
+msgid "Month"
+msgstr "Mois"
+
+#. module: defiline
+#: view:crm.phonecall:defiline.respondent_calls_log_filter
+msgid "My Phonecalls"
+msgstr "Mes appels"
+
+#. module: defiline
+#: model:website.menu,name:defiline.menu_myprofile
+msgid "My Profile"
+msgstr "Mon Profile"
+
+#. module: defiline
+#: view:event.event:defiline.view_group_search
+msgid "My groups"
+msgstr "Mes groupes"
+
+#. module: defiline
+#: view:website:defiline.postit
+msgid "NOUS RECHERCHONS"
+msgstr "NOUS RECHERCHONS"
+
+#. module: defiline
+#: field:mission.mission,name:0 view:res.partner:defiline.view_respondent_form
+msgid "Name"
+msgstr "Nom"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Namur"
+msgstr "Namur"
+
+#. module: defiline
+#: field:res.partner,nationality_id:0
+msgid "Nationality"
+msgstr "Nationalité"
+
+#. module: defiline
+#: code:addons/defiline/models/informal_sale_order_line.py:170
+#, python-format
+msgid "No Customer Defined!"
+msgstr "No Customer Defined!"
+
+#. module: defiline
+#: code:addons/defiline/models/informal_sale_order_line.py:258
+#, python-format
+msgid "No Pricelist ! : "
+msgstr "No Pricelist ! : "
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "No car"
+msgstr "Pas de voiture"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "No children"
+msgstr "Pas d'enfant"
+
+#. module: defiline
+#: code:addons/defiline/models/informal_sale_order_line.py:271
+#, python-format
+msgid "No valid pricelist line found ! :"
+msgstr "No valid pricelist line found ! :"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Nordic language"
+msgstr "Langues nordiques"
+
+#. module: defiline
+#: view:website:web.login
+msgid "Not yet registered?"
+msgstr "Pas encore enregistré ?"
+
+#. module: defiline
+#: selection:focus.group.product,type:0
+msgid "Note taking"
+msgstr "Prise de note"
+
+#. module: defiline
+#: field:operational.flow,note_taking_price:0
+msgid "Note taking price"
+msgstr "Note taking price"
+
+#. module: defiline
+#: field:event.event,note_taking:0
+msgid "Note taking/hours"
+msgstr "Note taking/hours"
+
+#. module: defiline
+#: model:event.event,postit_description:0
+msgid ""
+"Nous organisons des entretiens individuels d'1h en journée le 25/08 dans le "
+"centre ville de Bruxelles avec des jeunes de 18 à 27 ans"
+msgstr ""
+"Nous organisons des entretiens individuels d'1h en journée le 25/08 dans le "
+"centre ville de Bruxelles avec des jeunes de 18 à 27 ans"
+
+#. module: defiline
+#: model:event.event,postit_description:0
+msgid ""
+"Nous organisons une réunion le lundi 29/08 de 18h30 à 20h30 à 1200 Bruxelles "
+"(35 €) avec des personnes de 18 à 70 ans qui ont leur propre habitation"
+msgstr ""
+"Nous organisons une réunion le lundi 29/08 de 18h30 à 20h30 à 1200 Bruxelles "
+"(35 €) avec des personnes de 18 à 70 ans qui ont leur propre habitation"
+
+#. module: defiline
+#: model:event.event,postit_description:0
+msgid ""
+"Nous organisons une réunion le mardi 30/08 de 18h30 à 20h30 à Liège (35 €) "
+"avec des personnes de 18 à 70 ans qui ont leur propre habitation"
+msgstr ""
+"Nous organisons une réunion le mardi 30/08 de 18h30 à 20h30 à Liège (35 €) "
+"avec des personnes de 18 à 70 ans qui ont leur propre habitation"
+
+#. module: defiline
+#: field:res.partner,numberofchildren:0
+msgid "Number of children"
+msgstr "Nombre d'enfants"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+msgid "Number of confirmed respondends"
+msgstr "Nombre de répondants confirmés"
+
+#. module: defiline
+#: help:informal.sale.order.line,delay:0
+msgid ""
+"Number of days between the order confirmation and the shipping of the "
+"products to the customer"
+msgstr ""
+"Number of days between the order confirmation and the shipping of the "
+"products to the customer"
+
+#. module: defiline
+#: field:event.event,registered:0
+msgid "Number of registered respondents"
+msgstr "Nombre de répondants inscrits"
+
+#. module: defiline
+#: field:sale.order,subject:0
+msgid "Offer subject"
+msgstr "Sujet de l'offre"
+
+#. module: defiline
+#: field:add.respondents.wizard,on_email:0
+#: field:search.respondent.wizard,on_email:0
+msgid "On email"
+msgstr "Par email"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "On evening"
+msgstr "En soirée"
+
+#. module: defiline
+#: field:add.respondents.wizard,on_reference:0
+#: field:search.respondent.wizard,on_reference:0
+msgid "On reference"
+msgstr "On reference"
+
+#. module: defiline
+#: view:mission.mission:defiline.view_mission_search
+msgid "Ongoing"
+msgstr "En cours"
+
+#. module: defiline
+#: view:mission.mission:defiline.view_mission_form
+#: selection:mission.mission,state:0
+msgid "Open"
+msgstr "Ouvert"
+
+#. module: defiline
+#: model:ir.actions.act_window,name:defiline.action_operational_flow_view
+#: model:ir.ui.menu,name:defiline.menu_operational_flow
+msgid "Operational Flow"
+msgstr "Operational Flow"
+
+#. module: defiline
+#: view:operational.flow:defiline.view_defiline_operational_flow_tree
+#: view:operational.flow:defiline.view_operational_flow_calendar
+msgid "Operational flow"
+msgstr "Operational flow"
+
+#. module: defiline
+#: model:ir.ui.menu,name:defiline.opinions_main_menu
+msgid "Opinions.be"
+msgstr "Opinions.be"
+
+#. module: defiline
+#: field:res.users,opportunity_count:0
+msgid "Opportunity"
+msgstr "Opportunité"
+
+#. module: defiline
+#: selection:event.event,booking:0
+msgid "Option"
+msgstr "Option"
+
+#. module: defiline
+#: view:website:sale.report_saleorder_document
+msgid "Order N°"
+msgstr "N° de commande"
+
+#. module: defiline
+#: field:informal.sale.order.line,order_id:0
+msgid "Order Reference"
+msgstr "Order Reference"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+msgid "Order lines"
+msgstr "Order lines"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Other"
+msgstr "Autre"
+
+#. module: defiline
+#: field:operational.flow,po_number:0 field:sale.order,po_number:0
+msgid "PO Number"
+msgstr "PO Number"
+
+#. module: defiline
+#: view:website:sale.report_saleorder_document
+msgid "PO Number:"
+msgstr "PO Number:"
+
+#. module: defiline
+#: selection:import.respondent.wizard,type:0
+msgid "Participation"
+msgstr "Participation"
+
+#. module: defiline
+#: view:event.registration:defiline.view_participation_search
+#: model:ir.actions.act_window,name:defiline.action_participation_view
+#: model:ir.ui.menu,name:defiline.menu_defiline_participation
+msgid "Participations"
+msgstr "Participations"
+
+#. module: defiline
+#: view:crm.phonecall:defiline.respondent_calls_log_filter
+#: model:ir.model,name:defiline.model_res_partner
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Partner education level"
+msgstr "Partner education level"
+
+#. module: defiline
+#: field:res.partner,partner_edu_level_id:0
+msgid "Partner educational level"
+msgstr "Partner educational level"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Partners"
+msgstr "Partenaires"
+
+#. module: defiline
+#: view:website:defiline.registration
+msgid "Password"
+msgstr "Mot de passe"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Pet"
+msgstr "Animal"
+
+#. module: defiline
+#: view:crm.phonecall:defiline.respondent_calls_log_form_view
+msgid "Phone Call"
+msgstr "Note"
+
+#. module: defiline
+#: view:crm.phonecall:defiline.respondent_calls_log_tree_view
+msgid "Phone Calls"
+msgstr "Notes"
+
+#. module: defiline
+#: view:crm.phonecall:defiline.respondent_calls_log_filter
+#: field:res.users,phonecall_count:0 field:res.users,phonecall_ids:0
+msgid "Phonecalls"
+msgstr "Notes"
+
+#. module: defiline
+#: field:operational.flow,copy_price:0
+msgid "Photocopy price"
+msgstr "Photocopy price"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Places"
+msgstr "Places"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+msgid "Planning"
+msgstr "Planning"
+
+#. module: defiline
+#: view:website:defiline.registration_confirmation_error
+msgid "Please contact the website administrator at res_company.email."
+msgstr ""
+"Contactez l'administrateur du site à l'adresse suitante res_company.email."
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+msgid "Post-it"
+msgstr "Post-it"
+
+#. module: defiline
+#: code:addons/defiline/models/event.py:123
+#, python-format
+msgid "Post-it End Date cannot be set before Post-it Start Date."
+msgstr "Post-it End Date cannot be set before Post-it Start Date."
+
+#. module: defiline
+#: field:event.event,postit_description:0
+msgid "Post-it description"
+msgstr "Post-it description"
+
+#. module: defiline
+#: field:event.event,title:0
+msgid "Post-it title"
+msgstr "Post-it titre"
+
+#. module: defiline
+#: view:website:sale.report_saleorder_document
+msgid "Price"
+msgstr "Prix"
+
+#. module: defiline
+#: field:informal.sale.order.line,price_reduce:0
+msgid "Price Reduce"
+msgstr "Price Reduce"
+
+#. module: defiline
+#: field:informal.sale.order.line,procurement_ids:0
+msgid "Procurements"
+msgstr "Procurements"
+
+#. module: defiline
+#: field:event.order.line,product_id:0 field:focus.group.product,product_id:0
+#: field:informal.sale.order.line,product_id:0
+msgid "Product"
+msgstr "Produit"
+
+#. module: defiline
+#: model:ir.actions.act_window,name:defiline.action_focus_group_product
+#: model:ir.ui.menu,name:defiline.menu_focus_group_product
+msgid "Product Focus group mapping"
+msgstr "Product Focus group mapping"
+
+#. module: defiline
+#: field:informal.sale.order.line,product_uos:0
+msgid "Product UoS"
+msgstr "Product UoS"
+
+#. module: defiline
+#: field:res.partner,profession_name:0 field:res.users,profession_name:0
+#: view:website:defiline.profile_respondent
+msgid "Profession name"
+msgstr "Nom de la profession"
+
+#. module: defiline
+#: field:res.partner,professional_status:0
+#: field:res.users,professional_status:0
+#: view:website:defiline.profile_respondent
+msgid "Professional status"
+msgstr "Statut professionel"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Profile"
+msgstr "Profile"
+
+#. module: defiline
+#: model:ir.ui.view,website_meta_title:defiline.profile_respondent
+msgid "Profile | Opinions.be"
+msgstr "Profile | Opinions.be"
+
+#. module: defiline
+#: field:event.event,mission_id:0 field:event.registration,mission_id:0
+#: view:mission.mission:defiline.view_mission_form
+#: field:sale.order,mission_id:0
+msgid "Project"
+msgstr "Projet"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+msgid "Project Description..."
+msgstr "Project Description..."
+
+#. module: defiline
+#: field:mission.mission,manager_id:0
+msgid "Project Manager"
+msgstr "Gestionnaire de projet"
+
+#. module: defiline
+#: field:mission.mission,description_date:0
+#: field:operational.flow,mission_description_date:0
+msgid "Project description date"
+msgstr "Project description date"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+msgid "Project info"
+msgstr "Project info"
+
+#. module: defiline
+#: model:ir.actions.act_window,name:defiline.action_mission_view
+#: model:ir.ui.menu,name:defiline.menu_main_mission
+#: model:ir.ui.menu,name:defiline.menu_mission
+#: view:mission.mission:defiline.view_mission_tree
+msgid "Projects"
+msgstr "Projets"
+
+#. module: defiline
+#: field:res.partner,moderator_project:0 field:res.users,moderator_project:0
+msgid "Projects history"
+msgstr "Projects history"
+
+#. module: defiline
+#: field:event.event,publish:0
+msgid "Publish"
+msgstr "Publier"
+
+#. module: defiline
+#: view:mission.mission:defiline.view_mission_search
+msgid "Published"
+msgstr "Publié"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Put an internal note..."
+msgstr "Mettre une note interne..."
+
+#. module: defiline
+#: field:event.order.line,quantity:0
+#: field:informal.sale.order.line,product_uom_qty:0
+#: field:mission.mission,complex_task_extra_qty:0
+#: field:mission.mission,simple_task_extra_qty:0
+#: view:website:sale.report_saleorder_document
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: defiline
+#: field:informal.sale.order.line,product_uos_qty:0
+msgid "Quantity (UoS)"
+msgstr "Quantity (UoS)"
+
+#. module: defiline
+#: field:event.event,survey_id:0
+#: model:ir.ui.menu,name:defiline.menu_survey_form
+#: model:ir.ui.menu,name:defiline.menu_survey_root
+msgid "Quizz"
+msgstr "Questionnaire"
+
+#. module: defiline
+#: field:mission.mission,google_form_date:0
+#: field:operational.flow,google_form_date:0
+msgid "Quizz creation date"
+msgstr "date de création du questionnaire"
+
+#. module: defiline
+#: field:event.event,survey_public_url:0
+msgid "Quizz public url"
+msgstr "Url du questionnaire"
+
+#. module: defiline
+#: field:event.event,survey_public_url_html:0
+msgid "Quizz public url html"
+msgstr "Url html du questionnaire"
+
+#. module: defiline
+#: model:ir.ui.menu,name:defiline.menu_sale_quotation
+msgid "Quotation"
+msgstr "Offres"
+
+#. module: defiline
+#: view:website:sale.report_saleorder_document
+msgid "Quotation Date:"
+msgstr "Date du devis:"
+
+#. module: defiline
+#: view:website:sale.report_saleorder_document
+msgid "Quotation N°"
+msgstr "Devis N°"
+
+#. module: defiline
+#: field:sale.order,quotation_validity:0
+msgid "Quotation Validity"
+msgstr "Durée de validité de l'offre"
+
+#. module: defiline
+#: field:operational.flow,cat_drink_qty_order:0
+#: field:operational.flow,cat_excep_qty_order:0
+#: field:operational.flow,cat_fruit_qty_order:0
+#: field:operational.flow,cat_san_qty_order:0
+#: field:operational.flow,cat_trait_qty_order:0
+#: field:operational.flow,copy_qty_order:0
+#: field:operational.flow,facility_qty_order:0
+#: field:operational.flow,incitive_bkp_qty_order:0
+#: field:operational.flow,incitive_qty_order:0
+#: field:operational.flow,listing_qty_order:0
+#: field:operational.flow,managing_fee_qty_order:0
+#: field:operational.flow,note_taking_qty_order:0
+#: field:operational.flow,overdue_qty_order:0
+#: field:operational.flow,recruitment_qty_order:0
+#: field:operational.flow,streaming_qty_order:0
+msgid "Quotation quantity"
+msgstr "Quantité offre"
+
+#. module: defiline
+#: view:mission.mission:defiline.view_mission_form
+msgid "Re-Open"
+msgstr "Réouvrir"
+
+#. module: defiline
+#: selection:focus.group.product,type:0
+msgid "Recruitment"
+msgstr "Recrutement"
+
+#. module: defiline
+#: field:mission.mission,recruitment_date:0
+#: field:operational.flow,recruitment_date:0
+msgid "Recruitment date"
+msgstr "Date du recrutement"
+
+#. module: defiline
+#: field:operational.flow,recruitment_price:0
+msgid "Recruitment price"
+msgstr "Prix du recrutement"
+
+#. module: defiline
+#: view:event.event:defiline.view_group_search
+#: field:event.registration,respondent_ref_number:0
+msgid "Reference"
+msgstr "Référence"
+
+#. module: defiline
+#: field:res.partner,ref_number:0 field:res.users,ref_number:0
+msgid "Reference Number"
+msgstr "Numéro de référence"
+
+#. module: defiline
+#: field:event.event,reference_number:0
+msgid "Reference number"
+msgstr "Numéro de référence"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+msgid "Register Respondents"
+msgstr "Register Respondents"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+#: view:event.registration:defiline.view_participation_tree
+#: view:website:defiline.registration
+msgid "Registration"
+msgstr "Inscription"
+
+#. module: defiline
+#: view:website:defiline.registration
+msgid "Registration Form"
+msgstr "Formulaire d'inscription"
+
+#. module: defiline
+#: model:email.template,subject:defiline.email_template_confirmation
+msgid "Registration confirmation"
+msgstr "Confirmation de l'inscription"
+
+#. module: defiline
+#: field:res.partner,registration_validation_url:0
+msgid "Registration validation url"
+msgstr "Url de validation de l'inscription"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+msgid "Registrations"
+msgstr "Inscriptions"
+
+#. module: defiline
+#: field:operational.flow,quotation_request_date:0
+#: field:sale.order,request_date:0
+msgid "Request Date"
+msgstr "Request Date"
+
+#. module: defiline
+#: selection:event.event,booking:0
+msgid "Reservation"
+msgstr "Réservation"
+
+#. module: defiline
+#: code:addons/defiline/models/event.py:258
+#: view:event.event:defiline.view_defiline_group_form
+#: view:event.registration:defiline.view_participation_tree
+#: selection:import.respondent.wizard,type:0
+#: model:ir.ui.menu,name:defiline.menu_respondent_config
+#: model:ir.ui.menu,name:defiline.menu_respondent_root
+#: model:res.groups,name:defiline.group_respondent
+#: view:res.partner:defiline.view_respondent_tree
+#: field:res.partner,is_respondent:0
+#, python-format
+msgid "Respondent"
+msgstr "Respondant"
+
+#. module: defiline
+#: field:add.respondents.wizard,respondent_refs:0
+msgid "Respondent registration"
+msgstr "Respondent registration"
+
+#. module: defiline
+#: field:search.respondent.wizard,name:0
+msgid "Respondent search"
+msgstr "Respondent search"
+
+#. module: defiline
+#: code:addons/defiline/wizard/search_ref_wizard.py:40
+#: model:ir.actions.act_window,name:defiline.action_respondent_tree
+#: model:ir.ui.menu,name:defiline.menu_respondent_tree
+#, python-format
+msgid "Respondents"
+msgstr "Respondents"
+
+#. module: defiline
+#: view:crm.phonecall:defiline.respondent_calls_log_filter
+#: view:event.event:defiline.view_group_search
+#: field:operational.flow,focus_group_manager:0
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: defiline
+#: selection:res.partner,professional_status:0
+msgid "Retired"
+msgstr "Retraité"
+
+#. module: defiline
+#: selection:res.partner,status:0
+msgid "SAB"
+msgstr "SAB"
+
+#. module: defiline
+#: field:mission.mission,sale_order_id:0 field:operational.flow,order_id:0
+msgid "Sale Order"
+msgstr "Bon de commande"
+
+#. module: defiline
+#: model:ir.ui.menu,name:defiline.menu_sale_order
+msgid "Sale Orders"
+msgstr "Bons de commande"
+
+#. module: defiline
+#: field:event.event,sale_layout_cat_id:0
+msgid "Sale layout"
+msgstr "Sale layout"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+#: field:event.event,sale_order_lines:0
+msgid "Sale order lines"
+msgstr "Sale order lines"
+
+#. module: defiline
+#: model:ir.ui.menu,name:defiline.menu_sales_root
+msgid "Sales"
+msgstr "Ventes"
+
+#. module: defiline
+#: model:ir.model,name:defiline.model_sale_order
+#: field:res.users,sale_order_ids:0
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: defiline
+#: model:ir.model,name:defiline.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de commandes de vente"
+
+#. module: defiline
+#: view:sale.order:defiline.view_order_form_defiline
+msgid "Sales Order Lines"
+msgstr "Lignes de ventes"
+
+#. module: defiline
+#: field:informal.sale.order.line,salesman_id:0
+msgid "Salesperson"
+msgstr "Vendeur"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Save"
+msgstr "Enregistrer"
+
+#. module: defiline
+#: view:search.respondent.wizard:defiline.view_search_respondent_wizard
+msgid "Search"
+msgstr "Rechercher"
+
+#. module: defiline
+#: view:crm.phonecall:defiline.respondent_calls_log_filter
+msgid "Search Phonecalls"
+msgstr "Rechercher les notes"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Search Respondent"
+msgstr "Search Respondent"
+
+#. module: defiline
+#: view:mission.mission:defiline.view_mission_search
+msgid "Search Surveys"
+msgstr "Search Surveys"
+
+#. module: defiline
+#: model:ir.actions.act_window,name:defiline.action_search_respondent_wizard
+#: model:ir.ui.menu,name:defiline.menu_search_respondent_wizard
+msgid "Search on respondent"
+msgstr "Search on respondent"
+
+#. module: defiline
+#: view:search.respondent.wizard:defiline.view_search_respondent_wizard
+msgid "Search on respondent reference or email"
+msgstr "Rechercher des répondants par référence ou par adresse email"
+
+#. module: defiline
+#: field:informal.sale.order.line,sale_layout_cat_id:0
+msgid "Section"
+msgstr "Section"
+
+#. module: defiline
+#: field:mission.mission,group_sent_date:0
+#: field:operational.flow,group_sent_date:0
+msgid "Send group to customer date"
+msgstr "Send group to customer date"
+
+#. module: defiline
+#: field:operational.flow,order_date_sent:0 field:sale.order,date_sent:0
+msgid "Sent Date"
+msgstr "Sent Date"
+
+#. module: defiline
+#: field:informal.sale.order.line,sequence:0
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: defiline
+#: view:event.event:defiline.view_defiline_group_form
+#: view:mission.mission:defiline.view_mission_form
+msgid "Set To Draft"
+msgstr "Mettre à l'état \"Brouillon\""
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Sex"
+msgstr "Sexe"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Sign brand"
+msgstr "Sign brand"
+
+#. module: defiline
+#: model:website.menu,name:defiline.menu_sign_in
+msgid "Sign in"
+msgstr "Se connecter"
+
+#. module: defiline
+#: selection:res.partner,marital_status:0
+msgid "Single"
+msgstr "Célibataire"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Smoke"
+msgstr "Fume"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Spanish"
+msgstr "Espagnol"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Speak Arabic"
+msgstr "Parle arabe"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Speak Dutch"
+msgstr "Parle néerlandais"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Speak Eastern"
+msgstr "Speak Eastern"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Speak English"
+msgstr "Parle anglais"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Speak French"
+msgstr "Parle français"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Speak German"
+msgstr "Parle allemand"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Speak Italian"
+msgstr "Parle italien"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Speak Nordic"
+msgstr "Parle nordique"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Speak Spanish"
+msgstr "Parle espagnol"
+
+#. module: defiline
+#: field:res.users,speaker:0
+msgid "Speaker"
+msgstr "Speaker"
+
+#. module: defiline
+#: field:event.event,start_date:0
+#: field:operational.flow,focus_group_start_date:0
+msgid "Start"
+msgstr "Début"
+
+#. module: defiline
+#: field:operational.flow,postit_online:0
+msgid "Start Date"
+msgstr "Date de début"
+
+#. module: defiline
+#: view:event.event:defiline.view_group_search
+#: view:event.registration:defiline.view_participation_search
+msgid "Start Month"
+msgstr "Mois de départ"
+
+#. module: defiline
+#: view:website:survey.survey_init
+msgid "Start Survey"
+msgstr "Commencer le sondage"
+
+#. module: defiline
+#: field:mission.mission,start_date:0
+msgid "Start date"
+msgstr "Date de début"
+
+#. module: defiline
+#: field:event.event,starting_fee_qty:0
+msgid "Starting fee quantity"
+msgstr "Starting fee quantity"
+
+#. module: defiline
+#: field:mission.mission,state:0
+#: view:res.partner:defiline.view_respondent_form
+msgid "State"
+msgstr "État"
+
+#. module: defiline
+#: view:event.event:defiline.view_group_search
+#: view:event.registration:defiline.view_participation_search
+#: field:informal.sale.order.line,state:0
+#: field:operational.flow,invoice_state:0 field:res.partner,status:0
+#: field:res.users,status:0
+msgid "Status"
+msgstr "Statut"
+
+#. module: defiline
+#: selection:focus.group.product,type:0
+msgid "Streaming"
+msgstr "Streaming"
+
+#. module: defiline
+#: field:operational.flow,streaming_price:0
+msgid "Streaming price"
+msgstr "Streaming price"
+
+#. module: defiline
+#: field:event.event,streaming:0
+msgid "Streaming/day"
+msgstr "Streaming/day"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Street"
+msgstr "Rue"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Street..."
+msgstr "Rue..."
+
+#. module: defiline
+#: selection:res.partner,professional_status:0
+msgid "Student"
+msgstr "Etudiant"
+
+#. module: defiline
+#: view:website:defiline.registration
+msgid "Submit"
+msgstr "Valider"
+
+#. module: defiline
+#: field:informal.sale.order.line,price_subtotal:0
+msgid "Subtotal"
+msgstr "Sous total"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Summary"
+msgstr "Résumé"
+
+#. module: defiline
+#: field:event.event,supplement:0
+msgid "Supplement/day"
+msgstr "Supplement/day"
+
+#. module: defiline
+#: model:ir.model,name:defiline.model_survey_survey
+#: field:operational.flow,mission_id:0
+msgid "Survey"
+msgstr "Projet"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Tabacco and Car"
+msgstr "Tabac et voiture"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_filter
+msgid "Tag"
+msgstr "Étiquette"
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "Tags..."
+msgstr "Étiquettes..."
+
+#. module: defiline
+#: field:res.users,task_ids:0
+msgid "Tasks"
+msgstr "Taches"
+
+#. module: defiline
+#: field:informal.sale.order.line,tax_id:0
+#: view:website:sale.report_saleorder_document
+msgid "Taxes"
+msgstr "Taxes"
+
+#. module: defiline
+#: view:website:defiline.registration_confirmation_ok
+#: view:website:defiline.registration_thanks
+msgid "Thanks you!"
+msgstr "Merci!"
+
+#. module: defiline
+#: code:addons/defiline/models/sale_order.py:68
+#, python-format
+msgid ""
+"The selected section of the following sale order line '%s' is not of the "
+"type group. Please select a section of the type 'group' or select a proper "
+"section"
+msgstr ""
+"The selected section of the following sale order line '%s' is not of the "
+"type group. Please select a section of the type 'group' or select a proper "
+"section"
+
+#. module: defiline
+#: code:addons/defiline/controllers/main.py:128
+#, python-format
+msgid ""
+"This email address is already registered. If you forgot your password go to "
+"the login page and click on the reset password link"
+msgstr ""
+"This email address is already registered. If you forgot your password go to "
+"the login page and click on the reset password link"
+
+#. module: defiline
+#: help:survey.survey,google_forms_url:0
+msgid "This field holds the google forms url used as video for the question"
+msgstr "This field holds the google forms url used as video for the question"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent view:website:defiline.registration
+msgid "Title"
+msgstr "Civilité"
+
+#. module: defiline
+#: view:mission.mission:defiline.view_mission_search
+msgid "To invoice"
+msgstr "To invoice"
+
+#. module: defiline
+#: field:res.partner,tobacco_brand:0 view:website:defiline.profile_respondent
+msgid "Tobacco brand"
+msgstr "Marque de tabac"
+
+#. module: defiline
+#: field:res.partner,token_validated:0
+msgid "Token validated"
+msgstr "Token validated"
+
+#. module: defiline
+#: view:sale.order:defiline.view_order_form_defiline
+msgid "Total Tax Included"
+msgstr "Total taxes incluses"
+
+#. module: defiline
+#: field:event.event,translator:0 selection:focus.group.product,type:0
+msgid "Translator"
+msgstr "Traducteur"
+
+#. module: defiline
+#: view:sale.order:defiline.view_order_form_defiline
+msgid "True"
+msgstr "True"
+
+#. module: defiline
+#: field:focus.group.product,type:0
+msgid "Type"
+msgstr "Type"
+
+#. module: defiline
+#: field:res.partner,business_type:0 field:res.users,business_type:0
+#: view:website:defiline.profile_respondent
+msgid "Type of business"
+msgstr "Type d'activité"
+
+#. module: defiline
+#: field:import.respondent.wizard,type:0
+msgid "Type of import"
+msgstr "Type d'import"
+
+#. module: defiline
+#: view:crm.phonecall:defiline.respondent_calls_log_filter
+msgid "Unassigned"
+msgstr "Non assigné"
+
+#. module: defiline
+#: view:event.event:defiline.view_group_search
+#: view:event.registration:defiline.view_participation_search
+msgid "Unconfirmed"
+msgstr "Non confirmé"
+
+#. module: defiline
+#: view:event.registration:defiline.view_participation_search
+msgid "Unconfirmed participations"
+msgstr "Participations non confirmés"
+
+#. module: defiline
+#: field:informal.sale.order.line,price_unit:0
+#: view:website:sale.report_saleorder_document
+msgid "Unit Price"
+msgstr "Prix unitaire"
+
+#. module: defiline
+#: field:informal.sale.order.line,product_uom:0
+msgid "Unit of Measure "
+msgstr "Unit of Measure "
+
+#. module: defiline
+#: field:mission.mission,complex_task_extra_price:0
+#: field:mission.mission,simple_task_extra_price:0
+msgid "Unit price"
+msgstr "Unit price"
+
+#. module: defiline
+#: view:sale.order:defiline.view_order_form_defiline
+msgid "UoS"
+msgstr "UdV"
+
+#. module: defiline
+#: view:event.event:defiline.view_group_search
+msgid "Upcoming"
+msgstr "A venir"
+
+#. module: defiline
+#: view:event.event:defiline.view_group_search
+msgid "Upcoming events from today"
+msgstr "Évènements futurs à partir d'aujourd'hui"
+
+#. module: defiline
+#: model:ir.model,name:defiline.model_res_users
+msgid "Users"
+msgstr "Utilisateurs"
+
+#. module: defiline
+#: view:website:sale.report_saleorder_document
+msgid "Validity:"
+msgstr "Validity:"
+
+#. module: defiline
+#: model:event.event,postit_description:0
+msgid ""
+"Vous avez un enfant entre 10 et 15 ans qui a rencontre quelques difficultés "
+"scolaires? Venez en parler lors d'un entretien de 2h le vendredi 26/08 à "
+"1200 BXL (40€)"
+msgstr ""
+"Vous avez un enfant entre 10 et 15 ans qui a rencontre quelques difficultés "
+"scolaires? Venez en parler lors d'un entretien de 2h le vendredi 26/08 à "
+"1200 BXL (40€)"
+
+#. module: defiline
+#: model:event.event,postit_description:0
+msgid ""
+"Vous travaillez pour une agence de voyage indépendante? Réunion à Liège le "
+"mercredi 07/09 de 18h30 à 20h30 (50€)"
+msgstr ""
+"Vous travaillez pour une agence de voyage indépendante? Réunion à Liège le "
+"mercredi 07/09 de 18h30 à 20h30 (50€)"
+
+#. module: defiline
+#: model:event.event,postit_description:0
+msgid ""
+"Vous travaillez pour une agence de voyage qui fait partie d'un groupe comme "
+"Thomas Cook, Jet Air, Neckermann,...? Réunion à 1200 BXL les 25 et 30/08 "
+"18h30-21h30 (50 €)"
+msgstr ""
+"Vous travaillez pour une agence de voyage qui fait partie d'un groupe comme "
+"Thomas Cook, Jet Air, Neckermann,...? Réunion à 1200 BXL les 25 et 30/08 "
+"18h30-21h30 (50 €)"
+
+#. module: defiline
+#: code:addons/defiline/models/mission.py:62
+#, python-format
+msgid "Warning"
+msgstr "Warning"
+
+#. module: defiline
+#: code:addons/defiline/models/sale_order.py:51
+#: code:addons/defiline/models/sale_order.py:63
+#: code:addons/defiline/models/sale_order.py:67
+#: view:website:defiline.registration_confirmation_already_done
+#, python-format
+msgid "Warning!"
+msgstr "Warning!"
+
+#. module: defiline
+#: field:informal.sale.order.line,th_weight:0
+msgid "Weight"
+msgstr "Weight"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "What brand do you usually buy ?"
+msgstr "Quelle marque achetez-vous habituellement ?"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "What's your car brand ?"
+msgstr "Quelle est la marque de votre voiture ?"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "What's your car's model ?"
+msgstr "Quelle est le modèle de votre voiture ?"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid ""
+"What's your primary hypermarket (where you do most of your household "
+"purchases) ?"
+msgstr ""
+"Quel est votre supermarché principal (où faites-vous le plus vos courses) ?"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Which languages do you speak ?"
+msgstr "Quelles langues parlez-vous ?"
+
+#. module: defiline
+#: selection:res.partner,marital_status:0
+msgid "Widowed"
+msgstr "Veuf"
+
+#. module: defiline
+#: selection:res.partner,professional_status:0
+msgid "Worker"
+msgstr "Ouvrier"
+
+#. module: defiline
+#: field:res.partner,child10_yearofbirth:0
+#: field:res.partner,child1_yearofbirth:0
+#: field:res.partner,child2_yearofbirth:0
+#: field:res.partner,child3_yearofbirth:0
+#: field:res.partner,child4_yearofbirth:0
+#: field:res.partner,child5_yearofbirth:0
+#: field:res.partner,child6_yearofbirth:0
+#: field:res.partner,child7_yearofbirth:0
+#: field:res.partner,child8_yearofbirth:0
+#: field:res.partner,child9_yearofbirth:0
+#: field:res.users,child10_yearofbirth:0 field:res.users,child7_yearofbirth:0
+#: field:res.users,child8_yearofbirth:0 field:res.users,child9_yearofbirth:0
+#: view:website:defiline.profile_respondent
+msgid "Year of Birth"
+msgstr "Année de naissance"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Yes"
+msgstr "Oui"
+
+#. module: defiline
+#: view:website:defiline.registration_confirmation_ok
+msgid "You can now login to the website and update your profile."
+msgstr ""
+"Vous pouvez maintenant vous connecter au site web et mettre à jour votre "
+"profile."
+
+#. module: defiline
+#: code:addons/defiline/models/mission.py:62
+#, python-format
+msgid "You can't close a project for which a group still open"
+msgstr "You can't close a project for which a group still open"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "You have changed your email address?"
+msgstr "Vous avez changé votre adresse email?"
+
+#. module: defiline
+#: code:addons/defiline/models/informal_sale_order_line.py:256
+#, python-format
+msgid ""
+"You have to select a pricelist or a customer in the sales form !\n"
+"Please set one before choosing a product."
+msgstr ""
+"You have to select a pricelist or a customer in the sales form !\n"
+"Please set one before choosing a product."
+
+#. module: defiline
+#: code:addons/defiline/models/sale_order.py:64
+#, python-format
+msgid ""
+"You haven't selected a section for the following sale order line '%s'. "
+"Please choose a section for this sale order line"
+msgstr ""
+"You haven't selected a section for the following sale order line '%s'. "
+"Please choose a section for this sale order line"
+
+#. module: defiline
+#: code:addons/defiline/models/sale_order.py:51
+#, python-format
+msgid "You shouldn't manually invoice the following sale order %s"
+msgstr "You shouldn't manually invoice the following sale order %s"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "You want delete you profile?"
+msgstr "Vous souhaitez supprimer définitivement votre profile?"
+
+#. module: defiline
+#: view:website:sale.report_saleorder_document
+msgid "Your Reference:"
+msgstr "Votre Référence:"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Your children"
+msgstr "Vos enfants"
+
+#. module: defiline
+#: view:website:defiline.registration
+msgid "Your email"
+msgstr "Votre email"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Your modification has been saved successfully."
+msgstr "Vos modification ont été sauvegardées."
+
+#. module: defiline
+#: view:website:defiline.registration_confirmation_already_done
+msgid "Your registration has already been validated."
+msgstr "Votre inscription a déjà été validée"
+
+#. module: defiline
+#: view:website:defiline.registration_thanks
+msgid "Your registration has been recorded successfully."
+msgstr "Votre inscription a été enregistrée avec succès."
+
+#. module: defiline
+#: view:website:defiline.registration_confirmation_ok
+msgid "Your registration has been validated."
+msgstr "Votre inscription a été validée"
+
+#. module: defiline
+#: view:website:defiline.registration_confirmation_error
+msgid "Your registration hasn't been validated. Some error occured"
+msgstr "Votre inscription n'a pas été validée. Une erreur s'est produite."
+
+#. module: defiline
+#: view:res.partner:defiline.view_respondent_form
+msgid "ZIP"
+msgstr "Code postal"
+
+#. module: defiline
+#: view:website:defiline.profile_respondent
+msgid "Zip"
+msgstr "Code postal"
+
+#. module: defiline
+#: field:res.partner.gender,code:0
+msgid "code"
+msgstr "code"
+
+#. module: defiline
+#. openerp-web
+#: code:addons/defiline/static/src/xml/website.postit.xml:15
+#, python-format
+msgid "d&#x27;infos"
+msgstr "d&#x27;infos"
+
+#. module: defiline
+#: field:sale.order,is_survey:0
+msgid "is a Project?"
+msgstr "est un Projet?"
+
+#. module: defiline
+#: view:crm.phonecall:defiline.respondent_calls_log_form_view
+msgid "min(s)"
+msgstr "min(s)"
+
+#. module: defiline
+#: selection:import.respondent.wizard,type:0
+msgid "notes"
+msgstr "notes"
+
+#. module: defiline
+#: model:ir.ui.view,website_meta_keywords:defiline.profile_respondent
+msgid "opinions be"
+msgstr "opinions be"
+
+#. module: defiline
+#: view:add.calls.wizard:defiline.view_add_calls_wizard
+#: view:add.respondents.wizard:defiline.view_add_respondents_wizard
+#: view:import.respondent.wizard:defiline.view_delete_all_wizard
+#: view:import.respondent.wizard:defiline.view_import_respondents_wizard
+#: view:import.respondent.wizard:defiline.view_import_wizard
+#: view:search.respondent.wizard:defiline.view_search_respondent_wizard
+msgid "or"
+msgstr "ou"
+
+#. module: defiline
+#: model:ir.model,name:defiline.model_focus_group_product
+msgid "type"
+msgstr "type"
+
+#. module: defiline
+#: view:res.partner:defiline.view_partner_form
+msgid "{'invisible': [('is_moderator','=',True)]}"
+msgstr "{'invisible': [('is_moderator','=',True)]}"

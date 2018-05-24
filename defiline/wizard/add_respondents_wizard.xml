@@ -1,0 +1,35 @@
+<openerp>
+	<data>
+	
+		<record id="view_add_respondents_wizard" model="ir.ui.view">
+            <field name="name">Add respondents to focus group</field>
+            <field name="model">add.respondents.wizard</field>
+            <field name="arch" type="xml">
+	            <form string="Add respondent to focus group">
+					<group>
+						<field name="respondent_refs" default_focus="1" />
+					</group>
+					<group>
+						<field name="on_reference"/>
+						<field name="on_email"/>
+					</group>
+		            <footer>
+	                    <button name="add_respondents" string="Add respondents" type="object" class="oe_highlight"/>
+	                   or
+	                    <button string="Cancel" class="oe_link" special="cancel" />
+	                </footer>
+	            </form>
+            </field>
+        </record>
+        
+     	<act_window name="Add respondents to focus group"
+            res_model="add.respondents.wizard"
+            src_model="res.partner"
+            view_mode="form"
+            target="new"
+            multi="True"
+            key2="client_action_multi"
+            id="action_add_respondents_wizard"/>
+            
+	</data>
+</openerp>

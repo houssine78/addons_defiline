@@ -1,0 +1,36 @@
+<openerp>
+	<data>
+	
+		<record id="view_admin_action_wizard" model="ir.ui.view">
+            <field name="name">Admin Actions</field>
+            <field name="model">admin.action.wizard</field>
+            <field name="arch" type="xml">
+	            <form string="Admin Actions">
+					<group>
+						<field name="action" default_focus="1" />
+					</group>
+		            <footer>
+	                    <button name="run_action" string="Run Action" type="object" class="oe_highlight"/>
+	                   or
+	                    <button string="Cancel" class="oe_link" special="cancel" />
+	                </footer>
+	            </form>
+            </field>
+        </record>
+        
+        <record id="action_admin_action_wizard" model="ir.actions.act_window">
+            <field name="name">Admin Actions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">admin.action.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_admin_action_wizard"/>
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+        
+        <menuitem id="menu_admin_action_wizard" name="Admin Actions" 
+	        parent="menu_respondent_root" action="action_admin_action_wizard" 
+	        sequence="10" groups="base.group_system"/>    
+	</data>
+</openerp>

@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+	<menuitem name="Opinions.be" id="opinions_main_menu" sequence="85" groups="group_opinions_assistant"/>
+	<menuitem name="Sales" id="menu_sales_root" parent="opinions_main_menu" sequence="1" groups="group_opinions_manager"/>
+	<menuitem name="Quizz" id="menu_survey_root" parent="opinions_main_menu" sequence="7" groups="group_opinions_assistant"/>
+	<menuitem name="Configuration" parent="opinions_main_menu" id="opinions_configuration_menu" sequence="85" groups="group_opinions_assistant"/>
+	<menuitem name="Respondent" id="menu_respondent_root" parent="opinions_main_menu" sequence="5" groups="group_opinions_assistant"/>
+	<menuitem name="Respondent" id="menu_respondent_config" parent="opinions_configuration_menu" sequence="4" groups="group_opinions_assistant"/>
+	<!-- this is to undisplay this menu and his parent to the security group base_user (employee) -->
+	<menuitem name="Events" parent="base.marketing_menu" id="event.event_main_menu" groups="event.group_event_manager"/>
+	 
+	<record id="view_respondent_tree" model="ir.ui.view">
+        <field name="name">Respondents</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree string="Respondent">
+                <field name="ref_number"/>
+                <field name="firstname"/>
+                <field name="lastname"/>
+                <field name="status"/>
+                <field name="mobile"/>
+                <field name="email"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="zip"/>
+                <field name="city"/>
+                <field name="last_participation_date"/>
+                <field name="profile_last_update"/>
+                <field name="comment"/>
+                <field name="phone" invisible="1"/>
+                <field name="informed_by_mail" invisible="1"/>
+                <field name="informed_by_sms" invisible="1"/>
+                <field name="availability" invisible="1"/>
+                <field name="numberofchildren"/>
+                <field name="marital_status" invisible="1"/>
+                <field name="nationality_id" invisible="1"/>
+                <field name="country_id" invisible="1"/>
+                <field name="allow_brussels" invisible="1"/>
+       			<field name="allow_namur" invisible="1"/>
+       			<field name="allow_liege" invisible="1"/>
+       			<field name="allow_mons" invisible="1"/>
+       			<field name="allow_charleroi" invisible="1"/>
+       			<field name="birthdate" invisible="1"/>
+       			<field name="edu_level_id" invisible="1"/>
+       			<field name="partner_edu_level_id" invisible="1"/>
+       			<field name="hypermarket" invisible="1"/>
+       			<field name="buys_big_brand" invisible="1"/>
+       			<field name="buys_sign_brand" invisible="1"/>
+       			<field name="has_car" invisible="1"/>
+				<field name="car_brand" invisible="1"/>
+				<field name="car_model" invisible="1"/>
+       			<field name="tobacco_brand" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+    
+	<record id="view_respondent_form" model="ir.ui.view">
+            <field name="name">form view for respondent</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <form string="Partners">
+                	<header>
+                		<button type="object" string="Add phone call" name="add_phone_call" groups="defiline.group_opinions_assistant"/>
+                		<button type="object" string="Delete respondent" name="unlink" confirm="Are you sure you want to delete this respondent?" groups="defiline.group_opinions_manager"/>
+                	</header>
+                    <field name="image" widget='image' class="oe_left oe_avatar" options='{"preview_image": "image_medium", "size": [90, 90]}'/>
+                    <div class="oe_title oe_left">
+                        <h1>
+                            <field name="name" placeholder="Name" readonly="True"/>
+                        </h1>
+                        <label for="firstname"/>
+	                    <field name="firstname" required="True"/>
+	                    <label for="lastname"/>
+	                    <field name="lastname" required="True"/>
+                        <!-- <field name="category_id" widget="many2many_tags" placeholder="Tags..."/> -->
+                        <label for="email"/>
+                    	<field name="email" widget="email" required="True"/>
+                    	<label for="mobile"/>
+                    	<field name="mobile"/>
+                    </div>
+                    <div class="oe_title oe_right">
+                    	<h1>
+                            <field name="ref_number" readonly="True"/>
+                        </h1>
+                    	<label for="age"/>
+                    	<field name="age"/>
+                    	<label for="street"/>
+                    	<field name="street"/>
+                    	<label for="zip"/>
+                    	<field name="zip"/>
+                    	<label for="city"/>
+                    	<field name="city"/>
+                    	<label for="country_id"/>
+                    	<field name="country_id"/>
+                    </div>
+                    <group>
+	                    <group>
+	                    	<field name="status"/>
+	                    	<field name="last_participation_date"/>
+	                    	<field name="profile_last_update"/>
+	                    </group>
+	                    <group>
+	                    </group>
+                    </group>
+                    <group>
+	                 	<group>
+		                    <notebook>
+		                    	<page name="history" string="Group history">
+		                    		<field name="projects" readonly="True">
+		                    			<tree colors="red:state=='missed';grey:state=='cancel';">
+			                    			<field name="mission_id"/>
+			                    			<field name="customer"/>
+			                    			<field name="event_id" string="Group"/>
+			                    			<field name="event_begin_date" string="On"/>
+			                    			<field name="state"/>
+		                    			</tree>
+		                    		</field>
+		                    	</page>
+		                    </notebook>
+		                    <notebook>
+		                        <page name='internal_notes' string="Internal Notes">
+		                            <field name="comment" placeholder="Put an internal note..."/>
+		                        </page>
+		                    </notebook>
+	                    </group>
+	                    <group>
+		                    <notebook>
+			                    <page name="contact_history" string="Contacts history">
+		                    		<field name="phonecall_ids" limit="1" readonly="True">
+		                    			<tree>
+		                    				<field name="date"/>
+		                    				<field name="name" string="Summary"/>
+		                    				<field name="user_id"/>
+		                    			</tree>
+		                    		</field>
+		                    	</page>
+			                </notebook>
+	                    </group>
+                    </group>
+                    <div class="oe_right oe_button_box" name="buttons"> </div>
+					<group>
+						<group>
+							<field name="active"/>
+						</group>
+						<group>
+							<field name="informed_by_mail"/>
+							<field name="informed_by_sms"/>
+						</group>
+					</group>
+                    <group>
+                        <group>
+                           <!--  <label for="street" string="Address"/>
+                            <div>
+                                <field name="street" placeholder="Street..." />
+                                <field name="street2" />
+			                    <field name="zip_id"
+			                        options="{'create_name_field': 'city'}"
+			                        placeholder="City completion"
+			                        class="oe_edit_only" invisible="True"/>
+                                <div class="address_format">
+                                    <field name="city" placeholder="City" style="width: 40%%" />
+                                    <field name="state_id" class="oe_no_button" placeholder="State" style="width: 37%%" options='{"no_open": True}' on_change="onchange_state(state_id)" invisible="True"/>
+                                    <field name="zip" placeholder="ZIP" style="width: 20%%" />
+                                </div>
+                                <field name="country_id" placeholder="Country" class="oe_no_button" options='{"no_open": True, "no_create": True}' />
+                            </div> -->
+                        </group>
+                        <group>
+                            <field name="phone"/>
+                            <field name="fax"/>
+                            <field name="user_ids" invisible="1"/>
+                            <field name="title" options='{"no_open": True}'/>
+                        </group>
+                    </group>
+                    <group>
+                    	<group>
+                  			<field name="marital_status"/>
+                  			<field name="numberofchildren"/>
+                  			<field name="gender"/>
+                  			<field name="nationality_id"/>
+                  			<field name="birthdate"/>
+                  			<field name="availability"/>
+                  			<field name="buys_big_brand"/>
+                  			<field name="buys_sign_brand"/>
+              			</group>
+                    	<group>
+                    		<field name="lang"/>
+                    		<field name="professional_status"/>
+                  			<field name="profession_name"/>
+                  			<field name="business_type"/>
+                    		<field name="edu_level_id"/>
+                  			<field name="partner_edu_level_id"/>
+                  			<field name="hypermarket"/>
+                  			<field name="mobile_operator"/>
+                    	</group>
+                    </group>
+					
+                    <notebook>
+                    	<page name="places" string="Places">
+							<group>     
+								<group>
+	                    			<field name="allow_brussels"/>
+	                    			<field name="allow_namur"/>
+	                    			<field name="allow_liege"/>
+	                    			<field name="allow_mons"/>
+								</group>               	
+	                    		<group>
+	                    			<field name="allow_charleroi"/>
+	                    			<field name="allow_gent"/>
+	                    			<field name="allow_antwerpen"/>
+	                    			<field name="allow_brugge"/>
+	                    		</group>
+                    		</group>
+                    	</page>
+                    	<page name='children' string="Children info">
+                    		<group>
+                    			<label for="child1_yearofbirth" string="Child 1"/>
+                    			<div>
+	                    			<field name="child1_yearofbirth"/>
+	                    			<field name="child1_gender"/>
+                    			</div>
+                    			<label for="child2_yearofbirth" string="Child 2"/>
+                    			<div>
+	                    			<field name="child2_yearofbirth"/>
+	                    			<field name="child2_gender"/>
+                    			</div>
+                    			<label for="child3_yearofbirth" string="Child 3"/>
+                    			<div>
+	                    			<field name="child3_yearofbirth"/>
+	                    			<field name="child3_gender"/>
+                    			</div>
+                    			<label for="child4_yearofbirth" string="Child 4"/>
+                    			<div>
+	                    			<field name="child4_yearofbirth"/>
+	                    			<field name="child4_gender"/>
+                    			</div>
+                    			<label for="child5_yearofbirth" string="Child 5"/>
+                    			<div>
+	                    			<field name="child5_yearofbirth"/>
+	                    			<field name="child5_gender"/>
+                    			</div>
+                    			<label for="child6_yearofbirth" string="Child 6"/>
+                    			<div>
+	                    			<field name="child6_yearofbirth"/>
+	                    			<field name="child6_gender"/>
+                    			</div>
+                    			<label for="child7_yearofbirth" string="Child 7"/>
+                    			<div>
+	                    			<field name="child7_yearofbirth"/>
+	                    			<field name="child7_gender"/>
+                    			</div>
+                    			<label for="child8_yearofbirth" string="Child 8"/>
+                    			<div>
+	                    			<field name="child8_yearofbirth"/>
+	                    			<field name="child8_gender"/>
+                    			</div>
+                    			<label for="child9_yearofbirth" string="Child 9"/>
+                    			<div>
+	                    			<field name="child9_yearofbirth"/>
+	                    			<field name="child9_gender"/>
+                    			</div>
+                    			<label for="child10_yearofbirth" string="Child 10"/>
+                    			<div>
+	                    			<field name="child10_yearofbirth"/>
+	                    			<field name="child10_gender"/>
+                    			</div>
+                    		</group>
+                    	</page>
+                    	<page name="languages" string="Languages knowledge">
+                    		<group>
+                    			<field name="knows_french"/>
+                    			<field name="knows_dutch"/>
+                    			<field name="knows_english"/>
+                    			<field name="knows_spanish"/>
+                    			<field name="knows_italian"/>
+                    			<field name="knows_german"/>
+                    			<field name="knows_arabic"/>
+                    			<field name="knows_eastern"/>
+                    			<field name="knows_nordic"/>
+                    		</group>
+                    	</page>
+                    	<page name="tabacco" string="Tabacco and Car">
+                    		<group>
+	                  			<field name="has_car"/>
+								<field name="car_brand"/>
+								<field name="car_model"/>
+	                  			<field name="is_smoker"/>
+	                  			<field name="tobacco_brand"/>
+							</group>
+                    	</page>
+                    	<page name="pet" string="Pet">
+                    		<group>
+	                  			<field name="has_pet_cat"/>
+	                  			<field name="has_pet_dog"/>
+	                  			<field name="has_pet_other"/>
+							</group>
+                    	</page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_respondent_filter" model="ir.ui.view">
+            <field name="name">Search view for respondent</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <search string="Search Respondent">
+                	<field name="ref_number"/>
+                    <field name="firstname"/>
+                    <field name="lastname"/>
+                    <field string="Ref number greater than" name="ref_number" filter_domain="[('ref_number','&gt;',self)]"/>
+                    <field string="Ref number lower than" name="ref_number" filter_domain="[('ref_number','&lt;',self)]"/>
+                    <!-- <field name="name"
+                        filter_domain="['|','|',('display_name','ilike',self),('ref','=',self),('email','ilike',self)]"/> -->
+                    <field name="mobile"/>
+                    <field name="profession_name"/>
+                    <field name="comment"/>
+                    <field string="Last participation lower than" name="last_participation_date" filter_domain="[('last_participation_date','&lt;',self)]"/>
+                    <field string="Last participation than" name="last_participation_date" filter_domain="[('last_participation_date','&gt;',self)]"/>
+                    <field string="Age" name="age" filter_domain="[('age','=',self)]"/> 
+                    <field string="Birthdate lower than" name="birthdate" filter_domain="[('birthdate','&lt;',self)]"/>
+                    <field string="Birthdate greater than" name="birthdate" filter_domain="[('birthdate','&gt;',self)]"/>
+                    <field string="Age lower than" name="age" filter_domain="[('age','&lt;',self)]"/>
+                    <field string="Age greater than" name="age" filter_domain="[('age','&gt;',self)]"/>
+                    <separator/>
+                    <filter string="Has Car" name="has_car" domain="[('has_car','=',True)]"/>
+                    <filter string="No car" name="no_car" domain="[('has_car','=',False)]"/>
+                    <separator/>
+                    <filter string="Has children" name="has_child" domain="[('numberofchildren','>',0)]"/>
+                    <filter string="No children" name="no_child" domain="[('numberofchildren','=',0)]"/>
+                    <separator/>
+                    <filter string="Homme" name="male" domain="[('gender','=','M')]"/>
+                    <filter string="Femme" name="female" domain="[('gender','=','F')]"/>
+                    <separator/>
+	                <filter string="Informed by email" name="informed_by_mail" domain="[('informed_by_mail','=',True)]"/>
+					<filter string="Informed by sms" name="informed_by_sms" domain="[('informed_by_sms','=',True)]"/>
+                    <separator/>
+                    <filter string="Big brand" name="buys_big_brand" domain="[('buys_big_brand','=',True)]"/>
+                    <separator/>
+                    <filter string="Sign brand" name="buys_sign_brand" domain="[('buys_sign_brand','=',True)]"/>
+                    <separator/>
+	                <filter string="Brussels" name="allow_brussels" domain="[('allow_brussels','=',1)]"/>
+                    <filter string="Namur" name="allow_namur" domain="[('allow_namur','=',1)]"/>
+                    <filter string="Liege" name="allow_liege" domain="[('allow_liege','=',1)]"/>
+                    <filter string="Mons" name="allow_mons" domain="[('allow_mons','=',1)]"/>
+                    <filter string="Charleroi" name="allow_charleroi" domain="[('allow_charleroi','=',1)]"/>
+                    <separator/>
+                    <filter string="Master or Phd" name="master" domain="[('edu_level_id.code','=','6')]"/>
+                    <filter string="Bachelor" name="bachelor" domain="[('edu_level_id.code','=','5')]"/>
+                    <filter string="Professional" name="professional" domain="[('edu_level_id.code','=','4')]"/>
+                    <filter string="Secondary school (15-18)" name="second_sup" domain="[('edu_level_id.code','=','3')]"/>
+                    <filter string="Secondary school (11-15)" name="second_inf" domain="[('edu_level_id.code','=','2')]"/>
+                    <filter string="Primary school" name="primary" domain="[('edu_level_id.code','=','1')]"/>
+                    <newline/>
+                    <filter string="French" name="french" domain="[('lang','=','fr_BE')]"/>
+                    <filter string="Dutch" name="dutch" domain="[('lang','=','nl_BE')]"/>
+                    <filter string="English" name="english" domain="[('lang','=','en_US')]"/>
+                    <newline/>
+                    <filter string="Single" name="single" domain="[('marital_status','=','single')]"/>
+                    <filter string="Cohabiting" name="cohabiting" domain="[('marital_status','=','cohabiting')]"/>
+                    <filter string="Married" name="married" domain="[('marital_status','=','married')]"/>
+                    <filter string="Divorced" name="divorced" domain="[('marital_status','=','divorced')]"/>
+                    <filter string="Widowed" name="widowed" domain="[('marital_status','=','widowed')]"/>
+                    <filter string="With parents" name="with_parents" domain="[('marital_status','=','with_parents')]"/>
+                    <separator/>
+                    <filter string="During the day" name="availability" domain="[('availability','=','day')]"/>
+                    <filter string="On evening" name="availability" domain="[('availability','=','evening')]"/>
+                    <filter string="Both on day and evening" name="availability" domain="[('availability','=','both')]"/>
+                    <separator/>
+                    <field name="category_id" string="Tag" filter_domain="[('category_id','ilike', self)]"/>
+                    <field name="gender"/>
+                    <field name="age"/>
+	                <field name="email" filter_domain="[('email','ilike', self)]"/>
+	                <field name="zip" filter_domain="[('zip','=ilike', self+'%')]"/>
+	                <field name="city"/>
+	                <field name="numberofchildren"/>
+	                <field name="nationality_id"/>
+	                <field name="country_id" widget="selection"/>
+	       			<separator/>
+	       			<field name="birthdate"/>
+	       			<field name="edu_level_id"/>
+	       			<field name="partner_edu_level_id"/>
+	       			<separator/>
+	       			<field name="hypermarket"/>
+					<field name="car_brand"/>
+					<field name="car_model"/>
+	       			<field name="tobacco_brand"/>
+               </search>
+            </field>
+        </record>
+        
+        <record id="action_respondent_tree" model="ir.actions.act_window">
+            <field name="name">Respondents</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"default_is_respondent":True}</field>
+            <field name="domain">[("is_respondent","=",True)]</field>
+            <field name="search_view_id" ref="view_respondent_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a respondent in your address book.
+              </p><p>
+                Odoo helps you easily track all activities related to
+                a respondent; discussions, history of participation,
+                documents, etc.
+              </p>
+            </field>
+        </record>
+
+        <record id="action_respondent_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_respondent_form"/>
+            <field name="act_window_id" ref="action_respondent_tree"/>
+        </record>
+        
+        <record id="action_respondent_tree_view1" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_respondent_tree"/>
+            <field name="act_window_id" ref="action_respondent_tree"/>
+        </record>
+        
+        <record id="action_education_level_form" model="ir.actions.act_window">
+            <field name="name">Education level</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner.education.level</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a educationlevel in your list.
+              </p>
+            </field>
+        </record>
+        
+        <menuitem name="Respondents" id="menu_respondent_tree" parent="menu_respondent_root" action="action_respondent_tree" sequence="1" groups="group_opinions_assistant"/>
+        <menuitem name="Education level" id="menu_respondent_education_level" action="action_education_level_form" parent="menu_respondent_config" sequence="4" groups="group_opinions_assistant"/>
+        
+        <menuitem name="Quizz" id="menu_survey_form" action="survey.action_survey_form" parent="menu_survey_root" sequence="5" groups="group_opinions_assistant"/>
+
+        <record id="action_lang_form" model="ir.actions.act_window">
+            <field name="name">Lang</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner.lang</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem name="Lang" id="menu_respondent_lang" action="action_lang_form" parent="menu_respondent_config" sequence="8" groups="group_opinions_manager"/>
+                
+        <!-- overidding these two actions to not display the respondent in the customer and supplier view -->
+        <record id="base.action_partner_customer_form" model="ir.actions.act_window">
+            <field name="name">Customers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[("is_respondent","=",False)]</field>
+            <field name="context">{'default_customer':1, 'default_is_company':1, 'search_default_customer':1}</field>
+            <field name="filter" eval="True"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a contact in your address book.
+              </p><p>
+                Odoo helps you easily track all activities related to
+                a customer: discussions, history of business opportunities,
+                documents, etc.
+              </p>
+            </field>
+        </record>
+        
+        <record id="base.action_partner_form" model="ir.actions.act_window">
+            <field name="name">Customers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{"search_default_customer":1,"default_is_company":1}</field>
+            <field name="search_view_id" ref="base.view_res_partner_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a contact in your address book.
+              </p><p>
+                Odoo helps you easily track all activities related to
+                a customer; discussions, history of business opportunities,
+                documents, etc.
+              </p>
+            </field>
+        </record>
+
+        <record id="base.action_partner_supplier_form" model="ir.actions.act_window">
+            <field name="name">Suppliers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="domain">[("is_respondent","=",False)]</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{'search_default_supplier': 1,'default_customer': 0,'default_supplier': 1}</field>
+            <field name="filter" eval="True"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a contact in your address book.
+              </p><p>
+                Odoo helps you easily track all activities related to
+                a supplier: discussions, history of purchases,
+                documents, etc.
+              </p>
+            </field>
+        </record>
+        
+        <record id="view_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+            	<field name="ref" position="replace"/>
+            	<field name="category_id" position="after">
+            		<field name="ref"/>
+            	</field>
+            </field>
+        </record>
+</data>
+</openerp>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="postit">
+			<div id="postit-wrapper" class="mt16 col-md-4">
+				<h5>
+					<span style="color:#003366;">
+						<strong>
+							<span class="fa fa-search" style="animation-play-state: paused; transition: none" />
+							   NOUS RECHERCHONS
+						</strong>
+					</span>
+				</h5>
+				<div class="single_line" />
+				<t t-set="website_postits" t-value="website.get_postits()"/>
+				<t t-foreach="website_postits" t-as="postit">
+					<div class="bubble_3">
+						<p style="padding-left:15px;padding-top:5px">
+							<strong><t t-esc="postit.title"/></strong>
+						</p>
+						<div class="bubble_answer_3">
+							<p style="font-size:10pt;"><t t-esc="postit.postit_description"/></p>
+							<p>
+								<strong style="line-height: 1.42857143;" />
+							</p>
+							<a class="btn btn-success btn-sm" t-att-href="postit.survey_public_url"
+								target="_blank">
+								<span class="fa fa-plus-circle" /> d&amp;#x27;infos
+							</a>
+							<br/>
+						</div>
+					</div>
+				</t>
+			</div>
+		</template>
+	</data>
+</openerp>

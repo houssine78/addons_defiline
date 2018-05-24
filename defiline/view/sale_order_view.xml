@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem name="Quotation" id="menu_sale_quotation" action="sale.action_quotations" parent="menu_sales_root" sequence="1" groups="group_opinions_manager"/>
+		<menuitem name="Sale Orders" id="menu_sale_order" action="sale.action_orders" parent="menu_sales_root" sequence="3" groups="group_opinions_manager"/>
+		<menuitem name="Invoices" id="menu_invoice" action="account.action_invoice_tree1" parent="menu_sales_root" sequence="5" groups="group_opinions_manager"/>
+		<menuitem name="Customers" id="menu_customer" action="base.action_partner_customer_form" parent="menu_sales_root" sequence="7" groups="group_opinions_manager"/>
+		
+		<record id="invoice_tree_defiline" model="ir.ui.view">
+            <field name="name">account.invoice.tree.defiline</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+            	<field name="partner_id" position="after">
+            		<field name="name"/>
+            	</field>
+            	<field name="user_id" position="replace"/>
+            </field>
+        </record>
+        
+        <record id="invoice_form_defiline" model="ir.ui.view">
+            <field name="name">account.invoice.form.defiline</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+            	<field name="internal_number" position="after">
+            		<field name="po_number"/>
+            	</field>
+            </field>
+        </record>
+        
+		<record id="sale_layout_form_defiline" model="ir.ui.view">
+            <field name="name">report.configuration.form.view</field>
+            <field name="model">sale_layout.category</field>
+            <field name="inherit_id" ref="sale_layout.report_configuration_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='pagebreak']" position="after">
+                	<field name="is_focus_group"/>
+                </xpath>
+            </field>
+        </record>
+		
+		<record id="view_order_tree_defiline" model="ir.ui.view">
+            <field name="name">sale.order.tree.defiline</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+            	<field name="date_order" position="after">
+        			<field name="client_order_ref"/>    	
+            	</field>
+            </field>
+        </record>
+        
+        <record id="view_quotation_tree_defiline" model="ir.ui.view">
+            <field name="name">quotation.tree.defiline</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+            	<field name="date_order" position="after">
+        			<field name="client_order_ref"/>    	
+            	</field>
+            </field>
+        </record>
+        
+        <record id="view_order_form_defiline" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='partner_id']" position="replace">
+            		<field name="partner_id" on_change="onchange_partner_id(partner_id, context)" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'default_is_company':1, 'show_address': 1}" options='{"always_reload": True}'/>
+            	</xpath>
+            	
+            	<xpath expr="//field[@name='address_allotment_id']" position="replace">
+            		<field name="address_allotment_id" invisible="1"/>
+            	</xpath>
+            	
+            	<xpath expr="//field[@name='th_weight']" position="replace">
+            		<field name="th_weight" invisible="1"/>
+            	</xpath>
+            	
+            	<xpath expr="//field[@name='partner_id']" position="after">
+            		<field name="is_survey"/>
+            		<!-- <field name="customer_ref"/> -->
+            		<field name="funct_ref"/>
+            	</xpath>
+            	
+            	<xpath expr="//field[@name='date_order']" position="after">
+            		<field name="date_sent"/>
+            		<field name="request_date"/>
+            		<field name="po_number"/>
+            		<field name="subject" attrs="{'required':[('is_survey','=',True)]}"/>
+            		<field name="quotation_validity"/>
+            		<field name="mission_id" readonly="True"/>
+            		<field name="allow_survey_creation" invisible="True"/>
+            		<field name="allow_invoice_creation" invisible="True"/>            		
+            	</xpath>
+            	
+            	<xpath expr="//button[@name='print_quotation' and @states='sent,progress,manual']" position="attributes">
+            		<attribute name="invisible">True</attribute>
+            	</xpath>
+            	
+            	<xpath expr="//button[@name='print_quotation' and @states='draft']" position="attributes">
+            		<attribute name="invisible">True</attribute>
+            	</xpath>
+            	
+            	<xpath expr="//button[@name='print_quotation' and @states='sent,progress,manual']" position="after">
+            		<button name="create_survey" string="Create Survey" type="object" attrs="{'invisible':[('allow_survey_creation','=',False)]}" class="oe_highlight" groups="defiline.group_opinions_manager"/>
+            	</xpath>
+            	
+            	<xpath expr="//button[@string='Create Invoice']" position="replace">
+            		<button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice" attrs="{'invisible':[('allow_invoice_creation','=',False)]}"
+                            type="action" class="oe_highlight" groups="defiline.group_opinions_manager"/>
+            	</xpath>
+            	
+            	<xpath expr="//page[@string='Order Lines']" position="after">
+                	<page string="Informal Order Lines">
+           				<field name="informal_order_lines">
+           					<!-- <form string="Informal Sales Order Lines">	
+           						<header groups="base.group_user">
+                                    <button name="%(sale.action_view_sale_order_line_make_invoice)d" states="confirmed" string="Invoice" type="action" icon="terp-document-new"/>
+                                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done" statusbar_colors='{"exception":"red","cancel":"red"}'/>
+                                </header>
+                                <group>
+                                    <group>
+                                        <field name="product_id"
+                                            context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id}"
+                                            groups="base.group_user"
+                                            on_change="product_id_change(parent.pricelist_id, product_id, product_uom_qty, False, product_uos_qty, False, name, parent.partner_id, False, True, parent.date_order, False, parent.fiscal_position, False, context)"/>
+                                        <field name="sale_layout_cat_id"/>
+                                        <label for="product_uom_qty"/>
+                                        <div>
+                                            <field
+                                                context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'uom_qty_change':True, 'company_id': parent.company_id}"
+                                                name="product_uom_qty" class="oe_inline"
+                                                on_change="product_id_change(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,product_uos,name,parent.partner_id, False, False, parent.date_order, False, parent.fiscal_position, True, context)"/>
+                                            <field name="product_uom" groups="product.group_uom" class="oe_inline oe_no_button"
+                                                context="{'company_id': parent.company_id}"
+                                                on_change="product_uom_change(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,product_uos,name,parent.partner_id, False, False, parent.date_order, context)"/>
+                                        </div>
+                                        <label for="product_uos_qty" groups="product.group_uos"/>
+                                        <div groups="product.group_uos">
+                                            <field name="product_uos_qty" class="oe_inline"/>
+                                            <field name="product_uos" options='{"no_open": True}' class="oe_inline"/>
+                                        </div>
+                                        <field name="price_unit"/>
+                                        <label for="discount" groups="sale.group_discount_per_so_line"/>
+                                        <div name="discount" groups="sale.group_discount_per_so_line">
+                                            <field name="discount" class="oe_inline"/> %%
+                                        </div>
+                                    </group>
+                                    <group>
+                                        <field name="tax_id" widget="many2many_tags" domain="[('parent_id','=',False),('type_tax_use','&lt;&gt;','purchase')]"/>
+                                        <field name="th_weight" invisible="1"/>
+                                        <field name="address_allotment_id" invisible="1"/>
+                                    </group>
+                                </group>
+                                <label for="name"/>
+                                <field name="name"/>
+                            </form> -->
+           					<tree string="Sales Order Lines" editable="bottom">
+	                            <field name="sequence" widget="handle"/>
+	                            <field name="state" invisible="1"/>
+	                            <field name="th_weight" invisible="1"/>
+	                            <field name="product_id"
+	                                context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id}"
+	                                groups="base.group_user"
+	                                on_change="product_id_change(parent.pricelist_id, product_id, product_uom_qty, False, product_uos_qty, False, name, parent.partner_id, False, True, parent.date_order, False, parent.fiscal_position, False, context)"/>
+	                            <field name="sale_layout_cat_id"/>
+	                            <field name="name"/>
+	                            <field name="product_uom_qty"
+	                                context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id}"
+	                                on_change="product_id_change(parent.pricelist_id, product_id, product_uom_qty, product_uom, product_uos_qty, product_uos, name, parent.partner_id, False, False, parent.date_order, False, parent.fiscal_position, True, context)"/>
+	                            <field name="product_uom"
+	                                context="{'company_id': parent.company_id}"
+	                                on_change="product_uom_change(parent.pricelist_id, product_id, product_uom_qty, product_uom, product_uos_qty, product_uos, name, parent.partner_id, False, False, parent.date_order, context)"
+	                                groups="product.group_uom" options='{"no_open": True}'/>
+	                            <field name="product_uos_qty" groups="product.group_uos" invisible="1"/>
+	                            <field name="product_uos" string="UoS" groups="product.group_uos" invisible="1"/>
+	                            <field name="price_unit"/>
+	                            <field name="tax_id" widget="many2many_tags" domain="[('parent_id','=',False),('type_tax_use','&lt;&gt;','purchase')]"/>
+	                            <field name="discount" groups="sale.group_discount_per_so_line"/>
+	                            <field name="price_subtotal" sum="Total Tax Included"/>
+	                        </tree>
+                       	</field>	
+           			</page>
+            	</xpath>
+            </field>
+        </record> 
+        
+        <record id="view_focus_group_product_tree" model="ir.ui.view">
+            <field name="name">focus.group.product.tree</field>
+            <field name="model">focus.group.product</field>
+            <field name="arch" type="xml">
+            	<tree>
+	            	<field name="product_id"/>
+	            	<field name="type"/>
+            	</tree>
+            </field>
+        </record>
+        
+        <record id="view_focus_group_product_form" model="ir.ui.view">
+            <field name="name">focus.group.product.form</field>
+            <field name="model">focus.group.product</field>
+            <field name="arch" type="xml">
+            	<form>
+	            	<group>
+		            	<field name="product_id"/>
+		            	<field name="type"/>
+		            </group>
+            	</form>
+            </field>
+        </record> 
+        
+        <record id="action_focus_group_product" model="ir.actions.act_window">
+            <field name="name">Product Focus group mapping</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">focus.group.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a mapping product focus group in your list.
+              </p>
+            </field>
+        </record>
+        
+        <menuitem name="Product Focus group mapping" id="menu_focus_group_product" action="action_focus_group_product" parent="opinions_configuration_menu" sequence="6" groups="defiline.group_opinions_manager"/>
+	</data>
+</openerp>

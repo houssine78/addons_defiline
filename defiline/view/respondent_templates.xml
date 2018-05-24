@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<template id="assets_frontend" inherit_id="website.assets_frontend" name="Coop">
+ 	<xpath expr="." position="inside">
+		<link href="/defiline/static/src/css/simple_style_form.css" rel="stylesheet" type="text/css"></link>
+		<script type="text/javascript" src="/defiline/static/src/js/defiline.js"></script>
+		<!-- <script type="text/javascript" src="/defiline/static/src/js/website.postit.js"></script> -->
+		<script type="text/javascript" src="/web/static/lib/jquery/jquery.js"></script>
+		<script type="text/javascript" src="/web/static/lib/jquery.form/jquery.form.js"></script>
+	    <script type="text/javascript" src="/defiline/static/src/lib/jquery.inputmask.bundle.js"></script>
+	</xpath>
+</template>
+   
+<template id="add_registration_link" inherit_id="web.login" name="Sign up - Registration">
+    <xpath expr="//button[@type='submit']" position="after">
+        <a t-attf-href="/page/show_registration" class="btn btn-link pull-right">Not yet registered?</a>
+    </xpath>
+</template>
+    
+<template id="registration" name="Registration">
+    <t t-call="website.layout">
+        <t t-set="additional_title">Registration</t>
+        <div id="wrap">
+            <div class="container">
+                <h4 class="text-center">
+                    Registration Form
+                </h4>
+                <div class="row">
+                    <div class="alert alert-danger" t-if="errors">
+                    	<t t-foreach="errors" t-as="error">
+                    		<p><t t-esc="error_value"/></p>
+                    	</t>
+                	</div>
+                    <section id="forms">
+                        <form name="registration" class="form-horizontal mt32" action="/page/register" method="post" enctype="multipart/form-data">
+                            <div t-attf-class="form-group #{errors.get('title') and 'has-error' or ''}">
+                                <label class="col-md-3 col-sm-4 control-label" for="title">Title</label>
+                                <div class="col-md-7 col-sm-8">
+                                    <select class="simple-control" name="title" required="True">
+						                <option value=""></option>
+						                <t t-foreach='titles' t-as="title_item">
+						                    <option t-att-value='title_item.id' t-att-selected="title_item.id == title"><t t-esc='title_item.name'/></option>
+						                </t>
+					             	</select>
+                                </div>
+                            </div>
+                            <div t-attf-class="form-group #{errors.get('firstname') and 'has-error' or ''}">
+                                <label class="col-md-3 col-sm-4 control-label" for="firstname">Firstname</label>
+                                <div class="col-md-7 col-sm-8">
+                                    <input type="text" t-attf-value="#{firstname or ''}" class="form-control" name="firstname" required="True"/>
+                                </div>
+                            </div>
+                            <div t-attf-class="form-group #{errors.get('lastname') and 'has-error' or ''}">
+                                <label class="col-md-3 col-sm-4 control-label" for="lastname">Lastname</label>
+                                <div class="col-md-7 col-sm-8">
+                                    <input type="text" t-attf-value="#{lastname or ''}" class="form-control" name="lastname" required="True"/>
+                                </div>
+                            </div>
+                            <div t-attf-class="form-group #{errors.get('lang') and 'has-error' or ''}">
+                                <label class="col-md-3 col-sm-4 control-label" for="lang">Lang</label>
+                                <div class="col-md-7 col-sm-8">
+                                    <select class="simple-control" name="lang" required="True">
+						                <option value=""></option>
+						                <t t-foreach='langs' t-as="lang_item">
+						                    <option t-att-value='lang_item.code' t-att-selected="lang_item.code == lang"><t t-esc='lang_item.name'/></option>
+						                </t>
+					             	</select>
+                                </div>
+                            </div>
+                            <div t-attf-class="form-group #{errors.get('name') and 'has-error' or ''}">
+                                <label class="col-md-3 col-sm-4 control-label" for="birthdate">Birthdate</label>
+                                <div class="col-md-7 col-sm-8">
+                                    <input type="text" data-inputmask="'alias': 'date'" t-attf-value="#{birthdate or ''}" class="simple-control" name="birthdate" required="True"/>
+                                </div>
+                            </div>
+                            <div t-attf-class="form-group #{errors.get('email') and 'has-error' or ''}">
+                                <label class="col-md-3 col-sm-4 control-label" for="email">Your email</label>
+                                <div class="col-md-7 col-sm-8">
+                                    <input type="email" t-attf-value="#{email or ''}" class="form-control" name="email" required="True"/>
+                                </div>
+                            </div>
+                            <div t-attf-class="form-group #{errors.get('email') and 'has-error' or ''}">
+                                <label class="col-md-3 col-sm-4 control-label" for="confirm_email">Confirm your email</label>
+                                <div class="col-md-7 col-sm-8">
+                                    <input type="email" t-attf-value="#{confirm_email or ''}" class="form-control" name="confirm_email" required="True"/>
+                                </div>
+                            </div>
+                            <div t-attf-class="form-group #{errors.get('password') and 'has-error' or ''}">
+                                <label class="col-md-3 col-sm-4 control-label" for="password">Password</label>
+                                <div class="col-md-7 col-sm-8">
+                                    <input type="password" t-attf-value="#{password or ''}" class="form-control" name="password" required="True"/>
+                                </div>
+                            </div>
+				            <div t-attf-class="form-group #{errors.get('password') and 'has-error' or ''}">
+				                <label for="confirm_password" class="col-md-3 col-sm-4 control-label">Confirm password</label>
+				                <div class="col-md-7 col-sm-8">
+				                	<input type="password" t-attf-value="#{confirm_password or ''}" name="confirm_password" id="confirm_password" class="form-control" required="required"/>
+				                </div>
+				            </div>
+							<div class="form-group">
+								<input class="col-md-1 col-sm-4" style="margin-left:25%" id="accept_general_conditions" name="accept_general_conditions" t-att-checked="accept_general_conditions" type="checkbox" required="True"/>
+                                <div class="col-md-7 col-sm-8" style="margin-left:-40px">I agree with the terms and conditions</div>
+							</div>
+                            <div class="form-group">
+								<div class="col-md-7 col-sm-8" style="margin-left:-35px">
+                                    <a class="btn-link" id="general_conditions_show" name="general_conditions_show">Consultez les conditions générales</a>
+                                	<div class="col-md-7 col-sm-8">
+    	                        		<textarea style="display: none;" id="general_conditions" cols="140" rows="15"/>
+    	                        	</div>
+								</div>
+							</div>
+                            <div class="form-group">
+                                <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </t>
+</template>
+
+<template id="registration_thanks" name="Registration">
+    <t t-call="website.layout">
+      <div id="wrap">
+        <div class="oe_structure"/>
+        <div class="container">
+            <h1>Thanks you!</h1>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="alert alert-success">
+                        Your registration has been recorded successfully.
+                        <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+                    </div>
+                    <p>
+                        A confirmation email has been sent to you.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <t t-call="website.company_description"/>
+                </div>
+            </div>
+        </div>
+        <div class="oe_structure"/>
+      </div>
+    </t>
+</template>
+
+<template id="registration_confirmation_ok" name="Registration confirmation successfull">
+    <t t-call="website.layout">
+      <div id="wrap">
+        <div class="oe_structure"/>
+        <div class="container">
+            <h1>Thanks you!</h1>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="alert alert-success">
+                        Your registration has been validated.
+                        <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+                    </div>
+                    <p>
+                        You can now login to the website and update your profile.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <t t-call="website.company_description"/>
+                </div>
+            </div>
+        </div>
+        <div class="oe_structure"/>
+      </div>
+    </t>
+</template>
+
+<template id="registration_confirmation_error" name="Registration done">
+    <t t-call="website.layout">
+      <div id="wrap">
+        <div class="oe_structure"/>
+        <div class="container">
+            <h1>Error!</h1>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="alert alert-danger">
+                        Your registration hasn't been validated. Some error occured
+                        <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+                    </div>
+                    <p>
+                        Please contact the website administrator at res_company.email. <t t-att-value="res_company.email"/>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <t t-call="website.company_description"/>
+                </div>
+            </div>
+        </div>
+        <div class="oe_structure"/>
+      </div>
+    </t>
+</template>
+
+<template id="registration_confirmation_already_done" name="Registration done">
+    <t t-call="website.layout">
+      <div id="wrap">
+        <div class="oe_structure"/>
+        <div class="container">
+            <h1>Warning!</h1>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="alert alert-warning">
+                        Your registration has already been validated. 
+                        <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <t t-call="website.company_description"/>
+                </div>
+            </div>
+        </div>
+        <div class="oe_structure"/>
+      </div>
+    </t>
+</template>
+
+<template id="profile_respondent">
+    <t t-call="website.layout">
+        <t t-set="additional_title">Profile</t>
+       	<div id="wrap">
+       		<div class="container">
+       		<div class="mt16 col-md-8 mb64">
+       		<form name="profile" class="form-horizontal mt32" action="/page/save_profile" method="post" enctype="multipart/form-data">
+            	<div>
+            		<t t-if="success">
+	            		<div class="alert alert-success">
+	                        Your modification has been saved successfully.
+	                        <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+	                    </div>
+            		</t>
+            	</div>
+            	<br/>
+            	<t t-if="partner.has_image == True">
+	            	<div>
+	                	<img t-attf-src="data:image/png;base64,#{partner.image_medium}" />
+	            	</div>
+            	</t>
+            	<div>
+            		<input type="file" name="image" class="input-file" accept="image/*" />
+            	</div>
+            	<br/>
+            	<div>   
+	             	<label for="title">Title</label>
+	                <select class="simple-control" name="title">
+		                <option value=""></option>
+		                <t t-foreach='titles' t-as="title">
+		                    <option t-att-value='title.id' t-att-selected="title.id == partner.title.id"><t t-esc='title.name'/></option>
+		                </t>
+	             	</select>
+           	 	</div>
+           	 	<div>
+           	 		<label for="name">Firstname</label>
+                    <input type="text" t-att-value="partner.firstname" class="simple-control" name="firstname" t-att-readonly="'readonly'"/>
+           	 	</div>
+           	 	<div>
+           	 		<label for="name">Lastame</label>
+                    <input type="text" t-att-value="partner.lastname" class="simple-control" name="lastname" t-att-readonly="'readonly'"/>
+           	 	</div>
+       			<div>
+       				<label for="email">Email</label>
+                    <input type="text" t-att-value="partner.email" class="simple-control" name="email" t-att-readonly="'readonly'"/>
+                    <a href="mailto:opinion@opinions.be?Subject=Email%20address%20update" target="_top">You have changed your email address?</a>
+                </div>		
+                <br/>								
+       			<div>
+           	 		<label for="birthdate">Birthdate</label>
+                    <input type="date" t-att-value="partner.birthdate" class="simple-control" name="birthdate"/>
+                </div>
+       			<div>
+                	<label for="nationality_id">In which country are you born ?</label>
+	                <select name="nationality_id" class="simple-control">
+	                	<option value=""></option>
+                        <t t-foreach="countries or []" t-as="country">
+                            <option t-att-value="country.id" t-att-selected="country.id == partner.nationality_id.id"><t t-esc="country.name"/></option>
+                        </t>
+	                </select>
+           		</div>	
+           		<div>
+	               <label for="gender">Gender</label>
+                   <select name="gender" class="simple-control">
+                       <option value=""></option>
+                       <t t-foreach="genders or []" t-as="gender">
+                           <option t-att-value="gender[0]" t-att-selected="gender[0] == partner.gender"><t t-esc="gender[1]"/></option>
+                       </t>
+                   </select>
+           		</div>
+           		<br/>
+				<div>
+					<label for="children_view">Your children</label>
+					<br/>
+					<span>For each of your children, please encode the birth year and the gender</span>
+					<br/><br/>
+					<t>
+						 <input id="children" name="children" type="hidden" t-att-value="children"/> 
+					</t>
+					<select id="child_birthyear" name="child_ctrl_birthyear" style="display:inline" class="simple-control"/>
+					<select id="child_sex" name="child_ctrl_sex" style="display:inline" class="simple-control">
+                          <t t-foreach="genders or []" t-as="gender">
+                              <option t-att-value="gender[0]"><t t-esc="gender[1]"/></option>
+                          </t>
+					</select>
+					<input id="child_add" type="button" class="btn btn-primary" value="ADD"/>
+					<br/>
+					<br/>
+					<table id="children_view">
+						<thead>
+							<tr>
+								<td width="200">Year of Birth</td>
+								<td width="40">Sex</td>
+								<td width="40"/>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				 	<br/>
+				</div>	
+           		<div>
+                	<label for="marital_status">Marital Status</label>
+                    <select name="marital_status" class="simple-control">
+                         <option value=""></option>
+                         <t t-foreach="marital_statuses or []" t-as="marital_status">
+                             <option t-att-value="marital_status[0]" t-att-selected="marital_status[0] == partner.marital_status"><t t-esc="marital_status[1]"/></option>
+                         </t>
+                     </select>
+           		</div>	
+           		<div>
+					<label for="country_id">In which country are you living ?</label>
+                    <select name="country_id" class="simple-control">
+                        <option value=""></option>
+                        <t t-foreach="countries or []" t-as="country">
+                            <option t-att-value="country.id" t-att-selected="country.id == partner.nationality_id.id"><t t-esc="country.name"/></option>
+                        </t>
+                    </select>
+                </div>	
+       			<div>
+					<label for="street">Street</label>
+	                <input type="text" t-att-value="partner.street" class="simple-control" name="street" />
+		        </div>										
+       			<div>
+					<label for="zip" class="simple-label">Zip</label>
+                    <input type="text" t-att-value="partner.zip" style="display:inline" class="simple-control" name="zip" />
+                    <select name="city" style="display:inline" class="simple-control">
+                        <option value=""></option>
+                        <t t-foreach="better_zips or []" t-as="better_zip">
+                            <option t-att-value="better_zip.city" t-att-selected="better_zip.city == partner.city"><t t-esc="better_zip.city"/></option>
+                        </t>
+                    </select>
+                </div>										
+       			<div>
+					<label for="phone">Fixed Phone</label>
+                    <input type="text" t-att-value="partner.phone" data-inputmask="'alias': 'phonebe'" class="simple-control" name="phone" />
+                </div>										
+           		<div>										
+					<label for="professional_status">Professional status</label>
+                    <select name="professional_status" class="simple-control">
+                        <option value=""></option>
+                        <t t-foreach="professional_statuses or []" t-as="professional_status">
+                            <option t-att-value="professional_status[0]" t-att-selected="professional_status[0] == partner.professional_status"><t t-esc="professional_status[1]"/></option>
+                        </t>
+                    </select>
+				</div>
+				<div name="profession_info">
+					<div>
+						<label for="profession_name">Profession name</label>
+                  		<input type="text" t-att-value="partner.profession_name" class="simple-control" name="profession_name" />
+					</div>
+					<div>
+						<label for="business_type">Type of business</label>
+                    	<input type="text" t-att-value="partner.business_type" class="simple-control" name="business_type" />
+					</div>
+				</div>
+				<div>
+                	<ul style="list-style: none;padding: 0;margin: 0;">
+                		<li>
+                			<label><input type="checkbox" t-att-checked="partner.profession_indie_comp" name="profession_indie_comp" />
+	                		Complementary independant</label>
+                		</li>
+                	</ul>
+				</div>
+       			<div>
+               		<label for="mobile">Mobile</label>
+                    <input type="text" t-att-value="partner.mobile" class="simple-control" name="mobile" />
+                </div>
+                <div>
+                	<label for="mobile_operator">Mobile operator</label>
+                    <input type="text" t-att-value="partner.mobile_operator" class="simple-control" name="mobile_operator" />
+                </div>										
+				<div>
+					<label for="edu_level_id">Education level</label>
+                      <select name="edu_level_id" class="simple-control">
+                          <option value=""></option>
+                          <t t-foreach="edu_levels or []" t-as="edu_level">
+                              <option t-att-value="edu_level.id" t-att-selected="edu_level.id == partner.edu_level_id.id"><t t-esc="edu_level.name"/></option>
+                          </t>
+                      </select>
+				</div>
+				<div name="partner_diploma_info">
+					<label for="partner_edu_level_id">Partner education level</label>
+                      <select name="partner_edu_level_id" class="simple-control">
+                          <option value=""></option>
+                          <t t-foreach="edu_levels or []" t-as="edu_level">
+                              <option t-att-value="edu_level.id" t-att-selected="edu_level.id == partner.partner_edu_level_id.id"><t t-esc="edu_level.name"/></option>
+                          </t>
+                      </select>
+				</div>
+                <br/>
+                <div>
+                	<label>Which languages do you speak ?</label>
+                	<ul style="list-style: none;padding: 0;margin: 0;">
+                		<li>
+	                        <label><input type="checkbox" t-att-checked="partner.knows_french" name="knows_french" />
+	                		French</label>
+                        </li>
+                        <li>
+	                        <label><input type="checkbox" t-att-checked="partner.knows_dutch" name="knows_dutch" />
+	                		Dutch</label>
+                        </li>
+                        <li>
+	                        <label><input type="checkbox" t-att-checked="partner.knows_english" name="knows_english" />
+	                		English</label>
+                        </li>
+                        <li>
+	                        <label><input type="checkbox" t-att-checked="partner.knows_spanish" name="knows_spanish" />
+	                		Spanish</label>
+                        </li>
+                        <li>
+	                        <label><input type="checkbox" t-att-checked="partner.knows_italian" name="knows_italian" />
+	                		Italian</label>
+                        </li>
+                        <li>
+	                        <label><input type="checkbox" t-att-checked="partner.knows_german" name="knows_german" />
+	                		German</label>
+                        </li>
+                        <li>
+	                        <label><input type="checkbox" t-att-checked="partner.knows_arabic" name="knows_arabic" />
+	                		Arabic</label>
+                        </li>
+                        <li>
+	                        <label><input type="checkbox" t-att-checked="partner.knows_eastern" name="knows_eastern" />
+	                		Eastern language</label>
+                        </li>
+                        <li>
+	                        <label><input type="checkbox" t-att-checked="partner.knows_nordic" name="knows_nordic" />
+	                		Nordic language</label>
+                        </li>
+                	</ul>
+                </div>
+                <br/>
+                <div>
+                	<label>Do you have a car?</label>
+                	<ul style="list-style: none;padding: 0;margin: 0;">
+	                	<li>
+				            <label><input type="radio" t-att-checked="partner.has_car == False" value="False" name="has_car" />
+			                No</label>
+	                	</li>
+	                	<li>
+				            <label><input type="radio" t-att-checked="partner.has_car == True" value="True" name="has_car" />
+			            	Yes</label>	
+	                	</li>
+                	</ul>
+                </div>
+                <div name="car_info">
+                <div>
+                	<label for="car_brand">What's your car brand ?</label>
+                    <input type="text" t-att-value="partner.car_brand" class="simple-control" name="car_brand" />
+                </div>
+                <div>
+                	<label for="car_model">What's your car's model ?</label>
+                    <input type="text" t-att-value="partner.car_model" class="simple-control" name="car_model" />
+                </div>
+                </div>
+                <br/>
+                <div>
+                	<label>Do you smoke ?</label>
+                	<ul style="list-style: none;padding: 0;margin: 0;">
+	                	<li>
+                    		<label><input type="radio" t-att-checked="partner.is_smoker == False" value="False" name="is_smoker" />
+	                		No</label>                
+	                	</li>
+	                	<li>
+                   			<label><input type="radio" t-att-checked="partner.is_smoker == True" value="True" name="is_smoker" />
+	                		Yes</label>                
+	                	</li>
+	                </ul>
+                </div>
+				<div name="tobacco_info">
+					<label for="tobacco_brand">Tobacco brand</label>
+					<input type="text" t-att-value="partner.tobacco_brand" class="simple-control" name="tobacco_brand" />					
+				</div>
+				<br/>
+				<div>
+                	<label for="hypermarket">What's your primary hypermarket (where you do most of your household purchases) ?</label>
+               		<ul style="list-style: none;padding: 0;margin: 0;">
+						<li>
+							<label><input type="radio" t-att-checked="partner.hypermarket == 'Carrefour'" value="Carrefour" name="hypermarket" />
+	                		Carrefour</label>
+						</li>
+						<li>
+							<label><input type="radio" t-att-checked="partner.hypermarket == 'Delhaize'" value="Delhaize" name="hypermarket" />
+	                		Delhaize</label>
+						</li>
+						<li>
+							<label><input type="radio" t-att-checked="partner.hypermarket == 'Cora'" value="Cora" name="hypermarket" />
+	                		Cora</label>
+						</li>
+						<li>
+							<label><input type="radio" t-att-checked="partner.hypermarket == 'Colruyt'" value="Colruyt" name="hypermarket" />
+	                		Colruyt</label>
+						</li>
+						<li>
+							<label><input type="radio" t-att-checked="partner.hypermarket == 'Makro'" value="Makro" name="hypermarket" />
+	                		Makro</label>
+						</li>
+						<li>
+							<label><input type="radio" t-att-checked="partner.hypermarket == 'Aldi'" value="Aldi" name="hypermarket" />
+	                		Aldi</label>
+						</li>
+						<li>
+							<label><input type="radio" t-att-checked="partner.hypermarket == 'Lidl'" value="Lidl" name="hypermarket" />
+	                		Lidl</label>
+						</li>
+						<li>
+							<label><input type="radio" t-att-checked="partner.hypermarket not in ['Carrefour','Delhaize','Cora','Colruyt','Makro','Aldi','Lidl']" value="Other" name="hypermarket"/>
+							Other </label>
+                    		<input type="text" t-att-value="partner.hypermarket" class="simple-control" name="hypermarket_other" style="display:inline" />
+                    	</li>
+               		</ul>
+				</div>
+				<br/>
+				<div>
+					<label>What brand do you usually buy ?</label>
+                	<ul style="list-style: none;padding: 0;margin: 0;">
+                		<li>
+		                    <label><input type="checkbox" t-att-checked="partner.buys_big_brand" name="buys_big_brand" />
+							Big brand</label>
+                		</li>
+                		<li>
+                    		<label><input type="checkbox" t-att-checked="partner.buys_sign_brand" name="buys_sign_brand" />
+                			Home brand</label>
+                		</li>
+                	</ul>
+				</div>
+                <br/>
+                <div>
+                	<label>Do you have pets ?</label>
+                	<ul style="list-style: none;padding: 0;margin: 0;">
+	                    <li>
+		                    <label><input type="checkbox" t-att-checked="partner.has_pet_cat" name="has_pet_cat" />
+							Has pet cat</label>
+						</li>
+						<li>
+							<label><input type="checkbox" t-att-checked="partner.has_pet_dog" name="has_pet_dog" />
+							Has pet dog</label>
+						</li>
+						<li>
+							<label><input type="checkbox" t-att-checked="partner.has_pet_other" name="has_pet_other" />
+							Has pet other</label>
+						</li>
+					</ul>
+				</div>
+				<br/>
+                <div>
+                	<label>For which city do you wish to receive proposals for market research ?</label>
+                	<ul style="list-style: none;padding: 0;margin: 0;">
+                		<li>
+	                        <label><input type="checkbox" t-att-checked="partner.allow_brussels" name="allow_brussels" />
+                			Allow Brussels</label>
+						</li>
+						<li>
+	                        <label><input type="checkbox" t-att-checked="partner.allow_namur" name="allow_namur" />
+							Allow Namur</label>
+                		</li>
+	                    <li>
+	                        <label><input type="checkbox" t-att-checked="partner.allow_liege" name="allow_liege" />
+							Allow Liege</label>
+						</li>
+                		<li>
+	                        <label><input type="checkbox" t-att-checked="partner.allow_charleroi" name="allow_charleroi" />
+							Allow Charleroi</label>
+						</li>
+						<li>
+	                        <label><input type="checkbox" t-att-checked="partner.allow_mons" name="allow_mons" />
+							Allow Mons</label>
+						</li>
+						<li>
+	                        <label><input type="checkbox" t-att-checked="partner.allow_gent" name="allow_gent" />
+							Allow Gent</label>
+                		</li>
+                		<li>
+	                        <label><input type="checkbox" t-att-checked="partner.allow_antwerpen" name="allow_antwerpen" />
+							Allow Antwerpen</label>
+						</li>
+						<li>
+	                        <label><input type="checkbox" t-att-checked="partner.allow_brugge" name="allow_brugge" />
+							Allow Brugge</label>
+						</li>
+					</ul>
+				</div>
+				<br/>
+				<div>
+                	<label for="availability">Generally, you are available :</label>
+                    <ul style="list-style: none;padding: 0;margin: 0;">
+                         <t t-foreach="availabilities or []" t-as="availability">
+                      		<li>
+		                        <label><input type="radio" t-att-checked="availability[0] == partner.availability" t-att-value="availability[0]" name="availability"/>
+								<t t-esc="availability[1]"/></label>
+							</li>
+                         </t>
+                     </ul>
+           		</div>	
+           		<br/>
+				<div>
+                    <label>Keep me informed :</label>
+                	<ul style="list-style: none;padding: 0;margin: 0;">
+                		<li>
+	                        <label><input type="checkbox" t-att-checked="partner.informed_by_mail" name="informed_by_mail" />
+                			By email</label>
+						</li>
+						<li>
+	                        <label><input type="checkbox" t-att-checked="partner.informed_by_sms" name="informed_by_sms" />
+                			By sms</label>
+						</li>
+					</ul>
+           		</div>	
+                <br/>
+                <div class="form-group">
+                    <div class="col-md-offset-1 col-sm-offset-4 col-sm-8 col-md-7">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </form>
+            <form name="profile" class="form-horizontal mt32" action="/page/delete_profile" method="post">
+       			<div>
+                    <label>You want delete you profile?</label>
+                </div>
+                <br/>
+       			<div class="form-group">
+	       			<div class="col-md-offset-1 col-sm-offset-4 col-sm-8 col-md-7">
+	                    <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to delete your profile?')">Delete</button>
+	                </div>
+                </div>
+       		</form>
+            </div>
+            <div id="postit-div">
+				<t t-call="defiline.postit"/>
+			</div>
+   		</div>
+   	</div>
+    </t>
+</template>
+
+<template id="remove_my_account" inherit_id="website.layout" >
+    <xpath expr="//a[@href='/web']/.." position="replace"/>
+</template>
+
+</data>
+</openerp>

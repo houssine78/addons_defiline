@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+        <record id="view_search_respondent_wizard" model="ir.ui.view">
+            <field name="name">search.respondent.wizard.form</field>
+            <field name="model">search.respondent.wizard</field>
+            <field name="arch" type="xml">
+            <form string="Search">
+				<separator string="Search on respondent reference or email"/>
+				<group>
+					<group>
+						<field name="name" attrs="{'invisible':[('on_customer_participation','=',True)]}"/>
+						<field name="participation" attrs="{'invisible':[('on_customer_participation','=',False)]}" />
+						<field name="customer" attrs="{'invisible':[('on_customer_participation','=',False)], 'required':[('on_customer_participation','=',True)]}"/>	
+					</group>
+					<group>
+						<field name="on_reference"/>
+						<field name="on_email"/>
+						<field name="on_customer_participation"/>
+					</group>				
+				</group>
+                <footer>
+                    <button name="search_on_respondent" string="Search" type="object" default_focus="1" class="oe_highlight"/>
+                   or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="action_search_respondent_wizard" model="ir.actions.act_window">
+            <field name="name">Search on respondent</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">search.respondent.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_search_respondent_wizard"/>
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+
+		<menuitem id="menu_search_respondent_wizard" name="Search on respondent" parent="menu_respondent_root" action="action_search_respondent_wizard" sequence="5"/>
+    </data>
+</openerp>

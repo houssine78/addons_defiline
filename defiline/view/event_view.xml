@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_defiline_group_tree">
+            <field name="name">event.event.tree</field>
+            <field name="model">event.event</field>
+            <field name="arch" type="xml">
+                <tree string="Groups" editable="bottom">
+                	<field name="start_date_date" readonly="True"/>
+                    <field name="start_date" readonly="True"/>
+                    <field name="end_date" readonly="True"/>
+                    <field name="customer_id" readonly="True"/>
+                    <field name="customer_ref" readonly="True"/>
+                	<field name="reference_number" invisible="1"/>
+                    <field name="name" string="Group Name" readonly="True"/>
+                    <field name="address_id" readonly="True"/>
+                    <field name="recruitment"/>
+                    <field name="registered"/>
+                    <field name="description"/>
+                    <field name="mission_id" readonly="True"/>
+                    <field name="user_id"/>
+                    <field name="state" invisible="True"/>
+                    <field name="message_unread" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_defiline_group_form">
+            <field name="name">Group</field>
+            <field name="model">event.event</field>
+            <field name="arch" type="xml">
+                <form string="Group">
+                    <header>
+                        <!-- <button string="Confirm Group" name="button_confirm" states="draft" type="object" class="oe_highlight" groups="defiline.group_opinions_assistant"/>
+                        <button string="Finish Group" name="button_done" states="confirm" type="object" class="oe_highlight" groups="defiline.group_opinions_assistant"/>
+                        <button string="Set To Draft" name="button_draft" states="cancel,done" type="object" groups="defiline.group_opinions_assistant"/>
+                        <button string="Cancel Group" name="button_cancel" states="draft,confirm" type="object" groups="defiline.group_opinions_assistant"/>
+                        <button string="Update invoice" name="update_invoice" states="done" type="object" groups="defiline.group_opinions_manager"/> -->
+                        <field name="state" invisible="True"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" string="Group name" class="oe_edit_only"/>
+                            <h1><field name="name" style="width: 800px"/></h1>
+                        </div>
+                        <group name="main_field_group">
+                            <group string="General info">
+                            	<field name="reference_number"/>
+                            	<!-- <field name="invoice_state"/> -->
+                            	<field name="booking"/>
+                                <field name="mission_id"/>
+                                <field name="customer_id"/>
+                                <field name="customer_ref"/>
+                                <field name="address_id" context="{'show_address': 1}" domain="[('is_respondent','=',False),'|',('id','=',company_id),('parent_id','=',company_id)]" options='{"always_reload": True}'/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                            <group string="Project info">
+                            	<field name="description" placeholder="Project Description..."/>
+                                <field name="user_id" domain="[('is_manager','=','True')]"/>
+                                <field name="moderator" context="{'default_is_moderator': True, 'default_customer':False}"/>
+                                <field name="type" invisible="True"/>
+                                <field name="survey_id"/>
+	                    		<field name="survey_public_url" readonly="True" widget="url"/>
+                            </group>
+	                    	<group string="Planning">
+	                    		<field name="start_date_date" invisible="True"/>
+			                    <field name="start_date"/>
+			                    <field name="end_date"/>
+			                    <field name="emailing_date"/>
+			                    <field name="confirmation_date"/>
+	                    	</group>
+	                    	<group string="Post-it">
+	                    		<field name="publish"/>
+			                    <field name="date_begin"/>
+			                    <field name="date_end"/>
+	                    		<field name="title"/>
+	                    		<field name="postit_description" widget="text" attrs="{'required':[('publish','=',True)]}"/>
+	                    		<field name="display_fr"/>
+	                    		<field name="display_nl"/>
+	                    		<field name="display_en"/>
+		                    </group>
+	                    </group>
+	                    <group>
+		                    <group>
+		                    	<!-- <field name="backup_respondent" options='{"no_create": True}'/> -->
+                    			<field name="incentive" widget='monetary' options="{'currency_field': 'company_id'}"/>
+	                    	   	<field name="incentive_backup" widget='monetary' options="{'currency_field': 'company_id'}"/>
+	                        	<field name="extra_time" />
+		                    </group>
+	                        <group>
+	                        	<field name="facility" widget="float_time"/>
+	                        	<field name="supplement"/>
+	                        	<!-- <field name="streaming"/> -->
+	                        	<field name="note_taking" widget="float_time"/>
+	                        	<field name="translator"/>
+	                        	<!-- <field name="starting_fee_qty"/> -->
+	                        </group>
+	                    </group>
+	                    <group>
+		                    	<field name="memo" widget="text"/>
+	                    </group>
+                        <notebook>
+                            <page string="Registrations">
+                                <group>
+                                    <group>
+                                    	<field name="recruitment"/>
+                                        <field name="registered"/>
+                                        <field name="seats_reserved" string="Number of confirmed respondends"/>
+                                        <field name="seats_used"/>
+                                    </group>
+                                </group>
+                                <button type="object" string="Register Respondents" name="register_from_ref" groups="defiline.group_opinions_assistant"/>
+                                <field name="registration_ids" colspan="4" nolabel="1" groups="defiline.group_opinions_assistant" context="{'event_id': active_id}">
+                                    <tree string="Registration" editable="top" colors="blue:state == 'done';black:state in ('draft','open','cancel');red:state == 'missed'">
+                                    	<button type="object" icon="STOCK_FIND" name="view_respondent" attrs="{'invisible': [('partner_id','=',False)]}"/>
+                                        <field name="respondent_ref_number"/>
+                                        <field name="partner_id" string="Respondent" domain="[('is_respondent','=','True')]" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+                                        <field name="email" />
+                                        <field name="phone"/>
+                                        <field name="mobile"/>
+                                        <field name="backup"/>
+                                        <field name="state"/>
+                                        <button name="registration_open" string="Confirm Registration" states="draft,cancel,missed,done" type="object" icon="gtk-apply"/>
+                                        <button name="button_reg_close" string="Attended the Event" states="open" type="object" icon="gtk-jump-to"/>
+                                        <button name="button_reg_cancel" string="Cancel Registration" states="draft,open" type="object" icon="gtk-cancel"/>
+                                        <button name="button_reg_missed" string="Missed" states="draft,open" type="object" icon="STOCK_NO"/>
+                                        <!-- <button name="button_reg_deleted" string="Delete" states="draft,open" type="object" icon="terp-dialog-close"/> -->
+                                    </tree>
+                                    <form string="Registration">
+                                        <field name="partner_id" domain="[('is_respondent','=','True')]" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+                                        <field name="name"/>
+                                        <group colspan="4" col="4">
+                                        <field name="email"/>
+                                        <field name="phone"/>
+                                        <!-- <field name="mobile"/> -->
+                                        </group>
+                                        <group colspan="4" col="4">
+                                            <field name="nb_register"/>
+                                        </group>
+                                        <group colspan="4" col="4">
+                                        </group>
+                                            <group col="8" colspan="4">
+                                                <separator string="" colspan="4"/>
+                                                <newline/>
+                                                <field name="state" colspan="2"/>
+                                                <button name="registration_open" string="Confirm Registration" states="draft" type="object" icon="gtk-apply"/>
+                                                <button name="button_reg_close" string="Attended the Event" states="open" type="object" icon="gtk-jump-to"/>
+                                                <button name="button_reg_cancel" string="Cancel Registration" states="draft,open" type="object" icon="gtk-cancel"/>
+                                            </group>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Catering" groups="defiline.group_opinions_assistant">
+                            	<field name="event_order_lines" nolabel="1" widget="one2many_list">
+                            		<tree string="Catering order lines" editable="bottom">
+                            			<field name="product_id"/>
+                            			<field name="quantity"/>
+                            		</tree>
+                            	</field>
+                            </page>
+                            <page string="Sale order lines">
+                                <field name="sale_order_lines" readonly="True">
+                                	<tree string="Order lines" editable="bottom">
+                            			<field name="product_id"/>
+                            			<field name="name"/>
+                            			<field name="price_unit"/>
+                            			<field name="product_uom_qty"/>
+                            			<field name="state" invisible="True"/>
+                            		</tree>
+                                </field>
+                            </page>
+                            <page string="Invoice lines">
+                                <field name="invoice_lines">
+                                	<tree string="Invoice lines" editable="bottom">
+                            			<field name="product_id"/>
+                            			<field name="sale_layout_cat_id"/>
+                            			<field name="name"/>
+                            			<field name="price_unit"/>
+                            			<field name="quantity"/>
+                            		</tree>
+                                </field>
+                            </page>
+                            <page string='Email' groups="defiline.group_opinions_assistant">
+                                <group colspan="4">
+                                    <field name="reply_to"/>
+                                    <field name="email_registration_id"/>
+                                    <field name="email_confirmation_id"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+		
+        <!-- Events  Calendar  View -->
+        <record id="view_group_calendar" model="ir.ui.view">
+            <field name="name">group.calendar</field>
+            <field name="model">event.event</field>
+            <field eval="1" name="priority"/>
+            <field name="arch" type="xml">
+                <calendar color="address_id" date_start="start_date" date_stop="end_date" date_delay="facility" string="Group Organization">
+                    <field name="customer_id"/>
+                    <field name="mission_id"/>
+                    <field name="name"/>
+                    <field name="address_id" invisible="True"/>
+                    <field name="facility" widget="float_time"/>
+                </calendar>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_group_search">
+            <field name="name">Group</field>
+            <field name="model">event.event</field>
+            <field name="arch" type="xml">
+                <search string="Groups">
+                    <field name="customer_id"/>
+                    <field name="customer_ref" filter_domain="[('customer_ref','=',self)]"/>
+                    <field name="name" string="Groups"/>
+                    <field name="reference_number" string="Reference" filter_domain="[('reference_number','=',self)]"/>
+					<!-- <filter string="Deadline This Month" name="deadline_month" domain="[('start_date','&lt;',(context_today() + datetime.timedelta(30)).strftime('%%Y-%%m-01'))]"/> -->
+                    <!-- <field name="start_date" string="At start date" filter_domain="[('start_date','&gt;=',self),('start_date','&lt;=', datetime.datetime.combine(self, datetime.time(23,59,59)))]"/> -->
+                    <!-- <field name="start_date" string="At start date" filter_domain="[('start_date','&gt;=',self),('start_date','&lt;=',(self + datetime.timedelta(hours=24)))]"/> -->
+                    <field name="start_date_date" string="At start date" />
+                    
+                    <field name="start_date" string="Before start date" filter_domain="[('start_date','&lt;=',self)]"/>
+                    <field name="start_date" string="After start date" filter_domain="[('start_date','&gt;=',self)]"/>
+                    <separator/>
+                    <filter string="Unconfirmed" name="draft" domain="[('state','=','draft')]" help="Groups in New state"/>
+                    <filter string="Confirmed" domain="[('state','=','confirm')]" help="Confirmed groups"/>
+                    <separator/>
+                    <filter string="My groups" domain="[('user_id','=',uid)]"/>
+                    <separator/>
+                    <filter string="Upcoming" name="upcoming" domain="[('start_date','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]" help="Upcoming events from today" />
+                    <field name="type"/>
+                    <field name="user_id"/>
+                    <field name="address_id"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Responsible" context="{'group_by': 'user_id'}"/>
+                        <filter string="Status" context="{'group_by':'state'}"/>
+                        <filter string="Start Month" domain="[]" context="{'group_by':'date_begin'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_group_view">
+           <field name="name">Groups</field>
+           <field name="type">ir.actions.act_window</field>
+           <field name="res_model">event.event</field>
+           <field name="view_type">form</field>
+           <field name="view_mode">tree,form,calendar</field>
+           <field name="context">{"search_default_upcoming":1}</field>
+           <field name="search_view_id" ref="view_group_search"/>
+           <field name="domain">[('booking','not in',['option','reservation', 'info'])]</field>
+           <field name="help" type="html">
+             <p class="oe_view_nocontent_create">
+               Click to add a new group.
+             </p><p>
+               Odoo helps you schedule and efficiently organize your groups:
+               track subscriptions and participations, automate the confirmation emails, etc.
+             </p>
+           </field>
+        </record>
+		
+		<record model="ir.actions.act_window.view" id="action_group_view_tree">
+	        <field name="sequence" eval="1"/>
+	        <field name="view_mode">tree</field>
+	        <field name="view_id" ref="view_defiline_group_tree"/>
+	        <field name="act_window_id" ref="action_group_view"/>
+	    </record>
+		
+		<record model="ir.actions.act_window.view" id="action_group_view_form">
+	        <field name="sequence" eval="3"/>
+	        <field name="view_mode">form</field>
+	        <field name="view_id" ref="view_defiline_group_form"/>
+	        <field name="act_window_id" ref="action_group_view"/>
+	    </record>
+	    
+        <menuitem name="Groups" id="menu_defiline_group" action="action_group_view" parent="menu_main_mission" sequence="5" groups="group_opinions_assistant"/>
+		
+		<!-- Reservation  Calendar  View -->
+        <record id="view_reservation_calendar" model="ir.ui.view">
+            <field name="name">reservation.calendar</field>
+            <field name="model">event.event</field>
+            <field eval="3" name="priority"/>
+            <field name="arch" type="xml">
+                <calendar color="booking" date_start="start_date" date_stop="end_date" date_delay="facility" string="Group Organization">
+                    <field name="customer_id"/>
+                    <field name="mission_id"/>
+                    <field name="name"/>
+                    <field name="address_id"/>
+                    <field name="facility" widget="float_time"/>
+                </calendar>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="action_reservation_view">
+           <field name="name">Reservations</field>
+           <field name="type">ir.actions.act_window</field>
+           <field name="res_model">event.event</field>
+           <field name="view_type">form</field>
+           <field name="view_mode">calendar,tree,form</field>
+           <field name="domain">[('booking','in',['option','reservation', 'info'])]</field>
+           <field name="context">{"search_default_upcoming":1}</field>
+           <field name="search_view_id" ref="view_group_search"/>
+           <field name="help" type="html">
+             <p class="oe_view_nocontent_create">
+               Click to add a new group.
+             </p><p>
+               Odoo helps you schedule and efficiently organize your groups:
+               track subscriptions and participations, automate the confirmation emails, etc.
+             </p>
+           </field>
+        </record>
+		
+		<record model="ir.actions.act_window.view" id="action_reservation_view_tree">
+	        <field name="sequence" eval="2"/>
+	        <field name="view_mode">tree</field>
+	        <field name="view_id" ref="view_defiline_group_tree"/>
+	        <field name="act_window_id" ref="action_reservation_view"/>
+	    </record>
+		
+		<record model="ir.actions.act_window.view" id="action_reservation_view_form">
+	        <field name="sequence" eval="3"/>
+	        <field name="view_mode">form</field>
+	        <field name="view_id" ref="view_defiline_group_form"/>
+	        <field name="act_window_id" ref="action_reservation_view"/>
+	    </record>
+	    
+	    <record model="ir.actions.act_window.view" id="action_reservation_view_calendar">
+	        <field name="sequence" eval="1"/>
+	        <field name="view_mode">calendar</field>
+	        <field name="view_id" ref="view_reservation_calendar"/>
+	        <field name="act_window_id" ref="action_reservation_view"/>
+	    </record>
+	    
+        <menuitem name="Reservation" id="menu_defiline_reservation" action="action_reservation_view" parent="menu_main_mission" sequence="6" groups="group_opinions_assistant"/>		
+		
+		<record model="ir.ui.view" id="view_participation_tree">
+            <field name="name">Participation</field>
+            <field name="model">event.registration</field>
+            <field name="arch" type="xml">
+            	<tree string="Registration">
+                   <field name="event_begin_date"/>
+                   <field name="respondent_ref_number"/>
+                   <field name="partner_id" string="Respondent" domain="[('is_respondent','=','True')]" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+                   <field name="email" />
+                   <field name="phone"/>
+                   <field name="mobile"/>
+                   <field name="backup"/>
+                   <field name="state"/>
+               </tree>
+            </field>
+        </record>
+		
+		<record model="ir.ui.view" id="view_participation_search">
+            <field name="name">Participation</field>
+            <field name="model">event.registration</field>
+            <field name="arch" type="xml">
+                <search string="Participations">
+                	<field name="partner_id"/>
+                    <field name="respondent_ref_number"/>
+                    <field name="event_begin_date" string="Before start date" filter_domain="[('event_begin_date','&lt;=',self)]"/>
+                    <field name="email"/>
+                    <field name="event_begin_date" string="After start date" filter_domain="[('event_begin_date','&gt;=',self)]"/>
+                    <separator/>
+                    <filter string="Unconfirmed" name="draft" domain="[('state','=','draft')]" help="Unconfirmed participations"/>
+                    <filter string="Confirmed" domain="[('state','=','open')]" help="Confirmed participations"/>
+                    <filter string="Confirmed" domain="[('state','=','done')]" help="Effective participations"/>
+                    <filter string="Confirmed" domain="[('state','=','missed')]" help="Missed participations"/>
+                    <separator/>
+                    <field name="backup"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Status" context="{'group_by':'state'}"/>
+                        <filter string="Start Month" domain="[]" context="{'group_by':'event_begin_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+		<record model="ir.actions.act_window" id="action_participation_view">
+           <field name="name">Participations</field>
+           <field name="type">ir.actions.act_window</field>
+           <field name="res_model">event.registration</field>
+           <field name="view_type">form</field>
+           <field name="view_mode">tree,form</field>
+           <field name="search_view_id" ref="view_participation_search"/>
+           <field name="view_id" ref="view_participation_tree"/>
+        </record>
+        
+		<menuitem name="Participations" id="menu_defiline_participation" action="action_participation_view" parent="menu_main_mission" sequence="8" groups="group_opinions_assistant"/>
+    </data>
+</openerp>
