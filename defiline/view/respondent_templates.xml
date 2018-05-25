@@ -100,6 +100,10 @@
 				                </div>
 				            </div>
 							<div class="form-group">
+								<input class="col-md-1 col-sm-4" style="margin-left:25%" id="accept_data_usage" name="accept_data_usage" t-att-checked="accept_data_usage" type="checkbox" required="True"/>
+                                <div class="col-md-7 col-sm-8" style="margin-left:-40px">I agree that opinions.be uses my personnal data in the context of their market study activities.</div>
+							</div>
+							<div class="form-group">
 								<input class="col-md-1 col-sm-4" style="margin-left:25%" id="accept_general_conditions" name="accept_general_conditions" t-att-checked="accept_general_conditions" type="checkbox" required="True"/>
                                 <div class="col-md-7 col-sm-8" style="margin-left:-40px">I agree with the terms and conditions</div>
 							</div>

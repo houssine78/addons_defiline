@@ -147,6 +147,7 @@ class register(http.Controller):
         values["login"] = values['email'].lower()
         values["email"] = values['email'].lower()
         values["share"] = False
+        values["data_usage_approval"] = True
         values["name"] = env['res.partner'].sudo()._get_computed_name(values['firstname'],values['lastname'])
         user_id = self.create_respondent(request, values, post)
         respondent = env['res.users'].sudo().browse(user_id)
