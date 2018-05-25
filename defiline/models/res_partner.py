@@ -20,6 +20,8 @@
 #
 ##############################################################################
 from datetime import date,datetime
+from urlparse import urljoin
+import random
 from openerp import fields as fields2
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT as OE_DFORMAT
 
@@ -114,6 +116,8 @@ class res_partner(orm.Model):
 
     _columns = {
         'data_usage_approval': fields.boolean(string='Data usage approval'),
+        'data_usage_mail_sent': fields.boolean(string='Data usage mail sent'),
+        'data_usage_token': fields.char(string='Data usage token'),
         'status': fields.selection([('sab','SAB'),
                                      ('bad','BAD'),
                                      ('zz','ZZ'),],string='Status'),
@@ -182,6 +186,8 @@ class res_partner(orm.Model):
         'allow_antwerpen': fields.boolean("Allow Antwerpen"),
         'allow_brugge': fields.boolean("Allow Brugge"),
         'registration_validation_url': fields.char('Registration validation url'),
+        'data_usage_confirmation_url': fields.char('Data usage confirmation url'),
+        'data_usage_delete_url': fields.char('Data usage delete url'),
         'token_validated': fields.boolean('Token validated'),
         'mobile_operator': fields.char('Mobile operator'),
         'profession_name': fields.char('Profession name'),
@@ -254,8 +260,40 @@ class ResPartner(models.Model):
 #         self.env.cr.execute(query, (value,))
 #         ids = [t[0] for t in self.env.cr.fetchall()]
 #         return [('id', 'in', ids)]
-            
-    birthdate = fields2.Date(string='Birthdate')       
+    
+    def random_token(self):
+        # the token has an entropy of about 120 bits (6 bits/char * 20 chars)
+        chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+        return ''.join(random.SystemRandom().choice(chars) for i in xrange(20))
+    
+    @api.model
+    def _send_data_use_approval_mail(self):
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        route_confirmation = '/page/data_usage_confirmation'
+        route_delete = '/page/data_usage_delete'
+        email_template = self.env.ref('defiline.email_template_data_usage', False)
+
+        partners = self.search([('data_usage_approval','=',False),
+                                ('data_usage_mail_sent','=',False),
+                                ('name','=','Houssine BAKKALI')],
+                                limit=70)
+
+        vals = {'data_usage_mail_sent':True}
+        for partner in partners:
+            token = self.random_token()
+            token_confirm_url = urljoin(base_url, "%s?data_usage_token=%s" % (route_confirmation, token))
+            token_delete_url = urljoin(base_url, "%s?data_usage_token=%s" % (route_delete, token))
+
+            vals['data_usage_token'] = token
+            vals['data_usage_confirmation_url'] = token_confirm_url
+            vals['data_usage_delete_url'] = token_delete_url
+
+            partner.write(vals)
+
+            email_template.send_mail(partner.id, True)
+
+
+    birthdate = fields2.Date(string='Birthdate')
     age = fields2.Integer(
         string='Age',
         readonly=True,

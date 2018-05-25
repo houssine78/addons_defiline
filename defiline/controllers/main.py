@@ -247,7 +247,7 @@ class register(http.Controller):
 
     @http.route(['/page/delete_profile'], methods=['POST'], type='http', auth="user", website=True)
     def delete_profile(self):
-        cr, uid, env = request.cr, request.uid, request.env
+        uid, env = request.uid, request.env
         request.session.logout(keep_db=True)
         #delete user and partner
         user = env['res.users'].sudo().browse(uid)
@@ -255,20 +255,48 @@ class register(http.Controller):
         partner.sudo().unlink()
         # redirect to Homepage
         return werkzeug.utils.redirect('/', 303)
-    
+
     @http.route(['/page/data_usage_approval'], methods=['POST'], type='http', auth="user", website=True)
     def data_usage_approval(self):
-        cr, uid, env = request.cr, request.uid, request.env
+        uid, env = request.uid, request.env
         values = {}
-        
+
         user = env['res.users'].sudo().browse(uid)
         user.partner_id.sudo().write({'data_usage_approval':True})
-        
+
         values = self.get_profile_display_info(request)
         values['success'] = True
-        
+
         return request.website.render("defiline.profile_respondent", values)
-    
+
+    @http.route(['/page/data_usage_confirmation'],  type='http', auth="public", website=True)
+    def data_usage_confirmation(self, **kwargs):
+        env = request.env
+        token = request.params.get('data_usage_token')
+        partner = env['res.partner'].sudo().search([('data_usage_token', '=', token)])
+        if not partner:
+            # redirect to a error page
+            return request.website.render("defiline.data_usage_error")
+        if partner.data_usage_approval:
+            return request.website.render("defiline.data_usage_confirmation_already_done")
+        partner.sudo().write({'data_usage_approval':True})
+
+        return request.redirect('defiline.data_usage_confirmation_ok')
+
+    @http.route(['/page/data_usage_delete'],  type='http', auth="public", website=True)
+    def data_usage_delete(self, **kwargs):
+        env = request.env
+        token = request.params.get('data_usage_token')
+        partner = env['res.partner'].sudo().search([('data_usage_token', '=', token)])
+        if not partner:
+            # redirect to a error page
+            return request.website.render("defiline.data_usage_error")
+        if partner.data_usage_approval:
+            return request.website.render("defiline.data_usage_confirmation_already_done")
+        partner.sudo().unlink()
+
+        return request.redirect('defiline.data_usage_delete_ok')
+
     @http.route(['/page/save_profile'], methods=['POST'], type='http', auth="user", website=True)
     def save_profile(self, **post):
         cr, uid, context, env = request.cr, request.uid, request.context, request.env  

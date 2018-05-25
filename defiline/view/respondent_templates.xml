@@ -134,7 +134,6 @@
                 <div class="col-md-8">
                     <div class="alert alert-success">
                         Your registration has been recorded successfully.
-                        <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
                     </div>
                     <p>
                         A confirmation email has been sent to you.
@@ -150,7 +149,56 @@
     </t>
 </template>
 
-<template id="registration_confirmation_ok" name="Registration confirmation successfull">
+<template id="data_usage_confirmation_ok" name="Data usage confirmation successful">
+    <t t-call="website.layout">
+      <div id="wrap">
+        <div class="oe_structure"/>
+        <div class="container">
+            <h1>Thanks you!</h1>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="alert alert-success">
+                        Your approval has been saved.
+                        <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+                    </div>
+                    <p>
+                        You can always decide to delete your profile. 
+                        You can do so by going on your profile and press on the delete button at the bottom of your profile.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <t t-call="website.company_description"/>
+                </div>
+            </div>
+        </div>
+        <div class="oe_structure"/>
+      </div>
+    </t>
+</template>
+
+<template id="data_usage_delete_ok" name="Data usage confirmation successful">
+    <t t-call="website.layout">
+      <div id="wrap">
+        <div class="oe_structure"/>
+        <div class="container">
+            <h3>Thanks you</h3>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="alert alert-success">
+                        Your datas have been correctly deleted from our database.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <t t-call="website.company_description"/>
+                </div>
+            </div>
+        </div>
+        <div class="oe_structure"/>
+      </div>
+    </t>
+</template>
+
+<template id="registration_confirmation_ok" name="Registration confirmation successful">
     <t t-call="website.layout">
       <div id="wrap">
         <div class="oe_structure"/>
@@ -160,10 +208,34 @@
                 <div class="col-md-8">
                     <div class="alert alert-success">
                         Your registration has been validated.
-                        <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
                     </div>
                     <p>
                         You can now login to the website and update your profile.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <t t-call="website.company_description"/>
+                </div>
+            </div>
+        </div>
+        <div class="oe_structure"/>
+      </div>
+    </t>
+</template>
+
+<template id="data_usage_error" name="Registration done">
+    <t t-call="website.layout">
+      <div id="wrap">
+        <div class="oe_structure"/>
+        <div class="container">
+            <h3>Error</h3>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="alert alert-danger">
+                        The operation hasn't been processed. Some error occured
+                    </div>
+                    <p>
+                        Please contact the website administrator at <t t-att-value="res_company.email"/>
                     </p>
                 </div>
                 <div class="col-md-4">
@@ -181,16 +253,37 @@
       <div id="wrap">
         <div class="oe_structure"/>
         <div class="container">
-            <h1>Error!</h1>
+            <h3>Error</h3>
             <div class="row">
                 <div class="col-md-8">
                     <div class="alert alert-danger">
                         Your registration hasn't been validated. Some error occured
-                        <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
                     </div>
                     <p>
                         Please contact the website administrator at res_company.email. <t t-att-value="res_company.email"/>
                     </p>
+                </div>
+                <div class="col-md-4">
+                    <t t-call="website.company_description"/>
+                </div>
+            </div>
+        </div>
+        <div class="oe_structure"/>
+      </div>
+    </t>
+</template>
+
+<template id="data_usage_confirmation_already_done" name="Registration done">
+    <t t-call="website.layout">
+      <div id="wrap">
+        <div class="oe_structure"/>
+        <div class="container">
+            <h3>Warning</h3>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="alert alert-warning">
+                        Your approval has already been saved. 
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <t t-call="website.company_description"/>
@@ -207,12 +300,11 @@
       <div id="wrap">
         <div class="oe_structure"/>
         <div class="container">
-            <h1>Warning!</h1>
+            <h3>Warning</h3>
             <div class="row">
                 <div class="col-md-8">
                     <div class="alert alert-warning">
                         Your registration has already been validated. 
-                        <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
                     </div>
                 </div>
                 <div class="col-md-4">

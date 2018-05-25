@@ -61,6 +61,109 @@
             <field name="value" ref="defiline.default_template_respondent"/>
         </record>
                 
+   	    <record id="sequence_respondent_ref_type" model="ir.sequence.type">
+            <field name="name">Respondent Reference</field>
+            <field name="code">respondent.reference</field>
+        </record>
+        
+        <record id="sequence_respondent_ref" model="ir.sequence">
+            <field name="name">Respondent Reference</field>
+            <field name="code">respondent.reference</field>
+            <field eval="100000" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+        
+        <record id="sequence_group_ref_type" model="ir.sequence.type">
+            <field name="name">Group Reference</field>
+            <field name="code">group.reference</field>
+        </record>
+        
+        <record id="sequence_group_ref" model="ir.sequence">
+            <field name="name">Group Reference</field>
+            <field name="code">group.reference</field>
+            <field eval="10000" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+        
+         <record id="sequence_customer_ref_type" model="ir.sequence.type">
+            <field name="name">Customer Reference</field>
+            <field name="code">customer.reference</field>
+        </record>
+        
+        <record id="sequence_customer_ref" model="ir.sequence">
+            <field name="name">Customer Reference</field>
+            <field name="code">customer.reference</field>
+            <field eval="500" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+   </data>
+   
+   <data noupdate="0">
+        <record id="ir_cron_batch_send_data_usage_approval_email" model="ir.cron">
+            <field name="name">Send data usage approval batch mail</field>
+            <field name="active" eval="False"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model">res.partner</field>
+            <field name="function">_send_data_use_approval_mail</field>
+            <field name="args">()</field>
+        </record>
+   			
+        <record id="email_template_data_usage" model="email.template">
+            <field name="name">Confirmation Email Data Usage</field>
+            <field name="email_from">${(object.company_id.email or 'noreply@localhost')|safe}</field>
+            <field name="subject">GDPR: Data usage approval</field>
+            <field name="email_to">${object.email}</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.lang}</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+    <p>Hello ${object.name},</p>
+	
+	<p>As you probably know, the EU’s General Data Protection Regulation (GDPR) comes into force on 25th May 2018.
+    This new legislation means that we need to re-confirm your consent in order to receive e-mails from us concerning news from <a href="www.opinions.be">opinions.be</a>.
+    Please click on the following the "I agree" button to re-confirm your approval to your data usage.</p>
+	
+	<p>Please to re-confirm your approval to your data usage click on the <a href="${object.data_usage_confirmation_url}">approve</a> link .</p>
+	
+	<p>If you don't want be in our database anymore click on the <a href="${object.data_usage_delete_url}">delete my profile</a> link .</p>
+
+    <p>If you have any question, do not hesitate to contact us.</p>
+    
+	<p>Kind regards,</p>
+	<p>${object.company_id.name}.</p>
+
+ % if object.company_id.street:
+      ${object.company_id.street}<br/>
+  % endif
+  % if object.company_id.street2:
+      ${object.company_id.street2}<br/>
+  % endif
+  % if object.company_id.city or object.company_id.zip:
+      ${object.company_id.zip} ${object.company_id.city}<br/>
+  % endif
+  % if object.company_id.country_id:
+      ${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>
+  % endif
+  % if object.company_id.phone:
+          Phone:&nbsp; ${object.company_id.phone}
+  % endif
+
+% if object.company_id.website:
+      <div>
+          Web :&nbsp;<a href="${object.company_id.website}">${object.company_id.website}</a>
+      </div>
+ %endif
+
+       <div>
+          <img src="https://secure.erp-space.com/logo.png">
+       </div>
+</div>
+            ]]></field>
+        </record>
         <record id="email_template_confirmation" model="email.template">
             <field name="name">Confirmation Email</field>
             <field name="email_from">${(object.company_id.email or 'noreply@localhost')|safe}</field>
@@ -110,42 +213,5 @@
 </div>
             ]]></field>
         </record>
-   
-   	    <record id="sequence_respondent_ref_type" model="ir.sequence.type">
-            <field name="name">Respondent Reference</field>
-            <field name="code">respondent.reference</field>
-        </record>
-        
-        <record id="sequence_respondent_ref" model="ir.sequence">
-            <field name="name">Respondent Reference</field>
-            <field name="code">respondent.reference</field>
-            <field eval="100000" name="number_next"/>
-            <field eval="1" name="number_increment"/>
-        </record>
-        
-        <record id="sequence_group_ref_type" model="ir.sequence.type">
-            <field name="name">Group Reference</field>
-            <field name="code">group.reference</field>
-        </record>
-        
-        <record id="sequence_group_ref" model="ir.sequence">
-            <field name="name">Group Reference</field>
-            <field name="code">group.reference</field>
-            <field eval="10000" name="number_next"/>
-            <field eval="1" name="number_increment"/>
-        </record>
-        
-         <record id="sequence_customer_ref_type" model="ir.sequence.type">
-            <field name="name">Customer Reference</field>
-            <field name="code">customer.reference</field>
-        </record>
-        
-        <record id="sequence_customer_ref" model="ir.sequence">
-            <field name="name">Customer Reference</field>
-            <field name="code">customer.reference</field>
-            <field eval="500" name="number_next"/>
-            <field eval="1" name="number_increment"/>
-        </record>
-   	
    </data>
 </openerp>
