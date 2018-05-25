@@ -274,8 +274,7 @@ class ResPartner(models.Model):
         email_template = self.env.ref('defiline.email_template_data_usage', False)
 
         partners = self.search([('data_usage_approval','=',False),
-                                ('data_usage_mail_sent','=',False),
-                                ('name','=','Houssine BAKKALI')],
+                                ('data_usage_mail_sent','=',False)],
                                 limit=70)
 
         vals = {'data_usage_mail_sent':True}
