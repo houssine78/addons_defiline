@@ -114,7 +114,7 @@
         <record id="email_template_data_usage" model="email.template">
             <field name="name">Confirmation Email Data Usage</field>
             <field name="email_from">${(object.company_id.email or 'noreply@localhost')|safe}</field>
-            <field name="subject">GDPR: Data usage approval</field>
+            <field name="subject">OPINIONS.BE - OUR STUDY PROPOSALS</field>
             <field name="email_to">${object.email}</field>
             <field name="model_id" ref="base.model_res_partner"/>
             <field name="auto_delete" eval="True"/>
@@ -123,14 +123,12 @@
 <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
     <p>Hello ${object.name},</p>
 	
-	<p>As you probably know, the EU’s General Data Protection Regulation (GDPR) comes into force on 25th May 2018.
-    This new legislation means that we need to re-confirm your consent in order to receive e-mails from us concerning news from <a href="www.opinions.be">opinions.be</a>.
-    Please click on the following the "I agree" button to re-confirm your approval to your data usage.</p>
+	<p>Do you still want to receive proposals from <a href="www.opinions.be">OPINIONS.BE</a> to participate in market research?
+       Give us your trust by clicking on the following link REGARDING privacy in your profile.
+       Without this agreement, you will not receive further communications from us.</p>
 	
 	<p>Please to re-confirm your approval to your data usage click on the <a href="${object.data_usage_confirmation_url}">approve</a> link .</p>
 	
-	<p>If you don't want be in our database anymore click on the <a href="${object.data_usage_delete_url}">delete my profile</a> link .</p>
-
     <p>If you have any question, do not hesitate to contact us.</p>
     
 	<p>Kind regards,</p>
