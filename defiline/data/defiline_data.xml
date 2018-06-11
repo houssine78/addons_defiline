@@ -98,7 +98,7 @@
         </record>
    </data>
    
-   <data noupdate="0">
+   <data noupdate="1">
         <record id="ir_cron_batch_send_data_usage_approval_email" model="ir.cron">
             <field name="name">Send data usage approval batch mail</field>
             <field name="active" eval="False"/>
