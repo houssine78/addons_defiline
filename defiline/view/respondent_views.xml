@@ -309,6 +309,8 @@
                 	<field name="ref_number"/>
                     <field name="firstname"/>
                     <field name="lastname"/>
+                    <filter string="GDPR ok" name="gdpr_ok" domain="[('data_usage_approval','=',True)]"/>
+                    <filter string="GDPR not ok" name="gdpr_ko" domain="[('data_usage_approval','=',False)]"/>
                     <field string="Ref number greater than" name="ref_number" filter_domain="[('ref_number','&gt;',self)]"/>
                     <field string="Ref number lower than" name="ref_number" filter_domain="[('ref_number','&lt;',self)]"/>
                     <!-- <field name="name"
