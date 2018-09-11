@@ -142,6 +142,8 @@
 					<group>
 						<group>
 							<field name="active"/>
+							<field name="data_usage_approval"/>
+							<field name="data_usage_mail_sent" readonly="True"/>
 						</group>
 						<group>
 							<field name="informed_by_mail"/>
