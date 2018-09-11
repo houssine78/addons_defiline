@@ -115,8 +115,8 @@ class res_partner(orm.Model):
         } 
 
     _columns = {
-        'data_usage_approval': fields.boolean(string='Data usage approval'),
-        'data_usage_mail_sent': fields.boolean(string='Data usage mail sent'),
+        'data_usage_approval': fields.boolean(string='GDPR'),
+        'data_usage_mail_sent': fields.boolean(string='GDPR mail sent'),
         'data_usage_token': fields.char(string='Data usage token'),
         'status': fields.selection([('sab','SAB'),
                                      ('bad','BAD'),
