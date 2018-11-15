@@ -167,8 +167,13 @@ class register(http.Controller):
         respondent.partner_id.sudo().write({'active':False})
         respondent.sudo().write({'active':False})
         
-        return request.website.render(post.get("view_callback", "defiline.registration_thanks"), values)
+        #return request.website.render(post.get("view_callback", "defiline.registration_thanks"), values)
+        request.redirect('/page/thankyou')
     
+    @http.route(['/page/thankyou'], type='http', auth="public", website=True)
+    def show_page_thankyou(self, **kwargs):
+        return request.website.render("defiline.registration_thanks")
+        
     @http.route(['/page/registration_confirmation'],  type='http', auth="public", website=True)
     def registration_confirmation(self, **kwargs):
         """ find the partner corresponding to a token, and possibly check its validity  """
