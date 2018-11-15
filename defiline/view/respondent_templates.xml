@@ -6,7 +6,6 @@
  	<xpath expr="." position="inside">
 		<link href="/defiline/static/src/css/simple_style_form.css" rel="stylesheet" type="text/css"></link>
 		<script type="text/javascript" src="/defiline/static/src/js/defiline.js"></script>
-		<!-- <script type="text/javascript" src="/defiline/static/src/js/website.postit.js"></script> -->
 		<script type="text/javascript" src="/web/static/lib/jquery/jquery.js"></script>
 		<script type="text/javascript" src="/web/static/lib/jquery.form/jquery.form.js"></script>
 	    <script type="text/javascript" src="/defiline/static/src/lib/jquery.inputmask.bundle.js"></script>
@@ -772,6 +771,15 @@ Please click on the following the "I agree" button to re-confirm your approval t
     </t>
 </template>
 
+<template id="OpenGraph" inherit_id="website.layout" name="Open Graph in layout">
+    <t name='layout_head' position="after">
+        
+        <meta property="og:title" t-att-content="additional_title" />
+        <meta property="og:site_name" t-att-content="res_company.name" />
+        <meta property='og:url' t-att-content="request.httprequest.url_root+request.httprequest.path[1:end]"/>
+	</t> 
+</template>
+        
 <template id="remove_my_account" inherit_id="website.layout" >
     <xpath expr="//a[@href='/web']/.." position="replace"/>
 </template>
