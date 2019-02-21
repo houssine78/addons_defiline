@@ -258,7 +258,11 @@ class register(http.Controller):
         #delete user and partner
         user = env['res.users'].sudo().browse(uid)
         partner = env['res.partner'].sudo().browse(user.partner_id.id)
+        change_pass_wiz = env['change.password.user'].sudo().search([('user_login', '=', user.login)])
+        if change_pass_wiz:
+            change_pass_wiz.sudo().unlink()
         partner.sudo().unlink()
+        
         # redirect to Homepage
         return werkzeug.utils.redirect('/', 303)
 
