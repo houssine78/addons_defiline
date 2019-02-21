@@ -90,7 +90,9 @@ class event(models.Model):
     extra_time = fields.Integer(string='Extra half-hour')
     title = fields.Char(string='Post-it title', translate=True)
     postit_description = fields.Char(string='Post-it description', translate=True)
-    start_date_date = fields.Date(string='At start date')
+    start_date_date = fields.Date(string='At start date',
+                                  store=True, readonly=True,
+                                  compute='_compute_at_start_date')
     start_date = fields.Datetime(string='Start')
     end_date = fields.Datetime(string='End')
     publish = fields.Boolean(string='Publish') 
@@ -129,7 +131,6 @@ class event(models.Model):
     recruitment = fields.Integer(string='Number of respondents to recruit')
     description = fields.Char(string='Description', oldname='note')
     memo = fields.Char(string='Group feedback')
-#     invoice_state = fields.Selection(string="Invoice state", related="invoice_lines.invoice_id.state")
     
     _order = "start_date asc, id asc"
     
@@ -138,17 +139,19 @@ class event(models.Model):
     def _compute_registered(self):
         self.registered = self.env['event.registration'].search_count([('event_id','=',self.id)
                                                                      ,('state','in',['draft','open','done'])])
-    
+    @api.multi
+    @api.depends('start_date')
+    def _compute_at_start_date(self):
+        tz = pytz.timezone(self.user_id.tz) or pytz.utc
+        for event in self:
+            self.start_date_date = pytz.utc.localize(datetime.strptime(self.start_date, DEFAULT_SERVER_DATETIME_FORMAT)).astimezone(tz)    
+        
     @api.onchange('start_date')
     def _onchange_start_date(self):
         if self.start_date and not self.date_end:
             start_date = fields.Datetime.from_string(self.start_date)
             self.end_date = fields.Datetime.to_string(start_date + timedelta(hours=2))      
-        #self.start_date_date = self.start_date
-        if self.start_date:
-            tz = pytz.timezone(self.user_id.tz) or pytz.utc
-            self.start_date_date = pytz.utc.localize(datetime.strptime(self.start_date, DEFAULT_SERVER_DATETIME_FORMAT)).astimezone(tz)
-        
+ 
     @api.onchange('customer_id')
     def _onchange_customer_id(self):
         if self.customer_id.parent_id:
