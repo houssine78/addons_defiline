@@ -28,11 +28,12 @@
                 <field name="last_participation_date"/>
                 <field name="profile_last_update"/>
                 <field name="comment"/>
+                <field name="numberofchildren"/>
+                <field name="create_date"/>
                 <field name="phone" invisible="1"/>
                 <field name="informed_by_mail" invisible="1"/>
                 <field name="informed_by_sms" invisible="1"/>
                 <field name="availability" invisible="1"/>
-                <field name="numberofchildren"/>
                 <field name="marital_status" invisible="1"/>
                 <field name="nationality_id" invisible="1"/>
                 <field name="country_id" invisible="1"/>
@@ -73,7 +74,6 @@
 	                    <field name="firstname" required="True"/>
 	                    <label for="lastname"/>
 	                    <field name="lastname" required="True"/>
-                        <!-- <field name="category_id" widget="many2many_tags" placeholder="Tags..."/> -->
                         <label for="email"/>
                     	<field name="email" widget="email" required="True"/>
                     	<label for="mobile"/>
@@ -99,6 +99,7 @@
 	                    	<field name="status"/>
 	                    	<field name="last_participation_date"/>
 	                    	<field name="profile_last_update"/>
+	                    	<field name="create_date"/>
 	                    </group>
 	                    <group>
 	                    </group>
