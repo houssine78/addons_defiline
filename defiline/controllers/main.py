@@ -155,21 +155,22 @@ class register(http.Controller):
         route = '/page/registration_confirmation'
         token = random_token()
         token_url = self.token_url(env, route, token) + '&password='+post.get("password")
-        
+        expiration_date = datetime.date.today() + datetime.timedelta(days=3)
         respondent.partner_id.sudo().write({'is_respondent':True,
                                             'signup_token':token,
                                             'registration_validation_url':token_url,
+                                            'validation_url_expiration':expiration_date,
                                             'birthdate':values['birthdate']})
         
         email_template = env['email.template'].sudo().search([('name', '=', 'Confirmation Email')])[0]
-        email_template.send_mail(user_id, True)
+        email_template.send_mail(user_id, False)
         
         respondent.partner_id.sudo().write({'active':False})
         respondent.sudo().write({'active':False})
         
-        #return request.website.render(post.get("view_callback", "defiline.registration_thanks"), values)
-        request.redirect('/page/thankyou')
-    
+        # return request.website.render(post.get("view_callback", "defiline.registration_thanks"), values)
+        return request.redirect('/page/thankyou')
+
     @http.route(['/page/thankyou'], type='http', auth="public", website=True)
     def show_page_thankyou(self, **kwargs):
         return request.website.render("defiline.registration_thanks")
@@ -178,12 +179,13 @@ class register(http.Controller):
     def registration_confirmation(self, **kwargs):
         """ find the partner corresponding to a token, and possibly check its validity  """
         env, db, context = request.env, request.db, request.context
+        partner_obj = env['res.partner']
         token = request.params.get('token')
         password = request.params.get('password')
-        partner = env['res.partner'].sudo().search([('signup_token', '=', token),('active','=',False)])
+        partner = partner_obj.sudo().search([('signup_token', '=', token),('active','=',False)])
         if not partner:
             # if not partner then we search without the (active = False) domain filter
-            partner = env['res.partner'].sudo().search([('signup_token', '=', token)])
+            partner = partner_obj.sudo().search([('signup_token', '=', token)])
         if not partner:
             # redirect to a error page
             return request.website.render("defiline.registration_confirmation_error")
