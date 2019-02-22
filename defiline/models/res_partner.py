@@ -19,7 +19,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from datetime import date,datetime
+from datetime import date, datetime
 from urlparse import urljoin
 import random
 from openerp import fields as fields2
@@ -186,6 +186,7 @@ class res_partner(orm.Model):
         'allow_antwerpen': fields.boolean("Allow Antwerpen"),
         'allow_brugge': fields.boolean("Allow Brugge"),
         'registration_validation_url': fields.char('Registration validation url'),
+        'validation_url_expiration': fields.date(string='Validation URL expiration date'),
         'data_usage_confirmation_url': fields.char('Data usage confirmation url'),
         'data_usage_delete_url': fields.char('Data usage delete url'),
         'token_validated': fields.boolean('Token validated'),
@@ -260,7 +261,15 @@ class ResPartner(models.Model):
 #         self.env.cr.execute(query, (value,))
 #         ids = [t[0] for t in self.env.cr.fetchall()]
 #         return [('id', 'in', ids)]
-    
+
+    @api.model
+    def _unlink_unconfirmed_registration(self):
+        respondent_to_delete = self.env['res.partner'].search([
+                        ('active','=',False),
+                        ('is_respondent','=',True),
+                        ('validation_url_expiration','<', date.today())])
+        respondent_to_delete.unlink()
+        
     def random_token(self):
         # the token has an entropy of about 120 bits (6 bits/char * 20 chars)
         chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'

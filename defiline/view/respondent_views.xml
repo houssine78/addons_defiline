@@ -100,6 +100,7 @@
 	                    	<field name="last_participation_date"/>
 	                    	<field name="profile_last_update"/>
 	                    	<field name="create_date"/>
+	                    	<field name="validation_url_expiration"/>
 	                    </group>
 	                    <group>
 	                    </group>
