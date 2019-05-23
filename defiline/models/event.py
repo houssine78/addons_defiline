@@ -144,7 +144,8 @@ class event(models.Model):
     def _compute_at_start_date(self):
         tz = pytz.timezone(self.user_id.tz) or pytz.utc
         for event in self:
-            self.start_date_date = pytz.utc.localize(datetime.strptime(self.start_date, DEFAULT_SERVER_DATETIME_FORMAT)).astimezone(tz)    
+            if self.start_date:
+                self.start_date_date = pytz.utc.localize(datetime.strptime(self.start_date, DEFAULT_SERVER_DATETIME_FORMAT)).astimezone(tz)    
         
     @api.onchange('start_date')
     def _onchange_start_date(self):
