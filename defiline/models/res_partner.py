@@ -102,6 +102,7 @@ class res_partner(orm.Model):
         return True
         
     def add_phone_call(self, cr, uid, ids, context):
+        context['respondant_ids'] = ids
         return {
             'name': 'Add phone call',
             'res_model': 'add.calls.wizard',
