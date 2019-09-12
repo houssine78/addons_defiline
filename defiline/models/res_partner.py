@@ -283,8 +283,9 @@ class ResPartner(models.Model):
         route_delete = '/page/data_usage_delete'
         email_template = self.env.ref('defiline.email_template_data_usage', False)
 
-        partners = self.search([('data_usage_approval','=',False),
-                                ('data_usage_mail_sent','=',False)],
+        partners = self.search([('is_respondent', '=', True),
+                                ('data_usage_approval', '=', False),
+                                ('data_usage_mail_sent','=', False)],
                                 limit=70)
 
         vals = {'data_usage_mail_sent':True}
