@@ -85,7 +85,7 @@ class event(models.Model):
     mission_id = fields.Many2one('mission.mission', string='Project')
     customer = fields.Many2one(string="Customer", related="mission_id.partner_id")
     customer_id = fields.Many2one('res.partner', string="Customer", domain=[('customer','=',True)])
-    customer_ref = fields.Char(string='Customer Ref')
+    customer_ref = fields.Char(related='customer_id.commercial_partner_id.ref', string='Customer Ref')
     event_order_lines = fields.One2many('event.order.line','event_id',string="Catering order lines")
     extra_time = fields.Integer(string='Extra half-hour')
     title = fields.Char(string='Post-it title', translate=True)

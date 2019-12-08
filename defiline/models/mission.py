@@ -27,6 +27,7 @@ from openerp.exceptions import except_orm
 from openerp.tools.translate import _
 import openerp.addons.decimal_precision as dp
 
+
 class mission(models.Model):
     _name = 'mission.mission'
     
@@ -44,7 +45,6 @@ class mission(models.Model):
     last_minute = fields.Boolean(string='Last minute request?')
     last_minute_extra = fields.Float(string='Extra percentage',digits_compute= dp.get_precision('Discount'))
     sale_order_id = fields.Many2one('sale.order', string='Sale Order')
-    #invoice_ids = fields.Many2many(related='sale_order_id.invoice_ids', string='Invoice')
     material_received = fields.Date(string='Material received date')
     description_date = fields.Date(string='Project description date') 
     google_form_date = fields.Date(string='Quizz creation date')
@@ -66,12 +66,4 @@ class mission(models.Model):
     @api.one    
     def set_to_draft(self):
         self.state = 'draft'
-        
-#     @api.one
-#     def invoice_mission(self):
-#         if self.state != 'closed':
-#             raise except_orm(_("Warning"), _("You can't invoice a mission that hasve focus group that still open"))
-#         
-#         for event in self.event_ids:
-#             event.update_invoice()
     

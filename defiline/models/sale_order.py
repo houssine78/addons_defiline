@@ -118,7 +118,6 @@ class sale_order(models.Model):
          
         group_data['mission_id'] = mission_id.id
         group_data['customer_id'] = self.partner_id.id
-        group_data['customer_ref'] = self.customer_ref
         
         group_ids = []
         inc_eff_id = self.env['focus.group.product'].search([('type','=','incitive_eff')])[0].product_id.id
