@@ -149,9 +149,8 @@ class event(models.Model):
         
     @api.onchange('start_date')
     def _onchange_start_date(self):
-        if self.start_date and not self.date_end:
+        if self.start_date:
             start_date = fields.Datetime.from_string(self.start_date)
-            self.end_date = fields.Datetime.to_string(start_date + timedelta(hours=2))      
  
     @api.onchange('customer_id')
     def _onchange_customer_id(self):
@@ -188,86 +187,13 @@ class event(models.Model):
         act_win = act_obj.search_read([('id','=',res_id.id)], [])[0]
         
         return act_win
-    
-#     @api.one
-#     def update_invoice(self):
-#         if self.state != 'done':
-#             raise except_orm('Error', "You can't update an invoice for which the focus group isn't in done")
-# 
-#         type_list = {}
-#         mapper = {}
-# 
-#         if self.invoice_lines and len(self.invoice_lines) > 0:
-# 
-#             focus_products = self.env['focus.group.product'].search([])
-#             
-#             for item in focus_products:
-#                 mapper[item.product_id.id] = item.type
-#                 type_list[item.type] = False
-#                 
-#             if self.invoice_lines[0].invoice_id.state != 'draft':
-#                 raise except_orm('Error', "You can't update an invoice that is not in draft state")
-#             for type, value in type_list.items():
-#                 for line in self.invoice_lines:
-#                     product_id = self.get_product_from_type(line.product_id.id, type, mapper)
-#                     if product_id:
-#                         type_list[type] = line
-#                         break
-#             
-#             if type_list.get('facility'):
-#                 type_list.get('facility').write({'quantity':self.facility})
-#             if type_list.get('facility_supplement'):
-#                 type_list.get('facility_supplement').write({'quantity':self.supplement})
-#             if type_list.get('streaming'):
-#                 type_list.get('streaming').write({'quantity':self.streaming})
-#             if type_list.get('translator'):
-#                 type_list.get('translator').write({'quantity':self.translator})
-#             if type_list.get('note_taking'):
-#                 type_list.get('note_taking').write({'quantity':self.note_taking})
-#             if type_list.get('recruitment'):
-#                 type_list.get('recruitment').write({'quantity':self.seats_used})
-#             if type_list.get('incitive_eff'):
-#                 type_list.get('incitive_eff').write({'quantity':self.seats_used})
-#             if type_list.get('incitive_bkp'):
-#                 type_list.get('incitive_bkp').write({'quantity':1}) 
-#             if type_list.get('managing_fee'):
-#                 type_list.get('managing_fee').write({'quantity':1})
-#             if type_list.get('listing'):
-#                 #TODO ask what to do
-#                 type_list.get('listing').write({'quantity':starting_fee_qty}) 
-#             
-#             if len(self.event_order_lines):
-#                 vals = {}
-#                 invoice = self.invoice_lines[0].invoice_id
-#                 vals['invoice_id'] = invoice.id  
-#                 vals['sale_layout_cat_id'] = self.sale_layout_cat_id
-#                 vals['event_id'] = self.id
-#                 fpos = invoice.fiscal_position
-#                 
-#                 #deleting catering lines in invoice
-#                 res_lines = self.env['account.invoice.line'].search([('product_id.categ_id.name','ilike','catering')])
-#                 res_lines.unlink()
-#                 for order_line in self.event_order_lines:
-#                     product = order_line.product_id
-#                     uom_id = product.uom_id.id
-#                     quantity = order_line.quantity
-#                     name = order_line.product_id.categ_id.name
-#                     vals['quantity'] = quantity
-#                     vals['name'] = name
-#                     vals['product_id'] = product.id
-#                     #vals['price_unit'] = order_line.product_id.list_price
-#                     taxes = order_line.product_id.taxes_id
-#                     fp_taxes = fpos.map_tax(taxes)
-#                     vals['invoice_line_tax_id'] = [(6, 0, [x.id for x in fp_taxes])]
-#                     created_line = self.env['account.invoice.line'].create(vals)
-#                     res = created_line.product_id_change(product.id, uom_id, quantity, name, 'out_invoice', invoice.partner_id.id)
-#                     created_line.write(res['value'])
    
     @api.one
     def confirm_event(self):
         super(event,self).confirm_event()
         self.confirmation_date = fields.Date.context_today(self)  
-            
+
+
 class event_registration(models.Model):
     _inherit = 'event.registration'
     _order = 'event_begin_date desc'
