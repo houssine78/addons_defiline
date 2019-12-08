@@ -263,7 +263,7 @@
                         Your registration hasn't been validated. Some error occured
                     </div>
                     <p>
-                        Please contact the website administrator at res_company.email. <t t-att-value="res_company.email"/>
+                        Please contact the website administrator at <t t-att-value="res_company.email"/>.
                     </p>
                 </div>
                 <div class="col-md-4">
