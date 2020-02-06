@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    NetSkill Group, Business Open Source Solution
-#    Copyright (C) 2013-2015 NetSkill Group sprl.
+#    Copyright (C) 2013-2020 Open Architect Consulting sprl.
 #    Author : Houssine BAKKALI
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -131,7 +130,8 @@ class event(models.Model):
     recruitment = fields.Integer(string='Number of respondents to recruit')
     description = fields.Char(string='Description', oldname='note')
     memo = fields.Char(string='Group feedback')
-    
+    image = fields.Binary(string="Image")
+
     _order = "start_date asc, id asc"
     
     @api.one
