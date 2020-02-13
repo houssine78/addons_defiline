@@ -6,6 +6,53 @@
 		<menuitem name="Invoices" id="menu_invoice" action="account.action_invoice_tree1" parent="menu_sales_root" sequence="5" groups="group_opinions_manager"/>
 		<menuitem name="Customers" id="menu_customer" action="base.action_partner_customer_form" parent="menu_sales_root" sequence="7" groups="group_opinions_manager"/>
 		
+        
+        <record id="view_invoice_line_tree_defiline" model="ir.ui.view">
+            <field name="name">account.invoice.line.tree.defiline</field>
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_tree"/>
+            <field name="arch" type="xml">
+                <field name="quantity" position="before">
+                	<field name="partner_id"/>
+                	<field name="product_id"/>
+                </field>
+                <field name="price_subtotal" position="after">
+                	<field name="state"/>
+                </field>
+            </field>
+        </record>
+		
+		<record id="view_account_invoice_line_filter" model="ir.ui.view">
+            <field name="name">account.invoice.select</field>
+            <field name="model">account.invoice.line</field>
+            <field name="arch" type="xml">
+                <search string="Search Invoice">
+                    <field name="number" string="Invoice number"/>
+                    <separator/>
+                    <field name="partner_id" operator="child_of"/>
+                    <field name="product_id" string="Product"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                    	<filter name="group_by_partner_id" string="Partner" context="{'group_by':'partner_id'}"/>
+                        <filter string="Status" context="{'group_by':'state'}"/>
+                        <separator/>
+                        <filter string="Period" context="{'group_by':'date_invoice'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+		
+		<record id="action_invoice_line_tree" model="ir.actions.act_window">
+            <field name="name">Invoice lines</field>
+            <field name="res_model">account.invoice.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_invoice_line_tree_defiline"/>
+            <field name="search_view_id" ref="view_account_invoice_line_filter"/>
+        </record>
+        
+		<menuitem name="Invoice lines" id="menu_invoice_line" action="action_invoice_line_tree" parent="menu_sales_root" sequence="10" groups="group_opinions_manager"/>	
+		
 		<record id="invoice_tree_defiline" model="ir.ui.view">
             <field name="name">account.invoice.tree.defiline</field>
             <field name="model">account.invoice</field>

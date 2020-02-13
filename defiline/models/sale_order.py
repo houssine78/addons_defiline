@@ -4,11 +4,6 @@ from openerp.osv import orm
 from openerp.exceptions import except_orm
 from openerp import SUPERUSER_ID
 
-class account_invoice(models.Model):
-    _inherit = "account.invoice"
-    
-    po_number = fields.Char(string="PO Number")
-
 class sale_order(models.Model):
     _inherit = "sale.order"
     

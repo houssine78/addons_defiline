@@ -25,7 +25,7 @@
     'category': 'Survey',
     'version': '1.0',
     'author': 'Houssine BAKKALI',
-    'depends': ['base','mail','sale','event_sale','sale_layout','website','survey', 'base_location',
+    'depends': ['base','mail','sale','account','event_sale','sale_layout','website','survey', 'base_location',
                 'partner_firstname'],
     'data': [
         'security/defiline_security.xml',
