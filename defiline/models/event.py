@@ -21,16 +21,17 @@
 import logging
 import pytz
 
+from urlparse import urljoin
+
 from openerp import models, fields, api, _
-from openerp.exceptions import except_orm, Warning
+from openerp.exceptions import except_orm
 from openerp.addons.web.http import request
 
-import time
-
-from datetime import datetime, date, timedelta
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
+from datetime import datetime, date
+from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 _logger = logging.getLogger(__name__)
+
 
 class event_order_line(models.Model):
     _name="event.order.line"
@@ -43,36 +44,31 @@ class event_order_line(models.Model):
     quantity = fields.Integer("Quantity")
     event_id = fields.Many2one('event.event')
 
+
 class website(models.Model):
     _inherit = 'website'
     
     def get_postits(self):
-       env = request.env
+        env = request.env
        
-       domain = [('publish','=',True),
-        ('date_begin','<=',date.today()),
-        ('date_end','>=',date.today())]
+        domain = [('publish','=',True),
+                  ('date_begin','<=',date.today()),
+                  ('date_end','>=',date.today())]
        
-       session_lang = request.lang
-       _logger.info(session_lang)
-
-       if session_lang == 'nl_BE':
-           lang = 'display_nl'
-           domain.append(('display_nl','=',True))
-       elif session_lang == 'en_US':
-           lang = 'display_en'
-           domain.append(('display_en','=',True))
-       else:
-           lang = 'display_fr'
-           domain.append(('display_fr','=',True))
+        session_lang = request.lang
         
-       _logger.info(domain)
-       _logger.info(lang)    
-       groups = env['event.event'].sudo().search(domain)
-       _logger.info(len(groups))
-       
-       return groups
-    
+        if session_lang == 'nl_BE':
+            domain.append(('display_nl','=',True))
+        elif session_lang == 'en_US':
+            domain.append(('display_en','=',True))
+        else:
+            domain.append(('display_fr','=',True))
+         
+        groups = env['event.event'].sudo().search(domain)
+        
+        return groups
+
+
 class event(models.Model):
     _inherit = "event.event"
     
@@ -131,9 +127,21 @@ class event(models.Model):
     description = fields.Char(string='Description', oldname='note')
     memo = fields.Char(string='Group feedback')
     image = fields.Binary(string="Image")
+    image_static_url = fields.Char(compute="_compute_image_url",
+                                   string="Static url for image",
+                                   store=True)
 
     _order = "start_date asc, id asc"
-    
+
+    @api.multi
+    @api.depends('image')
+    def _compute_image_url(self):
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        
+        for event in self:
+            image_url = urljoin(base_url, "%s/%s" % ('/post_it_image', event.id))
+            event.image_static_url = image_url
+
     @api.one
     @api.depends('registration_ids.state', 'registration_ids.nb_register')
     def _compute_registered(self):

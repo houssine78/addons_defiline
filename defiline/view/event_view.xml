@@ -79,11 +79,11 @@
 	                    		<field name="display_fr"/>
 	                    		<field name="display_nl"/>
 	                    		<field name="display_en"/>
+	                    		<field name="image_static_url"/>
 		                    </group>
 	                    </group>
 	                    <group>
 		                    <group>
-		                    	<!-- <field name="backup_respondent" options='{"no_create": True}'/> -->
                     			<field name="incentive" widget='monetary' options="{'currency_field': 'company_id'}"/>
 	                    	   	<field name="incentive_backup" widget='monetary' options="{'currency_field': 'company_id'}"/>
 	                        	<field name="extra_time" />

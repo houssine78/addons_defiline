@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    NetSkill Group, Business Open Source Solution
-#    Copyright (C) 2013-2015 NetSkill Group sprl.
+#    Copyright (C) 2013-2020 Coop IT Easy SCRLfs.
 #    Author : Houssine BAKKALI
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -23,10 +22,8 @@
 import logging
 import base64
 import re
+import functools
 
-import werkzeug
-import werkzeug.urls
-import werkzeug.utils
 from urlparse import urljoin
 
 import random
@@ -35,12 +32,14 @@ import datetime
 
 from ast import literal_eval
 
+from cStringIO import StringIO
+
+import openerp
 from openerp.addons.auth_signup.res_users import SignupError
 from openerp import http, SUPERUSER_ID
 from openerp.http import request
 from openerp.tools.translate import _
-
-import json
+from openerp.modules import get_module_resource
 
 _logger = logging.getLogger(__name__)
 
@@ -60,6 +59,50 @@ def random_token():
     return ''.join(random.SystemRandom().choice(chars) for i in xrange(20))
 
 class register(http.Controller):
+
+    def _image_post_it_get(self, cr, id):
+        cr.execute("""SELECT image, write_date
+                        FROM event_event
+                       WHERE id = %s
+                   """, (id,))
+        row = cr.fetchone()
+        if not row or row[0] is None:
+            cr.execute("""SELECT logo, write_date
+                            FROM website
+                       """)
+            row = cr.fetchone()
+            
+        return StringIO(str(row[0]).decode('base64')), row[1]
+
+    @http.route([
+        '/post_it_image/<int:id>',
+    ], type='http', auth="public", cors="*")
+    def post_it_image(self, id):
+        imgname = 'post_it.png'
+        placeholder = functools.partial(
+            get_module_resource,
+            'post_it_image', 'static', 'src', 'img')
+        uid = None
+        if request.session.db:
+            dbname = request.session.db
+            uid = request.session.uid
+        elif dbname is None:
+            dbname = db_monodb()
+        if not uid:
+            uid = openerp.SUPERUSER_ID
+        if uid and dbname:
+            try:
+                # create an empty registry
+                registry = openerp.modules.registry.Registry(dbname)
+                with registry.cursor() as cr:
+                    image, mtime = self._image_post_it_get(cr, id)
+                    if image:
+                        response = http.send_file(
+                            image, filename=imgname, mtime=mtime)
+                        return response
+            except Exception:
+                return http.send_file(placeholder(imgname))
+        return http.send_file(placeholder(imgname))
     
     def create_respondent(self, request, values, kwargs):
         cr, uid, env, context = request.cr, request.uid, request.env, request.context
@@ -126,7 +169,7 @@ class register(http.Controller):
             email_check = env['res.partner'].sudo().search([('is_respondent','=',True)
                                                             ,('email','=',post.get("email"))])
             if len(email_check) == 0:
-               email_check = env['res.partner'].sudo().search([('is_respondent','=',True)
+                email_check = env['res.partner'].sudo().search([('is_respondent','=',True)
                                                         ,('email','=',post.get("email"))
                                                         ,('active','=',False)])
             if len(email_check) > 0:
@@ -271,7 +314,6 @@ class register(http.Controller):
     @http.route(['/page/data_usage_approval'], methods=['POST'], type='http', auth="user", website=True)
     def data_usage_approval(self):
         uid, env = request.uid, request.env
-        values = {}
 
         user = env['res.users'].sudo().browse(uid)
         user.partner_id.sudo().write({'data_usage_approval':True})
@@ -313,7 +355,6 @@ class register(http.Controller):
     def save_profile(self, **post):
         cr, uid, context, env = request.cr, request.uid, request.context, request.env  
         values = {}
-        result = {}
         user = env['res.users'].sudo().browse(uid)
         #"children"
         res_partner_fields = env['res.partner'].fields_get()
