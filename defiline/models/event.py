@@ -33,7 +33,7 @@ from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 _logger = logging.getLogger(__name__)
 
 
-class event_order_line(models.Model):
+class EventOrderLine(models.Model):
     _name="event.order.line"
     
     def _is_catering(self):
@@ -43,6 +43,18 @@ class event_order_line(models.Model):
     product_id = fields.Many2one('product.product', domain=_is_catering, string="Product")
     quantity = fields.Integer("Quantity")
     event_id = fields.Many2one('event.event')
+
+class ResCompany(models.Model):
+    _inherit = "res.company"
+
+    location_ids = fields.Many2many('event.location',
+                                    'company_event_location_rel',
+                                    string="location")
+    
+class EventLocation(models.Model):
+    _name = "event.location"
+    
+    name = fields.Char("Location")
 
 
 class website(models.Model):
@@ -130,6 +142,9 @@ class event(models.Model):
     image_static_url = fields.Char(compute="_compute_image_url",
                                    string="Static url for image",
                                    store=True)
+    geolocation_ids = fields.Many2many('event.location',
+                                       'event_location_rel',
+                                       string="Geolocation") 
 
     _order = "start_date asc, id asc"
 
