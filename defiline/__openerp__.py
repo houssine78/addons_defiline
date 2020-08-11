@@ -23,7 +23,7 @@
     'name': 'Defiline customization',
     'description': 'This module aims cutomize Odoo to Defiline needs',
     'category': 'Survey',
-    'version': '8.0.1.0.2',
+    'version': '8.0.1.0.3',
     'author': 'Houssine BAKKALI',
     'depends': ['base','mail','sale','account','event_sale','sale_layout','website','survey', 'base_location',
                 'partner_firstname'],
