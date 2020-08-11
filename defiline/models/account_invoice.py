@@ -8,7 +8,7 @@ class AccountInvoice(models.Model):
     po_number = fields.Char(string="PO Number")
 
 
-class AccountInvoice(models.Model):
+class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
     state = fields.Selection(related='invoice_id.state',
@@ -27,3 +27,15 @@ class AccountInvoice(models.Model):
                                  store=True,
                                  readonly=True,
                                  copy=False)
+    event_id = fields.Many2one('event.event',
+                               string='Group')
+    
+
+    @api.model
+    def create(self,vals):
+        invoice_line = super(AccountInvoiceLine,self).create(vals)
+        if self.event_id:
+            invoice_lines = self.search([('event_id','=',self.event_id)])
+            line = invoice_lines[0]
+            self.write(self.id,{'invoice_id': line.invoice_id})
+        return invoice_line
