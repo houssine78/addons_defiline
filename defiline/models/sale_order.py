@@ -164,7 +164,8 @@ class sale_order(models.Model):
             self.env['operational.flow'].create({'order_id':self.id,'focus_group_id':group_id})
         
         self.make_invoices()
-            
+
+     
 class sale_order_line(models.Model):
     _inherit = "sale.order.line"
     
@@ -175,8 +176,9 @@ class sale_order_line(models.Model):
     @api.one
     def button_confirm(self):
         self.state = 'confirmed'
+
     
-class sale_order_line(orm.Model):
+class SaleOrderLine(orm.Model):
     _inherit = "sale.order.line"
     
     def _prepare_order_line_invoice_line(self, cr, uid, line, account_id=False, context=None):
@@ -186,25 +188,14 @@ class sale_order_line(orm.Model):
             invoice_vals['event_id'] = line.event_id.id
             invoice_vals['name'] = line.name
         return invoice_vals
-    
-class account_invoice_line(models.Model):
-    _inherit = "account.invoice.line"
-     
-    event_id = fields.Many2one('event.event', string='Group')
-    
-    @api.model
-    def create(self,vals):
-        invoice_line = super(account_invoice_line,self).create(vals)
-        if self.event_id:
-            invoice_lines = self.search([('event_id','=',self.event_id)])
-            line = invoice_lines[0]
-            self.write(self.id,{'invoice_id': line.invoice_id})
-        return invoice_line
-        
+
+
 class SaleLayoutCategory(models.Model):
     _inherit = 'sale_layout.category'
      
     is_focus_group = fields.Boolean('Is group')
+    active = fields.Boolean('Active', default=True)
+
 
 class focus_group_product(models.Model):
     _name = "focus.group.product"
