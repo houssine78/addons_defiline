@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019-2020 Ivan Yelizariev <https://it-projects.info/team/yelizariev>
+     License MIT (https://opensource.org/licenses/MIT).
+     License OPL-1 (https://www.odoo.com/documentation/user/13.0/legal/licenses/licenses.html#odoo-apps) for derivative work.
+     -->
+<openerp><data>
+    <record id="test_action" model="ir.actions.server">
+        <field name="name">Server Action for unittests</field>
+        <field name="model_id" ref="base.model_res_partner" />
+        <field name="code">
+# don't make actual request, but just check the package is available
+make_request
+</field>
+    </record>
+    <record id="test_rule" model="base.action.rule">
+        <field name="name">Test rule</field>
+        <field name="kind">on_create</field>
+        <field name="model_id" ref="base.model_res_partner" />
+        <field
+            name="server_action_ids"
+            eval="[(4, ref('base_automation_webhook.test_action'))]"
+        />
+    </record>
+</data></openerp>
