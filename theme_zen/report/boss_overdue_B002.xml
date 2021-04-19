@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+	
+<template id="theme_overdue_B002_document">
+     <t t-call="theme_zen.invoice_layout_002">
+       
+     	<div class="page">
+			<head>
+				<link href="/theme_zen/static/css/invoice_B002.css" rel="stylesheet"/>
+			</head>
+	     		
+ 			<t t-call="theme_zen.invoice_header_B002"/>
+
+			<br/><br/><br/><br/><br/>
+
+			<table class="title_table">
+          		<tr> 
+          			<td>
+          				<span>RECIPIENT</span>
+          				<span class="color_text"> OF :</span>
+          			</td>
+          			<td>
+		          		<div class="title_doc" >
+			                <span>Customer account statement</span>
+						</div>	
+          			</td>
+          		</tr>   
+			</table>
+								
+			<br/>
+			
+			<table>
+				<tr>
+					<td width="75%" rowspan="5">
+	                    <span t-field="o.name"/><br/>
+	                    <span t-field="o.street"/><br/>
+                    	<span t-field="o.zip"/>  <span t-field="o.city"/><br/>	                    
+	                 	<span t-field="o.vat"/>
+	
+					</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>
+						<span class="color_text">DOCUMENT DATE : </span>
+					</td>
+				</tr>
+			</table>
+
+            <p t-if="getLines(o)">
+                <t t-foreach="message(o, res_company)" t-as="messageline">
+                    <span t-esc="messageline"/>
+                </t>
+            </p>
+    				
+
+    		<br/><br/><br/><br/>
+									 
+        </div>
+    </t>
+</template>
+
+
+<template id="theme_overdue_B002">
+    <t t-call="theme_zen.html_container">
+        <t t-set="data_report_margin_top" t-value="5"/>
+        <t t-set="data_report_header_spacing" t-value="5"/>
+        <t t-set="data_report_dpi" t-value="110"/>
+
+        <t t-foreach="doc_ids" t-as="doc_id">
+            <t t-raw="translate_doc(doc_id, doc_model, 'lang', 'theme_zen.theme_overdue_B002_document')"/>
+ 		</t>
+    </t>
+</template>
+</data>
+</openerp>

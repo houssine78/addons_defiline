@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="boss_report_followup">
+     <t t-call="theme_zen.html_container">
+
+     <t t-set="data_report_margin_top" t-value="5"/>
+     <t t-set="data_report_header_spacing" t-value="5"/>
+     <t t-set="data_report_dpi" t-value="110"/>    
+     		 
+     <t t-foreach="ids_to_objects(data['form']['partner_ids'])" t-as="o">
+     	<t t-call="theme_zen.invoice_layout_002">
+       
+     		<div class="page">
+			<head>
+				<link href="/theme_zen/static/css/invoice_B002.css" rel="stylesheet"/>
+			</head>
+	     		
+ 			<t t-call="theme_zen.invoice_header_B002"/>
+            	    <br/><br/><br/><br/><br/>
+            	    
+		 		<table class="title_table">
+		          		<tr> 
+		          			<td colspan="2"  >
+					          	<div class="title_doc" style="font-size: 24px;text-align:left">
+				                Customer account statement
+								</div>	
+		          			</td>
+		          			<td style="text-align:left" width="40%">
+		          				<span>RECIPIENT</span>
+		          				<span class="color_text"> OF :</span>
+		          			</td>
+		          		</tr>   
+				</table>
+
+				<br/>
+			
+				<table>
+					<tr>
+						<td width="20%">
+							<span class="color_text">DOCUMENT DATE : </span>
+						</td>
+						<td style="text-align:left;text-indent:10px" width="50%">
+							 <span t-esc="formatLang(data['form']['date'], date=True)"/><br/>						
+						</td>
+						<td rowspan="5">
+		                    <div t-field="o.partner_id" 
+                                t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
+                            <span t-field="o.partner_id.vat"/>
+						</td>						
+					</tr>
+				</table>
+									 
+				<br/><br/>
+
+                <p t-raw="get_text(o,data['form']['followup_id']).replace('\n', '&lt;br&gt;')"/>
+
+             	<table class="list_line_table_head"  width="100%" style="margin-top: 50px;">
+                       <tr style="padding-bottom:25px">
+                                <th style="text-align:left;text-indent:3px">Invoice Date</th>
+                                <th style="text-align:left;text-indent:3px">Description</th>
+                                <th style="text-align:left;text-indent:3px">Ref</th>
+                                <th style="text-align:left;text-indent:3px">Maturity Date</th>
+                                <th style="text-align:center;text-indent:3px">Amount</th>
+                                <th style="text-align:left;text-indent:3px">Li.</th>
+                        </tr>
+              			<tr>
+                			<td height="20px" style="background-color:#ffffff"></td>
+                		</tr>                        
+                	 
+                		<t t-foreach="getLines(o)" t-as="cur_lines">
+      
+	                        <tr style="margin-top:10px" t-foreach="cur_lines['line']" t-as="line" height="40px">
+	                                <td style="text-align:left;text-indent:3px"><span t-esc="formatLang(line['date'],date = True)"/></td>
+	                                <td style="text-align:left;text-indent:3px"><span t-esc="line['name']"/></td>
+	                                <td style="text-align:left;text-indent:3px"><span t-esc="line['ref']"/></td>
+	                                <td style="text-align:left;text-indent:3px"><span t-esc="line['date_maturity'] and formatLang(line['date_maturity'], date=True)"/></td>
+	                                <td style="text-align:right;text-indent:3px"><span t-esc="formatLang(line['balance'], currency_obj=line['currency_id'])"/></td>
+	                                <td style="text-align:left;text-indent:3px"><span t-esc="line['blocked'] and 'X' or ''"/></td>
+	                         </tr>
+	
+              				<tr>
+                				<td colspan="6" style="background-color:#ffffff"><div class="white_line_border"></div></td>
+                			</tr>	                         
+
+							<tr>
+                				<td height="15px" style="background-color:#ffffff"></td>
+                			</tr>                			
+
+                             <tr height="40px" style=";color:#ffffff;text-align:middle">
+								<td colspan="2" style="background-color:#ffffff"></td>                            	
+	                        	<td style="background-color:#ffffff">			                         
+	                        		<t t-set="total" t-value="reduce(lambda x,y: x+y['balance'], cur_lines['line'], 0.00)"/>
+								</td>
+								<td style="text-align:center;background-color:#009ceb;text-indent:5px">                       	
+	                        		<span>Total : </span>
+	 							</td>
+								<td style="text-align:right;background-color:#009ceb;">
+									<span t-esc="formatLang(total, currency_obj=cur_lines['currency'])"/>		
+								</td>
+								<td style="text-align:right;background-color:#009ceb;"></td>							
+	                        </tr>
+	 						 
+	 					</t>	
+	             </table>
+              </div>
+            </t>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>

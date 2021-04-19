@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<template id="themes_page" inherit_id="website.themes">
+    <xpath expr="//div[@id='themes-list']" position="before">
+        <div class="col-md-4">
+            <div class="well text-center">
+                <div class="image">
+                    <img src="/theme_zen/static/img/palette/theme_zen_blue.jpg" class="img-responsive" alt="Zen Theme"/>
+                </div>
+                <div class="options">
+                    <h3>Zen Theme Blue</h3>
+                    <a class="btn btn-info" href="/website/theme_change?theme_id=theme_zen.theme_zen_blue">Apply</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="well text-center">
+                <div class="image">
+                    <img src="/theme_zen/static/img/palette/theme_zen_black.jpg" class="img-responsive" alt="Zen Theme"/>
+                </div>
+                <div class="options">
+                    <h3>Zen Theme Black</h3>
+                    <a class="btn btn-info" href="/website/theme_change?theme_id=theme_zen.theme_zen_black">Apply</a>
+                </div>
+            </div>
+        </div>
+		<div class="col-md-4">
+            <div class="well text-center">
+                <div class="image">
+                    <img src="/theme_zen/static/img/palette/theme_zen_white.jpg" class="img-responsive" alt="Zen Theme"/>
+                </div>
+                <div class="options">
+                    <h3>Zen Theme White</h3>
+                    <a class="btn btn-info" href="/website/theme_change?theme_id=theme_zen.theme_zen_white">Apply</a>
+                </div>
+            </div>
+        </div>
+		
+		
+		<!--
+        <div class="col-md-4">
+            <div class="well text-center">
+                <div class="image">
+                    <img src="/theme_zen/static/img/palette/theme_zen_yellow.jpg" class="img-responsive" alt="Zen Theme"/>
+                </div>
+                <div class="options">
+                    <h3>Zen Theme Yellow</h3>
+                    <a class="btn btn-info" href="/website/theme_change?theme_id=theme_zen.theme_zen_yellow">Apply</a>
+                </div>
+            </div>
+        </div>
+		
+		-->
+        <div class="col-md-4">
+            <div class="well text-center">
+                <div class="image">
+                    <img src="/theme_zen/static/img/palette/theme_zen_green.jpg" class="img-responsive" alt="Zen Theme"/>
+                </div>
+                <div class="options">
+                    <h3>Zen Theme Green</h3>
+                    <a class="btn btn-info" href="/website/theme_change?theme_id=theme_zen.theme_zen_green">Apply</a>
+                </div>
+            </div>
+        </div>
+		
+        <div class="col-md-4">
+            <div class="well text-center">
+                <div class="image">
+                    <img src="/theme_zen/static/img/palette/theme_zen_orange.jpg" class="img-responsive" alt="Zen Theme"/>
+                </div>
+                <div class="options">
+                    <h3>Zen Theme Orange</h3>
+                    <a class="btn btn-info" href="/website/theme_change?theme_id=theme_zen.theme_zen_orange">Apply</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="well text-center">
+                <div class="image">
+                    <img src="/theme_zen/static/img/palette/theme_zen_pink.jpg" class="img-responsive" alt="Zen Theme"/>
+                </div>
+                <div class="options">
+                    <h3>Zen Theme Pink</h3>
+                    <a class="btn btn-info" href="/website/theme_change?theme_id=theme_zen.theme_zen_pink">Apply</a>
+                </div>
+            </div>
+        </div>
+		<!--
+        <div class="col-md-4">
+            <div class="well text-center">
+                <div class="image">
+                    <img src="/theme_zen/static/img/palette/theme_zen_red.jpg" class="img-responsive" alt="Zen Theme"/>
+                </div>
+                <div class="options">
+                    <h3>Zen Theme Red</h3>
+                    <a class="btn btn-info" href="/website/theme_change?theme_id=theme_zen.theme_zen_red">Apply</a>
+                </div>
+            </div>
+        </div>
+	
+		<div class="col-md-4">
+            <div class="well text-center">
+                <div class="image">
+                    <img src="/theme_zen/static/img/palette/theme_zen_brown.jpg" class="img-responsive" alt="Zen Theme"/>
+                </div>
+                <div class="options">
+                    <h3>Zen Theme Brown</h3>
+                    <a class="btn btn-info" href="/website/theme_change?theme_id=theme_zen.theme_zen_brown">Apply</a>
+                </div>
+            </div>
+        </div>
+		-->
+		<div class="col-md-4">
+            <div class="well text-center">
+                <div class="image">
+                    <img src="/theme_zen/static/img/palette/theme_zen_purple.jpg" class="img-responsive" alt="Zen Theme"/>
+                </div>
+                <div class="options">
+                    <h3>Zen Theme Purple</h3>
+                    <a class="btn btn-info" href="/website/theme_change?theme_id=theme_zen.theme_zen_purple">Apply</a>
+                </div>
+            </div>
+        </div>
+    </xpath>
+</template>
+
+<template id="theme_zen.theme_zen_blue" name="Theme Zen" inherit_id="website.theme" active="False" customize_show="True" >
+    <xpath expr="//link[@id='bootstrap_css']" position="replace">
+        <link rel="stylesheet" type="text/css" href="/theme_zen/static/css/theme_zen_blue.css" t-ignore="true"/>
+    </xpath>
+</template>
+<template id="theme_zen.theme_zen_black" name="Theme Zen" inherit_id="website.theme" active="False" customize_show="True">
+    <xpath expr="//link[@id='bootstrap_css']" position="replace">
+        <link rel="stylesheet" type="text/css" href="/theme_zen/static/css/theme_zen_black.css" t-ignore="true"/>
+    </xpath>
+</template>
+<template id="theme_zen.theme_zen_white" name="Theme Zen" inherit_id="website.theme" active="False" customize_show="True" >
+    <xpath expr="//link[@id='bootstrap_css']" position="replace">
+        <link rel="stylesheet" type="text/css" href="/theme_zen/static/css/theme_zen_white.css" t-ignore="true"/>
+    </xpath>
+</template>
+
+<template id="theme_zen.theme_zen_green" name="Theme Zen" inherit_id="website.theme" active="False" customize_show="True" >
+    <xpath expr="//link[@id='bootstrap_css']" position="replace">
+        <link rel="stylesheet" type="text/css" href="/theme_zen/static/css/theme_zen_green.css" t-ignore="true"/>
+    </xpath>
+</template>
+
+<template id="theme_zen.theme_zen_orange" name="Theme Zen" inherit_id="website.theme" active="False" customize_show="True" >
+    <xpath expr="//link[@id='bootstrap_css']" position="replace">
+        <link rel="stylesheet" type="text/css" href="/theme_zen/static/css/theme_zen_orange.css" t-ignore="true"/>
+    </xpath>
+</template>
+
+<!-- ajout css pour invoice -->
+
+<template id="theme_zen.theme_zen_pink" name="Theme Zen" inherit_id="website.theme" active="False" customize_show="True" >
+    <xpath expr="//link[@id='bootstrap_css']" position="replace">
+        <link rel="stylesheet" type="text/css" href="/theme_zen/static/css/theme_zen_pink.css" t-ignore="true"/>
+    </xpath>
+</template>
+
+<!-- 
+<template id="theme_zen.theme_zen_red" name="Theme Zen" inherit_id="website.theme" optional="disabled">
+    <xpath expr="//link[@id='bootstrap_css']" position="replace">
+        <link rel="stylesheet" type="text/css" href="/theme_zen/static/css/theme_zen_red.css" t-ignore="true"/>
+    </xpath>
+</template>
+-->
+
+  <template id="assets_frontend" inherit_id="website.assets_frontend" name="My Theme Front End Assets">
+   <xpath expr="." position="inside">
+    <script src="/theme_zen/static/lib/Three.js"></script>
+    <script src="/theme_zen/static/lib/Detector.js"></script>
+    <script src="/theme_zen/static/lib/RequestAnimationFrame.js"></script>
+    <script src="/theme_zen/static/js/theme_zen.js"></script>
+    <link rel="stylesheet" type="text/css" href="/theme_zen/static/css/global_theme.css" />
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css"/>    
+   </xpath>
+  </template>
+
+<!--  ****************** POUR IMPRESSION FACTURE **************** --> 
+
+<template id="theme_zen.layout" inherit_id="web.layout" primary="True">
+    <!-- Add report attributes -->
+    <xpath expr="//html" position="attributes">
+        <attribute name="t-att-data-report-margin-top">data_report_margin_top if data_report_margin_top else None</attribute>
+        <attribute name="t-att-data-report-header-spacing">data_report_header_spacing if data_report_header_spacing else None</attribute>
+        <attribute name="t-att-data-report-dpi">data_report_dpi if data_report_dpi else None</attribute>
+    </xpath>
+    <!-- Add report style -->
+    <xpath expr="//head" position="inside">
+        <link href="/web/static/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+        <link href="/website/static/src/css/website.css" rel="stylesheet"/>
+        <link href="/web/static/lib/fontawesome/css/font-awesome.css" rel="stylesheet"/>
+		<link href="/theme_zen/static/css/invoice_orange.css" rel="stylesheet"/>       
+        <style type="text/css">
+            <t t-call="theme_zen.style"/>
+        </style>
+    </xpath>
+    <!-- Remove conflicting style -->
+    <xpath expr="//head/link[@href='/web/static/src/css/full.css']" position="replace"></xpath>
+</template>
+
+<!-- CSS -->	
+<template id="style">	
+	/* Montserrat */
+	  @font-face {
+	  font-family: 'Montserrat-Regular';
+	  font-style: normal;
+	  src: local('Montserrat Regular'), url('/theme_zen/static/font/Montserrat-Regular.ttf') format('truetype');
+	}
+</template>
+
+
+<template id="theme_zen.html_container">
+    <t t-set="body_classname" t-value="'container'"/>
+    <t t-call="theme_zen.layout">
+        <t t-raw="0"/>
+    </t>
+</template>	
+
+<template id="theme_zen.invoice_footer">
+    
+	<div class="footer">
+		
+        <table style="width: 100%;font-size:13;color :black;font-family:Montserrat-Regular;text-align:center">
+            
+            <tr style="height:20px;">
+                <td><b> <span t-field="company.name"/></b></td>
+                <td rowspan="5" style="padding-left:15px;text-align:center;width:135px;border-left:1px solid #adadad" >
+	                <img src="theme_zen/static/img/gallery/extern_logo_img.jpg" style="max-height: 80px;padding-bottom:5px;"/>
+               		<div style="color :#adadad;" t-field="company.company_registry"/> 
+	            </td>
+            </tr>
+            <tr  style="height:20px">
+            	<td>
+            		<span t-field="company.partner_id.street"/>  |
+            		<span t-field="company.partner_id.zip"/>  -    
+            		<span t-field="company.partner_id.city"/>  -  Phone : 
+            		<span t-field="company.partner_id.phone"/> -  Fax : 
+           			<span t-field="company.partner_id.fax"/>           			  				             				
+            	</td>
+            	<td></td>
+            </tr>   
+            <tr  style="height:20px">
+            	<td>
+            		email : <span t-field="company.partner_id.email"/>  |  Website :  
+            		<span t-field="company.partner_id.website"/>  | VAT : 	
+            		<span t-field="company.partner_id.vat"/>            			    
+            	</td>
+            	<td></td>
+            </tr>
+            
+            <tr  style="height:20px">
+            	<td> 
+            		<t t-foreach="company.bank_ids" t-as="b">
+    					<t t-if="b.footer">				 
+		          			<span t-field="b.bank_name"/>
+		            		<span t-field="b.acc_number"/>
+		            		<span t-field="b.bank_bic"/>
+						</t>	  		            		
+					</t>	            		
+            	</td>
+            	<td></td>
+            </tr> 
+        </table>  
+		
+    </div>      
+</template>
+
+<template id="theme_zen.invoice_footer_002">
+    
+	<div class="footer">
+		
+        <table style="width: 100%;font-size:13;color :black;font-family:Montserrat-Regular;text-align:center">
+            
+            <tr style="height:20px;">
+                <td width="85%"></td>
+                <td rowspan="5" style="padding-left:15px;text-align:center;width:260px;border-left:1px solid #adadad" >
+                	<img src="theme_zen/static/img/gallery/cooperation_logo.png" style="max-height: 80px;padding-bottom:5px;"/>
+               		<div style="color :#adadad;" t-field="company.company_registry"/> 
+	            </td>
+            </tr>
+        </table>  
+		
+    </div>      
+</template> 
+
+<template id="theme_zen.invoice_header">
+ 
+
+	<table style="width: 100%;">
+          <tr>      
+                <td style="width:50;padding-right:15px" rowspan="3">
+                	<img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % o.company_id.logo" style="max-height: 100px;"/>
+                </td>
+                <td style="text-align:left; vertical-align:bottom;padding-top:25px;padding-bottom:5px;padding-left:15px">
+                    <b><span t-field="o.company_id.name"/></b>
+                </td>
+          </tr>
+          <tr>
+                <td style="border-bottom: 1px solid #ff7f00;"></td>
+          </tr>
+          <tr>
+                <td style="text-align:left; vertical-align:top;padding-top:5px;padding-left:15px;">
+                	<span>Experts - comptables</span>
+                </td>
+          </tr>
+                        
+     </table>
+
+</template>
+
+	  
+<template id="theme_zen.invoice_layout">
+    <!-- Multicompany -->
+    <t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id"></t>
+    </t>
+    <t t-if="not o or not 'company_id' in o">
+        <t t-set="company" t-value="res_company"></t>
+    </t>
+    
+    <t t-raw="0" />
+    <t t-call="theme_zen.invoice_footer" />
+</template>
+
+<template id="theme_zen.invoice_layout_002">
+    <!-- Multicompany -->
+    <t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id"></t>
+    </t>
+    <t t-if="not o or not 'company_id' in o">
+        <t t-set="company" t-value="res_company"></t>
+    </t>
+    
+    <t t-raw="0" />
+    <t t-call="theme_zen.invoice_footer_002" />
+</template>
+
+	
+<template id="theme_zen.report_footer_002">
+    
+	<div class="footer">
+		
+        <table style="width: 100%;font-size:13;color :black;font-family:Montserrat-Regular;text-align:center">
+            
+            <tr style="height:20px;">
+                <td width="90%"></td>
+                <td rowspan="5" style="padding-left:15px;text-align:center;width:260px;border-left:1px solid #adadad" >
+                	Page : 
+					<span class="page"/>               			
+	            </td>
+            </tr>
+        </table>  
+		
+    </div>      
+</template> 
+
+
+<template id="theme_zen.report_layout_002">
+    <!-- Multicompany -->
+    <t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id"></t>
+    </t>
+    <t t-if="not o or not 'company_id' in o">
+        <t t-set="company" t-value="res_company"></t>
+    </t>
+    
+    <t t-raw="0" />
+    <t t-call="theme_zen.report_footer_002" />
+</template>
+
+
+<template id="theme_zen.theme_zen_purple" name="Theme Zen" inherit_id="website.theme" active="False" customize_show="True">
+    <xpath expr="//link[@id='bootstrap_css']" position="replace">
+        <link rel="stylesheet" type="text/css" href="/theme_zen/static/css/theme_zen_purple.css" t-ignore="true"/>
+    </xpath>
+</template>
+
+
+
+
+</data>
+</openerp>
+

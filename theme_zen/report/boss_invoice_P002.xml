@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="theme_invoice_P002_document">
+    <t t-call="theme_zen.invoice_layout_002">
+       
+     	<div class="page">
+			<head>
+				<link href="/theme_zen/static/css/invoice_P002.css" rel="stylesheet"/>
+			</head>
+	     		
+ 			<t t-call="theme_zen.invoice_header_P002"/>
+
+			<br/><br/><br/><br/><br/>
+			
+			<table class="title_table">
+          		<tr> 
+          			<td>
+          				<span>RECIPIENT</span>
+          				<span class="color_text"> OF :</span>
+          			</td>
+          			<td>
+		          		<div class="title_doc" >
+			            	<span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">INVOICE</span>
+			                <span t-if="o.type == 'out_invoice' and o.state == 'proforma2'">PRO-FORMA</span>
+			                <span t-if="o.type == 'out_invoice' and o.state == 'draft'">DRAFT INVOICE</span>
+			                <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Cancelled Invoice</span>
+			                <span t-if="o.type == 'out_refund'">Refund</span>
+			                <span t-if="o.type == 'in_refund'">Supplier Refund</span>
+			                <span t-if="o.type == 'in_invoice'">Supplier Invoice</span>
+						</div>	
+          			</td>
+          		</tr>   
+			</table>
+			
+			<br/>
+			
+			<table>
+				<tr>
+					<td width="75%" rowspan="5">
+	                    <address t-field="o.partner_id"
+	                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
+	                    <span t-field="o.partner_id.vat"/>
+					</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td width="18%">
+		            	<span class="color_text" t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">INVOICE N° : </span>
+		                <span class="color_text" t-if="o.type == 'out_refund'">REFUND N° : </span>
+					</td>
+					<td style="text-align:right">
+		                <span style="padding-left:5px;" t-field="o.number"/>						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="color_text">DOCUMENT DATE : </span>
+					</td>
+					<td style="text-align:right">
+						<span style="padding-left:5px;" t-field="o.date_invoice"/>						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="color_text">DUE DATE : </span>
+	
+					</td>
+					<td style="text-align:right">
+						<span style="padding-left:5px;" t-field="o.date_due"/>						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="color_text">OBJECT : </span>
+	
+					</td>
+					<td style="text-align:right">
+						<span style="padding-left:5px;" t-field="o.name"/>						
+					</td>
+				</tr>
+			</table>
+     
+        	     
+			<table class="info_table" width="40%" style="margin-left:60%" height="25px">
+		        <tr>
+					<th>
+			        	<span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">TOTAL DUE</span>
+	                	<span t-if="o.type == 'out_refund'">TOTAL REFUND</span>	                    
+					</th>
+	                <th style="font-weight: bold;" width="50%" height="40px">
+	                	<span t-field="o.amount_total" 
+                            t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+	               	</th>
+		        </tr>
+    		</table>            
+
+			<br/><br/><br/><br/>
+				
+     		<table class="list_line_table_head" width="100%" style="margin-top: 15px;">
+                <tr style="padding-bottom:25px">
+                	<th width="56%" style="text-align:left;text-indent:20px">Description</th>
+                    <th width="8%">Quantity</th>
+                    <th width="10%">Unit</th>
+	                <th width="10%" >Unit price</th>
+	                <th width="15%" >Amount</th>
+                </tr>
+                <tr>
+                	<td height="20px" style="background-color:#ffffff"></td>
+                </tr>
+                
+                <tr t-foreach="o.invoice_line" t-as="l" height="40px">
+					
+					<td style="text-align:left;text-indent:20px;">
+						<span t-field="l.name" ></span>
+					</td>
+					
+                    <!-- precision du decimal definit dans table decimal_precision -->
+					<td style="text-align:left;text-indent:20px;">
+						<span t-field="l.quantity" ></span>
+					</td>
+                    
+					<td style="text-align:right;">
+							<span t-if="len(l.uos_id)==0">Unit(s)</span>
+							<span t-if="len(l.uos_id) > 0" t-field="l.uos_id.name"/>
+					</td>
+					<td style="text-align:right;">
+	                       <span t-field="l.price_unit" 
+                            t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+					</td>
+					
+					<td style="text-align:right;">
+                        <span t-field="l.price_subtotal" 
+                            t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+					</td>
+                </tr>
+                <tr>
+                	<td colspan="5" style="background-color:#ffffff"><div class="white_line_border" ></div></td>
+                </tr>
+            </table>
+           
+            <table class="total_table" width="40%" style="margin-left:60%;margin-top:10px">
+				<tr t-foreach="o.tax_line" t-as="t" height="40px" >
+					<th style="text-align:left;text-indent:10px;" ><span t-field="t.name"/></th>
+                    <th class="text-right">
+                        <span t-field="t.amount"
+                              t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                    </th>
+                </tr>
+                <tr class="color_background" height="40px" style=";color:#ffffff">
+					<td style="margin-top:15px;text-align:left;text-indent:10px;">
+						<b><span >TOTAL</span></b>
+					</td>                
+					<td style="margin-top:10px;text-align:right;">
+						<b><span  t-field="o.amount_total" 
+                            t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></b>
+					</td>	
+                </tr>     	
+			</table>       				
+
+			<br/><br/>
+	
+			<table style="margin-top:10px ; margin-left:5%;">
+				<tr >
+					<td style="padding-bottom:15px">
+						<b><span class="color_text" style="padding-bottom:15px">TERM / CONDITIONS</span></b>
+					</td>
+	            </tr>
+	            <tr> 
+	                <td><span t-field="o.payment_term.name"/></td>
+	            </tr>
+	        </table>
+			
+	        <br/>
+	        
+			<table style="margin-top:10px ; margin-left:5%;">
+				<tr >
+					<td style="padding-bottom:15px">
+						<b><span class="color_text" style="padding-bottom:15px">PAYEMENT</span></b>
+					</td>
+	            </tr>
+	            
+	            <t t-foreach="o.company_id.bank_ids" t-as="b">
+	                <tr> 
+	                	<td><span t-field="b.bank_name"/></td>
+	                </tr>
+	                <tr> 
+	                	<td><span>Account N° : </span><span t-field="b.acc_number"/></td>
+	                </tr>
+	                <tr> 
+	                	<td><span>BIC : </span><span t-field="b.bank_bic"/></td>
+	                </tr>
+	            </t>
+	            <tr>
+	            	<td colspan="5" style="background-color:#ffffff"><div class="white_line_border" ></div></td>
+	            </tr>
+	            <tr> 
+	                <td style="vertical-align:middle;padding-top:10px;padding-left:5px">
+	                    <span t-field="o.reference"/></td>
+	            </tr>
+			</table>					
+		</div>
+
+        </t>
+        
+        </template>
+
+<template id="theme_invoice_P002">
+    <t t-call="theme_zen.html_container">
+        <t t-set="data_report_margin_top" t-value="5"/>
+        <t t-set="data_report_header_spacing" t-value="5"/>
+        <t t-set="data_report_dpi" t-value="110"/>
+            	    	
+        <t t-foreach="doc_ids" t-as="doc_id">
+            <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'theme_zen.theme_invoice_P002_document')"/>
+        </t>
+
+        	        
+    </t>
+</template>
+</data>
+</openerp>

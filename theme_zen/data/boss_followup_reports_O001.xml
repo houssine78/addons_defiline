@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <report
+            id="action_boss_report_followup" 
+            model="account_followup.followup" 
+            string="Follow-up Report"
+            report_type="qweb-pdf"
+            name="theme_zen.boss_report_followup" 
+            file="theme_zen.boss_followup_O001" 
+            menu="False"
+        />
+    </data>
+</openerp>

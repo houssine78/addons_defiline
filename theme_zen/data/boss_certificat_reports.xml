@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <report
+            id="action_boss_report_certificat" 
+            model="res.partner" 
+            string="Partner certificat"
+            report_type="qweb-pdf"
+            name="theme_zen.boss_certificat_G001" 
+            file="theme_zen.boss_certificat_G001" 
+        	attachment_use="0"
+            multi="True"
+ 			menu="True"        
+        />
+    </data>
+</openerp>
+

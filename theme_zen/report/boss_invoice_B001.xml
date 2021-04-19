@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+	
+<template id="theme_zen.invoice_header_B001">
+	<table style="width: 100%;">
+          <tr>      
+                <td style="width:50;padding-right:15px" rowspan="3">
+                	<img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % o.company_id.logo" style="max-height: 100px;"/>
+                </td>
+                <td style="text-align:left; vertical-align:bottom;padding-top:25px;padding-bottom:5px;padding-left:15px">
+                    <b><span t-field="o.company_id.name"/></b>
+                </td>
+          </tr>
+          <tr>
+                <td style="border-bottom: 1px solid #009ceb;"></td>
+          </tr>
+          <tr>
+                <td style="text-align:left; vertical-align:top;padding-top:5px;padding-left:15px;">
+                	<span t-field="o.company_id.rml_header1"/>
+                </td>
+          </tr>
+                        
+     </table>
+</template>	
+	
+<template id="theme_invoice_B001_document">
+    <t t-call="theme_zen.invoice_layout">
+       
+     	<div class="page">
+			<head>
+				<link href="/theme_zen/static/css/invoice_B001.css" rel="stylesheet"/>
+			</head>
+	     		
+ 			<t t-call="theme_zen.invoice_header_B001"/>
+
+			<br/><br/><br/><br/>				     		     		
+            <div class="row">
+                <div class="col-xs-5 col-xs-offset-7">
+                    <address t-field="o.partner_id"
+                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
+                    <span style="font-family: Lato-Regular;font-size: 18px;" t-field="o.partner_id.vat"/>
+                </div>
+            </div>
+
+            <h4 style="	padding-left:50px;">
+                <div class="doc_title">
+	            	<span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">INVOICE</span>
+	                <span t-if="o.type == 'out_invoice' and o.state == 'proforma2'">PRO-FORMA</span>
+	                <span t-if="o.type == 'out_invoice' and o.state == 'draft'">DRAFT INVOICE</span>
+	                <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Cancelled Invoice</span>
+	                <span t-if="o.type == 'out_refund'">Refund</span>
+	                <span t-if="o.type == 'in_refund'">Supplier Refund</span>
+	                <span t-if="o.type == 'in_invoice'">Supplier Invoice</span>
+				</div>
+				<div class="doc_num">              
+					<span t-field="o.number"/>
+				</div>           
+            </h4>
+        	<br/><br/>
+        	     
+			<table class="info_table" width="100%">
+		        <tr>
+	                <th width="12%" >Document date</th>
+		            <th width="12%" >Due Date</th>
+		            <th style="text-align: left;text-indent:20px;" width="54%">Object</th>
+		            <th width="20%">Our reference</th>
+		        </tr>
+      			<tr >
+		            <td><span t-field="o.date_invoice"/></td>
+		            <td><span t-field="o.date_due"/></td>
+		           	<td style="text-align: left;text-indent:20px"><span t-field="o.name"/></td>
+		            <td width="20%" style="border-right: #000000 0px solid;"><span t-field="o.origin"/></td>
+        		</tr>		        
+    		</table>            
+
+			<table class="comment_table" t-if="o.comment">
+		          <tr>      
+		                <td style="padding-right:15px" >
+		                	<img src="theme_zen/static/img/gallery/arrow_bleu_img.jpg" style="max-height: 30px;"/>
+		                </td>
+		                <td style="padding-left:5px;vertical-align:middle;text-align:center;">
+		                    <span t-field="o.comment"/>
+		                </td>
+		                <td style="padding-left:20px" >
+		                	<img src="theme_zen/static/img/gallery/arrow_bleu_left.jpg" style="max-height: 30px;"/>
+		                </td>
+		          </tr>
+			</table>		
+			<br/>	
+				
+     		<table class="list_line_table_head" width="100%" style="margin-top: 15px;margin-bottom:15px">
+                <tr>
+                	<th width="56%" style="text-align:left;text-indent:20px">Description</th>
+                    <th width="8%">Quantity</th>
+                    <th width="10%">Unit</th>
+	                <th width="10%" >Unit price</th>
+	                <th width="15%" >Amount</th>
+                </tr>
+                
+				<t t-set="nb_ligne" t-value="0"/>  
+					              
+                <tr t-foreach="o.invoice_line" t-as="l" height="40px">
+					<t t-set="nb_ligne" t-value="nb_ligne+1"/>
+					
+					<div t-if="(nb_ligne%2)==1" >						
+						<td class="lgn_impair" style="text-align:left;text-indent:20px;">
+							<span t-field="l.name" ></span>
+						</td>
+					</div>
+					<div t-if="(nb_ligne%2)==0" >						
+						<td class="lgn_pair" style="text-align:left;text-indent:20px;">
+							<span t-field="l.name" ></span>
+						</td>
+					</div>
+					
+                    <!-- precision du decimal definit dans table decimal_precision -->
+               		<div t-if="(nb_ligne%2)==1" >						
+						<td class="lgn_impair" style="text-align:left;text-indent:20px;">
+							<span t-field="l.quantity" ></span>
+						</td>
+					</div>
+					<div t-if="(nb_ligne%2)==0" >						
+						<td class="lgn_pair" style="text-align:left;text-indent:20px;">
+							<span t-field="l.quantity" ></span>
+						</td>
+					</div>	
+                    
+	            	<div t-if="(nb_ligne%2)==1" >						
+						<td class="lgn_impair" style="text-align:right;">
+							<span t-if="len(l.uos_id)==0">Unit(s)</span>
+							<span t-if="len(l.uos_id) > 0" t-field="l.uos_id.name"/>
+						</td>
+					</div>
+					<div t-if="(nb_ligne%2)==0" >						
+						<td class="lgn_pair" style="text-align:right;">
+							<span t-if="len(l.uos_id)==0">Unit(s)</span>
+							<span t-if="len(l.uos_id) > 0" t-field="l.uos_id.name"/>
+						</td>
+					</div>	
+  
+             		<div t-if="(nb_ligne%2)==1" >						
+						<td class="lgn_impair" style="text-align:right;">
+	                       <span t-field="l.price_unit" 
+                            t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+						</td>
+					</div>
+					<div t-if="(nb_ligne%2)==0" >						
+						<td class="lgn_pair" style="text-align:right;">
+                       <span t-field="l.price_unit" 
+                            t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+						</td>
+					</div>	
+					
+    				<div t-if="(nb_ligne%2)==1" >		   				 
+						<td class="lgn_impair" style="text-align:right;">
+                        <span t-field="l.price_subtotal" 
+                            t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+						</td>
+                    </div>
+					<div t-if="(nb_ligne%2)==0" >						
+						<td class="lgn_pair" style="text-align:right;">
+                      <span t-field="l.price_subtotal" 
+                            t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+						</td>
+					</div>	
+                </tr>
+            </table>
+            
+			<hr class="standard_line" width="100%"/>	
+						
+            <table class="tva_table" width="50%" style="margin-left:50%">
+				<tr>
+	                <th width="50%"><b>Tax</b></th>
+	                <th width="20%"><b>Base</b></th>
+	                <th width="30%"><b>Amount</b></th>
+            	</tr>
+				<tr t-foreach="o.tax_line" t-as="t" style="font-family: Lato-Regular">
+                    <td><span t-field="t.name"/></td>
+                    <td class="text-right">
+                        <span t-field="t.base"
+                              t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                    </td>
+                    <td class="text-right">
+                        <span t-field="t.amount"
+                              t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                    </td>
+                </tr>     	
+			</table>       				
+
+			<hr class="standard_line" width="50%" style="margin-left:50%"/>			
+
+			<table class="info_table" style="margin-top:10px ; margin-bottom:10px;margin-left:50%;" width="50%">
+				<tr>
+	                <th width="70%" style="text-align:center;"><b>Paiement ref.</b></th>
+
+            		<th width="30%">
+	                    <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">To pay</span>
+	                	<span t-if="o.type == 'out_refund'">To refund</span>	                    
+	    			</th>
+	            </tr>
+	            <tr style="font-weight: bold">
+	            	<td style="text-align:center;"><b><span t-field="o.reference"/></b></td>
+					<td style="text-align:right;border-right: #000000 0px solid;">
+	            	<span t-field="o.amount_total" 
+                            t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+					</td>	               	
+	            </tr>
+			  </table>					
+
+
+			  	      </div>
+
+        </t>
+        
+        </template>
+
+<template id="theme_invoice_B001">
+    <t t-call="theme_zen.html_container">
+        <t t-set="data_report_margin_top" t-value="5"/>
+        <t t-set="data_report_header_spacing" t-value="5"/>
+        <t t-set="data_report_dpi" t-value="110"/>
+            	    	
+        <t t-foreach="doc_ids" t-as="doc_id">
+            <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'theme_zen.theme_invoice_B001_document')"/>
+        </t>
+
+        	        
+    </t>
+</template>
+</data>
+</openerp>

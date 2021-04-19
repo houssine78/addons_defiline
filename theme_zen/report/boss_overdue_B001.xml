@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+	
+<template id="theme_overdue_B0001_document">
+    <t t-call="theme_zen.invoice_layout">
+       
+     	<div class="page">
+			<head>
+				<link href="/theme_zen/static/css/invoice_B001.css" rel="stylesheet"/>
+			</head>
+	     		
+ 			<t t-call="theme_zen.invoice_header_B001"/>
+
+			<br/><br/><br/><br/>				     		     		
+
+        </div>
+    </t>
+</template>
+
+
+<template id="theme_overdue_B001">
+    <t t-call="theme_zen.html_container">
+        <t t-foreach="doc_ids" t-as="doc_id">
+            <t t-raw="translate_doc(doc_id, doc_model, 'lang', 'theme_zen.theme_overdue_B001_document')"/>
+ 		</t>
+    </t>
+</template>
+</data>
+</openerp>
